@@ -11,6 +11,7 @@
       href="./images/common/logo-icon.svg"
       type="image/svg+xml"
     />
+    <link rel="stylesheet" href="./style/reset.css" />
     <link rel="stylesheet" href="./style/css/common.css" />
     <link rel="stylesheet" href="./style/css/index.css" />
   </head>
@@ -18,11 +19,64 @@
     <header>
       <div class="container">
         <h1 class="logo">
-          <img src="./images/common/logo.svg" alt="홈페이지 로고" />
+          <a href="/index.html"
+            ><img src="./images/common/logo.svg" alt="홈페이지 로고"
+          /></a>
         </h1>
+        <nav id="nav">
+          <ul>
+            <li><a href="#">홈페이지 소개</a></li>
+            <li><a href="#">프로젝트</a></li>
+            <li><a href="#">정보 모음</a></li>
+          </ul>
+        </nav>
       </div>
     </header>
-    <main><div class="container"></div></main>
+    <main>
+      <section class="main-banner">
+        <div class="banner">
+          <h2>안녕하세요</h2>
+          <p class="text__ani--1"><span class="active">코딩</span> 하는</p>
+          <p class="text__ani--2">웹 개발자</p>
+          <p class="text__ani--3">한산입니다.</p>
+        </div>
+        <aside class="fixNav">
+          <div class="fixNav__wrapper">
+            <ol class="fixNav__ul">
+              <li class="fixNav__list">Home</li>
+              <li class="fixNav__list">
+                프로젝트
+                <ul>
+                  <li>LG Display</li>
+                  <li></li>
+                  <li></li>
+                </ul>
+              </li>
+              <li class="fixNav__list"></li>
+              <li class="fixNav__list"></li>
+              <li class="fixNav__list"></li>
+            </ol>
+          </div>
+        </aside>
+      </section>
+      <div class="container">
+        <section>
+          <h2 class="title">프로젝트</h2>
+          <div class="wrapper">
+            <ul class="project__box">
+              <li class="project1"></li>
+              <li class="project2"></li>
+              <li class="project3"></li>
+            </ul>
+            <div class="control-wrapper">
+              <button class="control-prev"></button
+              ><button class="control-next"></button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
     <footer><div class="container"></div></footer>
+    <script src="./script/index.js"></script>
   </body>
 </html>
