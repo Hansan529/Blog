@@ -1,0 +1,27 @@
+@keyframes mainBannerTextOpacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes mainBannerTextPos {
+  0% {
+    top: 180px;
+  }
+  50% {
+    top: 135px;
+  }
+  100% {
+    top: 90px;
+  }
+}
+@keyframes mainBannerTextColor {
+  from {
+    color: #000;
+  }
+  to {
+    color: #999;
+  }
+}
