@@ -1,0 +1,52 @@
+.container {
+  position: relative;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.logo {
+  width: 50px;
+}
+
+body {
+  background-color: #eddcd3;
+}
+
+header {
+  background-color: #fff;
+  height: 80px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  box-shadow: 0 0 10px 10px #ccc;
+}
+header .container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header .container .logo {
+  position: absolute;
+  left: 0;
+}
+
+#nav ul {
+  display: flex;
+  gap: 50px;
+}
+
+.fixNav {
+  position: fixed;
+  left: 0;
+  transform: translateX(-100%);
+  background-color: #fff;
+  transition: 1s ease-in-out;
+  width: 20%;
+  height: 800px;
+}
+.fixNav__list > ul li::before {
+  content: "-";
+  margin: 0 10px;
+}
