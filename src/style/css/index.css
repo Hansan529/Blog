@@ -57,3 +57,10 @@
   transition: 0.3s ease-in;
   color: #000;
 }
+
+.introduction p {
+  margin-bottom: 10px;
+}
+.introduction ul {
+  text-indent: 10px;
+}

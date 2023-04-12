@@ -1,4 +1,8 @@
 @charset "UTF-8";
+html {
+  scroll-behavior: smooth;
+}
+
 .container {
   position: relative;
   max-width: 1280px;
@@ -20,6 +24,7 @@ header {
   top: 0;
   left: 0;
   box-shadow: 0 0 10px 10px #ccc;
+  z-index: 100;
 }
 header .container {
   width: 100%;
@@ -41,6 +46,7 @@ header .container .logo {
 .fixNav {
   position: fixed;
   left: 0;
+  transform: translateX(-100%);
   background-color: #fff;
   transition: 1s ease-in-out;
   width: 20%;

@@ -10,4 +10,7 @@ setTimeout(() => {
 setTimeout(() => {
   handleFixNav.style.transform = "translateX(0)";
   handleFixNav.style.borderRadius = "0 50px 50px 0";
+  setTimeout(() => {
+    handleFixNav.style.transform = "translateX(-100%)";
+  }, 2000);
 }, 4000);
