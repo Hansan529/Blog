@@ -11,6 +11,16 @@ const logger = morgan("dev");
 app.set("view engine", "pug");
 app.set("views", process.cwd() + "/src/views");
 app.use(logger);
+app.use(
+  session({
+    secret: process.env.COOKIE_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 600000,
+    },
+  })
+);
 app.use(express.urlencoded({ extended: true }));
 app.use("/", rootRouter);
 
