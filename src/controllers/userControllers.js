@@ -69,9 +69,7 @@ export const postGithubLogin = async (req, res) => {
   const tokenRequest = await (
     await fetch(connectUrl, {
       method: "POST",
-      headers: {
-        Accept: application / json,
-      },
+      headers: { Accept: "application/json" },
     })
   ).json();
 
@@ -81,15 +79,16 @@ export const postGithubLogin = async (req, res) => {
 
     const userData = await (
       await fetch(`${apiUrl}/user`, {
-        Authorization: `token ${access_token}`,
+        headers: { Authorization: `token ${access_token}` },
       })
     ).json();
 
     const emailData = await (
       await fetch(`${apiUrl}/user/emails`, {
-        Authorization: `token ${access_token}`,
+        headers: { Authorization: `token ${access_token}` },
       })
-    ).json;
+    ).json();
+
     /** 이메일 배열에서 primary와 verified가 모두 true 인 배열만 찾기 */
     const emailObj = emailData.find(
       (email) => email.primary === true && email.verified === true
@@ -109,27 +108,24 @@ export const postGithubLogin = async (req, res) => {
       req.session.user = userAlready;
       return res.redirect("/");
     } else {
-      const userNameExists = await User.exists({ username: userData.login });
-      const nameExists = await User.exists({ name: userData.name });
-      console.log("userNameExists: ", userNameExists);
-      console.log("nameExists: ", nameExists);
-      let username = userData.login;
-      let name = userData.name;
+      const userNameExists = await User.exists({ id: userData.login });
+      const nameExists = await User.exists({ username: userData.name });
+
+      let id = userData.login;
+      let username = userData.name;
 
       /* 일치하는 아이디가 있으면 랜덤 아이디로 지정 */
-      userNameExists ? (username = nanoid(10)) : username;
+      userNameExists ? (id = nanoid(10)) : id;
 
       /* 일치하는 닉네임이 있으면 랜덤 닉네임으로 지정 */
-      nameExists ? (name = nanoid(10)) : name;
+      nameExists ? (username = nanoid(10)) : username;
 
       /* 유저 생성 */
       const user = await User.create({
-        name,
-        avatarUrl: userData.avatar_url,
         socialLogin: true,
-        username,
+        id,
         email: emailObj.email,
-        location: userData.location,
+        username,
       });
 
       /* login 처리 */
