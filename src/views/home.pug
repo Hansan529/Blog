@@ -8,4 +8,6 @@ block content
     section#introduction 
       include partials/sec1_introduction
     section#project 
+      if loggedInUser 
+        a(href="/admin/upload/project") 
       //- include partials/sec2_project
