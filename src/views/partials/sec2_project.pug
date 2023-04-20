@@ -1,7 +1,9 @@
+include ../mixins/project
+
 h2.title 프로젝트
 .wrapper 
   ul.project 
-    each projectIndex in projects
-      +project(projectIndex)
+    each project in projects
+      +project(project)
     else
       div 아무런 자료가 없습니다.
