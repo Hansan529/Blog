@@ -45,5 +45,5 @@ export const logout = (req, res) => {
 };
 
 export const getUploadProject = (req, res) => {
-  return res.send("asd");
+  return res.render("upload");
 };
