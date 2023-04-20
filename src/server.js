@@ -4,6 +4,7 @@ import session from "express-session";
 import MongoStore from "connect-mongo";
 
 import rootRouter from "./routers/rootRouter";
+import adminRouter from "./routers/adminRouter";
 import { localMiddleware } from "./middleware";
 
 const app = express();
@@ -26,5 +27,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(localMiddleware);
 app.use("/", rootRouter);
+app.use("/admin", adminRouter);
 
 export default app;
