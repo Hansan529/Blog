@@ -1,9 +1,9 @@
 import express from "express";
 
-import { home } from "../controllers/homeControllers";
 import {
   getJoin,
   getLogin,
+  home,
   logout,
   postJoin,
   postLogin,
