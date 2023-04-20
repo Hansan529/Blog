@@ -55,7 +55,27 @@ export const getGithubLogin = (req, res) => {
   return res.redirect(connectUrl);
 };
 
-export const postGithubLogin = (req, res) => {};
+export const postGithubLogin = async (req, res) => {
+  const baseUrl = "https://github.com/login/oauth/access_token";
+  const config = {
+    client_id: process.env.GH_CLIENT,
+    client_secret: process.env.GH_SECRET,
+    code: req.query.code,
+  };
+
+  const params = new URLSearchParams(config).toString();
+  const connectUrl = `${baseUrl}?${params}`;
+
+  const tokenRequest = await (
+    await fetch(connectUrl, {
+      method: "POST",
+      headers: {
+        Accept: application / json,
+      },
+    })
+  ).json();
+  return res.redirect("/");
+};
 
 export const logout = (req, res) => {
   req.session.destroy();
