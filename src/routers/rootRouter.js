@@ -1,6 +1,7 @@
 import express from "express";
 
-import { getLogin, home, postLogin } from "../controllers/homeControllers";
+import { home } from "../controllers/homeControllers";
+import { getLogin, postLogin } from "../controllers/adminControllers";
 
 const rootRouter = express.Router();
 
