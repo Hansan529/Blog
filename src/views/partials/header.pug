@@ -11,6 +11,12 @@ header
           a(href="#") 프로젝트
         li 
           a(href="#") 정보 모음
-    ul.login
-      li
-        a(href="/login") 로그인
+      ul.login
+        if !loggedInUser
+          li
+            a(href="/login") 로그인
+          li 
+            a(href="/join") 회원가입
+        else
+          li 
+            a(href="/logout") 로그아웃
