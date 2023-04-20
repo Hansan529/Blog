@@ -1,8 +1,14 @@
 import express from "express";
-import { getUploadProject } from "../controllers/adminControllers";
+import {
+  getUploadProject,
+  postUploadProject,
+} from "../controllers/adminControllers";
 
 const adminRouter = express.Router();
 
-adminRouter.get("/upload/project", getUploadProject);
+adminRouter
+  .route("/upload/project")
+  .get(getUploadProject)
+  .post(postUploadProject);
 
 export default adminRouter;
