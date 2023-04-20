@@ -2,8 +2,15 @@ import bcrypt from "bcrypt";
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
+  socialLogin: { type: String, default: false },
   id: { type: String, required: true, unique: true },
-  password: { type: String, required: true, unique: true },
+  password: {
+    type: String,
+    required: function () {
+      return !this.socialLogin;
+    },
+    unique: true,
+  },
   email: { type: String, required: true, unique: true },
   username: { type: String, required: true, unique: true },
   keepLogin: Boolean,
