@@ -10,11 +10,13 @@ export const postUploadProject = async (req, res) => {
   const {
     body: { url, name, date, thumbnail, languages, description },
   } = req;
+  console.log(date);
   try {
     await Project.create({
       url,
       name,
       date,
+      dateSearch: date,
       thumbnail,
       languages: Project.formatLanguage(languages),
       description,
