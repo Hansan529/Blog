@@ -10,8 +10,6 @@ export const postUploadProject = async (req, res) => {
   const {
     body: { url, name, date, thumbnail, languages, description },
   } = req;
-
-  console.log("req.body: ", req.body);
   try {
     await Project.create({
       url,
@@ -22,9 +20,9 @@ export const postUploadProject = async (req, res) => {
       description,
     });
   } catch (error) {
-    req.session.errorMessage =
-      "조건에 맞지 않은 정보를 입력하여 등록을 실패했습니다.";
-    return res.redirect("project");
+    return res.status(400).render("upload", {
+      errorMessage: "조건에 맞지 않은 정보를 입력하여 등록을 실패했습니다.",
+    });
   }
   return res.redirect("/");
 };
