@@ -4,6 +4,7 @@ import session from "express-session";
 import MongoStore from "connect-mongo";
 
 import rootRouter from "./routers/rootRouter";
+import { localMiddleware } from "./middleware";
 
 const app = express();
 const logger = morgan("dev");
@@ -22,6 +23,8 @@ app.use(
   })
 );
 app.use(express.urlencoded({ extended: true }));
+
+app.use(localMiddleware);
 app.use("/", rootRouter);
 
 export default app;
