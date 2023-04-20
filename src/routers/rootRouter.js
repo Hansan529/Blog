@@ -7,7 +7,7 @@ import {
   logout,
   postJoin,
   postLogin,
-} from "../controllers/adminControllers";
+} from "../controllers/userControllers";
 
 const rootRouter = express.Router();
 
