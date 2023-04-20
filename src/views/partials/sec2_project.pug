@@ -1,0 +1,7 @@
+h2.title 프로젝트
+.wrapper 
+  ul.project 
+    each projectIndex in projects
+      +project(projectIndex)
+    else
+      div 아무런 자료가 없습니다.
