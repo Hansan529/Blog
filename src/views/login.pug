@@ -2,10 +2,10 @@ extends base
 
 block content
   form(method="POST")
-    input(name="id" placeholder="ID" type="text")
-    input(name="password" placeholder="PW" type="password")
-    input(name="email" placeholder="Email" type="email")
-    input(name="username" placeholder="닉네임" type="text")
+    input(name="id" placeholder="ID" type="text", required)
+    input(name="password" placeholder="PW" type="password", required)
+    input(name="email" placeholder="Email" type="email", required)
+    input(name="username" placeholder="닉네임" type="text", required)
     label(for="keepLogin") 로그인 유지
     input(name="keepLogin" value="true" type="checkbox" id="keepLogin")
     input(type="submit" value="로그인")
