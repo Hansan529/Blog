@@ -1,8 +1,10 @@
 import User from "../models/User";
+import Project from "../models/Project";
 import bcrypt from "bcrypt";
 
-export const home = (req, res) => {
-  return res.render("home", { pageTitle: "메인 홈페이지" });
+export const home = async (req, res) => {
+  const projects = await Project.find({}).sort({ date: "desc" });
+  return res.render("home", { pageTitle: "메인 홈페이지", projects });
 };
 
 export const getJoin = (req, res) => res.render("join");
