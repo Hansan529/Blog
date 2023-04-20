@@ -1,14 +1,14 @@
-mixin project(projectIndex)
+mixin project(project)
   li
-    a(href=`http://hansan529.github.io/${index.url}/` target="_blank")
+    a(href=`http://hansan529.github.io/${project.url}/` target="_blank")
       .project__title-wrapper 
-        h3.project__title #{index.name}
-        small=index.date 
+        h3.project__title #{project.name}
+        small=project.date 
       .project__img 
         //- img(src="", alt="") 이미지 추가
       .project__description 
-        each language in index.languages 
           p.project__use 사용 언어 및 라이브러리 등:
+          each language in project.languages 
             abbr(title=`${language}`)
               i(class=`${language}`)
-          p=index.description 
+          p=project.description 
