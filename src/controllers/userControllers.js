@@ -102,8 +102,15 @@ export const postGithubLogin = async (req, res) => {
     /* 유저 데이터베이스에 email이 primary,verified가 true인 배열과 일치하는 배열만 찾기 */
     const userAlready = await User.findOne({ email: emailObj.email });
 
+    let adminList = ["Hansan529", "asdasd", "zxczxc"];
+
     /* 일치하는 이메일이 있다면, login 성공 */
     if (userAlready) {
+      adminList.forEach((admin) => {
+        if (userAlready.id === admin) {
+          req.session.admin = true;
+        }
+      });
       req.session.loggedIn = true;
       req.session.user = userAlready;
       return res.redirect("/");
