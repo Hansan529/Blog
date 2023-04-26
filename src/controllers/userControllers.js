@@ -1,7 +1,13 @@
 import User from "../models/User";
 import Project from "../models/Project";
 import bcrypt from "bcrypt";
-import { ADMIN, GH_CLIENT, GH_SECRET } from "../data";
+import {
+  ADMIN,
+  GH_CLIENT,
+  GH_SECRET,
+  KAKAO_REDIRECT_URI,
+  KAKAO_REST_API_KEY,
+} from "../data";
 
 export const home = async (req, res) => {
   const projects = await Project.find({}).sort({ date: "desc" });
@@ -162,7 +168,13 @@ export const postGithubLogin = async (req, res) => {
 };
 
 export const getKakaoLogin = (req, res) => {
-  return res.send("xx");
+  const baseUrl = `https://kauth.kakao.com/oauth/authorize`;
+  const config = {
+    client_id: KAKAO_REST_API_KEY,
+  };
+  const params = new URLSearchParams(config).toString();
+  const link = `${baseUrl}?${params}&redirect_uri=${KAKAO_REDIRECT_URI}&response_type=code`;
+  return res.redirect(link);
 };
 
 export const postKakaoLogin = (req, res) => {
