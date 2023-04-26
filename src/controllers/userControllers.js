@@ -160,6 +160,14 @@ export const postGithubLogin = async (req, res) => {
   }
 };
 
+export const getKakaoLogin = (req, res) => {
+  return res.send("xx");
+};
+
+export const postKakaoLogin = (req, res) => {
+  return res.end();
+};
+
 export const logout = (req, res) => {
   req.session.destroy();
   return res.redirect("/");
