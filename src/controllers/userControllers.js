@@ -104,7 +104,6 @@ export const postGithubLogin = async (req, res) => {
 
     /* 관리자 목록 불러오기 및 배열에서 추출하기 */
     const adminList = process.env.ADMIN;
-    console.log("adminList: ", adminList);
 
     /* 일치하는 이메일이 있다면, login 성공 */
     if (userAlready) {
@@ -117,7 +116,11 @@ export const postGithubLogin = async (req, res) => {
             console.log(req.session);
           }
         });
-      } else if (adminList && !Array.isArray(adminList)) {
+      } else if (
+        adminList &&
+        !Array.isArray(adminList) &&
+        userAlready.id === adminList
+      ) {
         /* 관리자가 한명이라면 반복문을 사용하지 않음 */
         req.session.admin = true;
         console.log(req.session);
