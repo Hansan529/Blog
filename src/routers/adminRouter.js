@@ -12,6 +12,4 @@ adminRouter
   .get(getUploadProject)
   .post(postUploadProject);
 
-adminRouter.get("/login/github", getGithubLogin);
-
 export default adminRouter;
