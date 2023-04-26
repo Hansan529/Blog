@@ -6,6 +6,7 @@ import MongoStore from "connect-mongo";
 import rootRouter from "./routers/rootRouter";
 import adminRouter from "./routers/adminRouter";
 import { localMiddleware } from "./middleware";
+import userRouter from "./routers/userRouter";
 
 const app = express();
 const logger = morgan("dev");
@@ -27,6 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(localMiddleware);
 app.use("/", rootRouter);
+app.use("/users", userRouter);
 app.use("/admin", adminRouter);
 
 export default app;
