@@ -1,6 +1,7 @@
 import User from "../models/User";
 import Project from "../models/Project";
 import bcrypt from "bcrypt";
+import { ADMIN, GH_CLIENT, GH_SECRET } from "../data";
 
 export const home = async (req, res) => {
   const projects = await Project.find({}).sort({ date: "desc" });
@@ -47,7 +48,7 @@ export const postLogin = async (req, res) => {
 export const getGithubLogin = (req, res) => {
   const baseUrl = "https://github.com/login/oauth/authorize";
   const config = {
-    client_id: process.env.GH_CLIENT,
+    client_id: GH_CLIENT,
     scope: "read:user user:email",
   };
   const params = new URLSearchParams(config).toString();
@@ -58,8 +59,8 @@ export const getGithubLogin = (req, res) => {
 export const postGithubLogin = async (req, res) => {
   const baseUrl = "https://github.com/login/oauth/access_token";
   const config = {
-    client_id: process.env.GH_CLIENT,
-    client_secret: process.env.GH_SECRET,
+    client_id: GH_CLIENT,
+    client_secret: GH_SECRET,
     code: req.query.code,
   };
 
@@ -103,7 +104,7 @@ export const postGithubLogin = async (req, res) => {
     const userAlready = await User.findOne({ email: emailObj.email });
 
     /* 관리자 목록 불러오기 및 배열에서 추출하기 */
-    const adminList = process.env.ADMIN;
+    const adminList = ADMIN;
 
     /* 일치하는 이메일이 있다면, login 성공 */
     if (userAlready) {
