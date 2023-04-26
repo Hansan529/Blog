@@ -1,8 +1,8 @@
 export const localMiddleware = (req, res, next) => {
   res.locals.siteName = "hxn Web Developer Blog";
   res.locals.user = req.session.user;
-  res.locals.loggedInUser = req.session.loggedIn || {};
-  res.locals.admin = req.session.admin || none;
+  res.locals.loggedInUser = req.session.loggedIn || false;
+  res.locals.admin = req.session.admin || false;
   next();
 };
 
