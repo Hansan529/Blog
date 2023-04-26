@@ -32,7 +32,7 @@ export const getLogin = (req, res) => {
 
 export const postLogin = async (req, res) => {
   const {
-    body: { id, password, email, username, keepLogin },
+    body: { id, password, keepLogin },
   } = req;
   const user = await User.findOne({ id });
   const pwdCheck = user && (await bcrypt.compare(password, user.password));
@@ -102,15 +102,26 @@ export const postGithubLogin = async (req, res) => {
     /* 유저 데이터베이스에 email이 primary,verified가 true인 배열과 일치하는 배열만 찾기 */
     const userAlready = await User.findOne({ email: emailObj.email });
 
-    let adminList = ["Hansan529", "asdasd", "zxczxc"];
+    /* 관리자 목록 불러오기 및 배열에서 추출하기 */
+    const adminList = process.env.ADMIN;
+    console.log("adminList: ", adminList);
 
     /* 일치하는 이메일이 있다면, login 성공 */
     if (userAlready) {
-      adminList.forEach((admin) => {
-        if (userAlready.id === admin) {
-          req.session.admin = true;
-        }
-      });
+      /* 로그인 시도를 하는 유저 중 관리자들 이라면 권한 부여, */
+      if (adminList && Array.isArray(adminList)) {
+        adminList.split(",");
+        adminList.forEach((admin) => {
+          if (userAlready.id === admin) {
+            req.session.admin = true;
+            console.log(req.session);
+          }
+        });
+      } else if (adminList && !Array.isArray(adminList)) {
+        /* 관리자가 한명이라면 반복문을 사용하지 않음 */
+        req.session.admin = true;
+        console.log(req.session);
+      }
       req.session.loggedIn = true;
       req.session.user = userAlready;
       return res.redirect("/");
