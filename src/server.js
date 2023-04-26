@@ -7,6 +7,7 @@ import rootRouter from "./routers/rootRouter";
 import adminRouter from "./routers/adminRouter";
 import { localMiddleware } from "./middleware";
 import userRouter from "./routers/userRouter";
+import oauthRouter from "./routers/oauthRouter";
 
 const app = express();
 const logger = morgan("dev");
@@ -30,5 +31,6 @@ app.use(localMiddleware);
 app.use("/", rootRouter);
 app.use("/users", userRouter);
 app.use("/admin", adminRouter);
+app.use("/oauth", oauthRouter);
 
 export default app;
