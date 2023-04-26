@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
+import { DB_URL } from "./data";
 
-mongoose.connect(process.env.DB_URL);
+mongoose.connect(DB_URL);
 
 const db = mongoose.connection;
 
