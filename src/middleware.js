@@ -19,3 +19,10 @@ export const publicMiddleware = (req, res, next) => {
   }
   return res.redirect("/");
 };
+
+export const adminMiddleware = (req, res, next) => {
+  if (req.session.admin) {
+    return next();
+  }
+  return res.redirect("/");
+};
