@@ -8,6 +8,7 @@ import {
   KAKAO_REDIRECT_URI,
   KAKAO_REST_API_KEY,
 } from "../data";
+import { nanoid } from "nanoid";
 
 export const home = async (req, res) => {
   const projects = await Project.find({}).sort({ date: "desc" });
@@ -130,7 +131,6 @@ export const postGithubLogin = async (req, res) => {
       ) {
         /* 관리자가 한명이라면 반복문을 사용하지 않음 */
         req.session.admin = true;
-        console.log(req.session);
       }
       req.session.loggedIn = true;
       req.session.user = userAlready;
@@ -222,15 +222,36 @@ export const postKakaoLogin = async (req, res) => {
       return res.redirect("/");
     } else {
       /* 없다면 아이디, 별명 체크 후 생성 */
-      const idExists = await User.exists({ id });
+      const idExists = await User.exists({ id: userSave.id });
       const usernameExists = await User.exists({
         username: userSave.properties.nickname,
       });
 
-      const user = await User.create({});
+      /* 아이디 설정 */
+      let id = userSave.id;
+      /* 별명 이름 설정 */
+      let username = userSave.properties.nickname;
+
+      /* 아이디가 중복일 경우 랜덤 아이디 20글자 */
+      idExists ? (id = nanoid(20)) : id;
+
+      /* 별명이 중복일 경우 랜덤 별명 10글자 */
+      usernameExists ? (username = nanoid(10)) : username;
+
+      /* 계정 생성 */
+      const user = await User.create({
+        socialLogin: true,
+        id,
+        email: userSave.kakao_account.email,
+        username,
+      });
+
+      req.session.loggedIn = true;
+      req.session.user = user;
+      return res.redirect("/");
     }
   }
-  return res.end();
+  return res.redirect("/login");
 };
 
 export const logout = (req, res) => {
