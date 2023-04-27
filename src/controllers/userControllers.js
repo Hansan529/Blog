@@ -121,7 +121,6 @@ export const postGithubLogin = async (req, res) => {
         adminList.forEach((admin) => {
           if (userAlready.id === admin) {
             req.session.admin = true;
-            console.log(req.session);
           }
         });
       } else if (
