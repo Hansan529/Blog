@@ -188,7 +188,6 @@ export const postKakaoLogin = async (req, res) => {
   };
   const params = new URLSearchParams(config).toString();
   const link = `${baseUrl}?${params}`;
-  console.log("link: ", link);
   const response = await fetch(link, {
     method: "POST",
     headers: {
@@ -210,7 +209,26 @@ export const postKakaoLogin = async (req, res) => {
         },
       })
     ).json();
-    console.log("userSave: ", userSave);
+
+    /* 해당 이메일을 갖는 유저가 이미 있는지 체크 */
+    const userAlready = await User.findOne({
+      email: userSave.kakao_account.email,
+    });
+
+    /* 이메일이 있다면 로그인 */
+    if (userAlready) {
+      req.session.loggedIn = true;
+      req.session.user = userAlready;
+      return res.redirect("/");
+    } else {
+      /* 없다면 아이디, 별명 체크 후 생성 */
+      const idExists = await User.exists({ id });
+      const usernameExists = await User.exists({
+        username: userSave.properties.nickname,
+      });
+
+      const user = await User.create({});
+    }
   }
   return res.end();
 };
