@@ -1,9 +1,14 @@
 import express from "express";
 
-import { getKakaoLogin, postKakaoLogin } from "../controllers/userControllers";
+import {
+  getGithubLogin,
+  getKakaoLogin,
+  postKakaoLogin,
+} from "../controllers/userControllers";
 
 const oauthRouter = express.Router();
 
+oauthRouter.get("/login/github", getGithubLogin);
 oauthRouter.get("/login/kakao", getKakaoLogin);
 oauthRouter.get("/callback/kakao", postKakaoLogin);
 
