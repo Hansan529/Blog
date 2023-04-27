@@ -191,12 +191,27 @@ export const postKakaoLogin = async (req, res) => {
   console.log("link: ", link);
   const response = await fetch(link, {
     method: "POST",
-    header: {
+    headers: {
       "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
     },
   });
-  const access_token = await response.json();
+  const data = await response.json();
 
+  if ("access_token" in data) {
+    /* 엑세스 토큰 저장 */
+    const { access_token } = data;
+
+    const apiUrl = "https://kapi.kakao.com/v2/user/me";
+    const userSave = await (
+      await fetch(apiUrl, {
+        headers: {
+          "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
+          Authorization: `Bearer ${access_token}`,
+        },
+      })
+    ).json();
+    console.log("userSave: ", userSave);
+  }
   return res.end();
 };
 
