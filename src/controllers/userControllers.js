@@ -241,6 +241,7 @@ export const postKakaoLogin = async (req, res) => {
       /* 계정 생성 */
       const user = await User.create({
         socialLogin: true,
+        profileImage: userSave.properties.thumbnail_image,
         id,
         email: userSave.kakao_account.email,
         username,
