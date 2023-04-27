@@ -170,14 +170,33 @@ export const postGithubLogin = async (req, res) => {
 export const getKakaoLogin = (req, res) => {
   const baseUrl = `https://kauth.kakao.com/oauth/authorize`;
   const config = {
+    response_type: "code",
     client_id: KAKAO_REST_API_KEY,
   };
   const params = new URLSearchParams(config).toString();
-  const link = `${baseUrl}?${params}&redirect_uri=${KAKAO_REDIRECT_URI}&response_type=code`;
+  const link = `${baseUrl}?${params}&redirect_uri=${KAKAO_REDIRECT_URI}`;
   return res.redirect(link);
 };
 
-export const postKakaoLogin = (req, res) => {
+export const postKakaoLogin = async (req, res) => {
+  const baseUrl = `https://kauth.kakao.com/oauth/token`;
+  const config = {
+    grant_type: "authorization_code",
+    client_id: KAKAO_REST_API_KEY,
+    redirect_uri: KAKAO_REDIRECT_URI,
+    code: req.query.code,
+  };
+  const params = new URLSearchParams(config).toString();
+  const link = `${baseUrl}?${params}`;
+  console.log("link: ", link);
+  const response = await fetch(link, {
+    method: "POST",
+    header: {
+      "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
+    },
+  });
+  const access_token = await response.json();
+
   return res.end();
 };
 
