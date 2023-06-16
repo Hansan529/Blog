@@ -1,0 +1,57 @@
+import { Link } from "react-router-dom";
+import styles from "./Header.module.css";
+
+function Header() {
+  return (
+    <header className={styles.header}>
+      <div className={styles.center}>
+        <h1 className="logo">
+          <Link href="/">
+            <picture className={styles.picture}>
+              <source
+                srcSet={`${process.env.PUBLIC_URL}/images/ico/logo.svg`}
+                media="(min-width: 1200px)"
+                type="image/svg+xml"
+                width="60"
+                height="60"
+              />
+              <source
+                srcSet={`${process.env.PUBLIC_URL}/images/ico/logo-icon.svg`}
+                media="(max-width: 1200px)"
+                type="image/svg-xml"
+                width="40"
+                height="40"
+              />
+              <img
+                src={`${process.env.PUBLIC_URL}/images/ico/logo-icon.svg`}
+                alt="Hxan Blog Logo"
+                width="40"
+                height="40"
+              />
+            </picture>
+          </Link>
+        </h1>
+        <nav>
+          <ul className={styles.ul}>
+            <li>
+              <Link href="#homepage">홈페이지 소개</Link>
+            </li>
+            <li>
+              <Link href="#project">프로젝트</Link>
+            </li>
+            <li>
+              <Link href="#info">정보 모음</Link>
+            </li>
+          </ul>
+        </nav>
+        <div>
+          <Link href="/login" className={styles.button}>
+            로그인
+          </Link>
+        </div>
+      </div>
+    </header>
+  );
+}
+
+export default Header;
