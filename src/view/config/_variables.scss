@@ -1,0 +1,23 @@
+@mixin res($min: null, $max: null) {
+  @media screen and (min-width: $min) and (max-width: $max) {
+    @content;
+  }
+}
+
+@mixin res_SmallMobile($px: 320px) {
+  @media screen and (max-width: $px) {
+    @content;
+  }
+}
+
+@mixin res_Mobile($px: 743px) {
+  @media screen and (max-width: $px) {
+    @content;
+  }
+}
+
+@mixin res_Tablet($px: 1024px) {
+  @media screen and (max-width: $px) {
+    @content;
+  }
+}
