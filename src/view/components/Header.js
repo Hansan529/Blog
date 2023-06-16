@@ -6,7 +6,7 @@ function Header() {
     <header className={styles.header}>
       <div className={styles.center}>
         <h1 className="logo">
-          <Link href="/">
+          <Link to="/">
             <picture className={styles.picture}>
               <source
                 srcSet={`${process.env.PUBLIC_URL}/images/ico/logo.svg`}
@@ -34,18 +34,18 @@ function Header() {
         <nav>
           <ul className={styles.ul}>
             <li>
-              <Link href="#homepage">홈페이지 소개</Link>
+              <Link to="/#homepage">홈페이지 소개</Link>
             </li>
             <li>
-              <Link href="#project">프로젝트</Link>
+              <Link to="/#project">프로젝트</Link>
             </li>
             <li>
-              <Link href="#info">정보 모음</Link>
+              <Link to="/#info">정보 모음</Link>
             </li>
           </ul>
         </nav>
         <div>
-          <Link href="/login" className={styles.button}>
+          <Link to="/login" className={styles.button}>
             로그인
           </Link>
         </div>
