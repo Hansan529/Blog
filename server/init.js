@@ -1,6 +1,6 @@
 require("dotenv/config");
 require("./db");
-const app = require("./server");
+import app from "./server";
 
 const PORT = 4001;
 
