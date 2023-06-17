@@ -20,5 +20,9 @@ app.use(logger);
 // );
 app.use(express.urlencoded({ extended: true }));
 app.use(flash());
+app.use(express.static(path.join(__dirname, "../client/build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+});
 
 export default app;
