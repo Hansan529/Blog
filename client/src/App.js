@@ -1,7 +1,7 @@
-import Home from "../Home";
+import Home from "./view/screen/Home";
 import { createBrowserRouter } from "react-router-dom";
 import { RouterProvider } from "react-router-dom";
-import Login from "../view/screen/Login";
+import Login from "./view/screen/Login";
 
 const router = createBrowserRouter([
   {
