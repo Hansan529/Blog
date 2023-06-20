@@ -1,6 +1,7 @@
 @import "../config/variables";
 
 .header {
+  z-index: 1000;
   background-color: #000;
   width: 100%;
   height: $headerHeight;
