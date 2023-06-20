@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
+import axios from "axios";
 import styles from "./Join.module.css";
 
 function Join() {
@@ -15,7 +16,9 @@ function Join() {
   const [selected, setSelected] = useState("placeholder");
   const [typingEmail, setTypingEmail] = useState(false);
   const [typingEmailInput, setTypingEmailInput] = useState("");
-  const onSubmit = (e) => {
+  const [error, setError] = useState(false);
+
+  const onSubmit = async (e) => {
     setTryJoin(true);
     e.preventDefault();
     if (pw !== pw2) {
@@ -23,6 +26,33 @@ function Join() {
       return;
     }
     setPwChk(true);
+    const data = {
+      id,
+      pw,
+      email: `${emailFirst}@${emailLast}`,
+    };
+    const response = await axios.post(
+      `${process.env.REACT_APP_API_JOIN_URL}`,
+      JSON.stringify(data),
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (response.data.error) {
+      setError(true);
+      const clear = setInterval(() => {
+        setError(false);
+        clearInterval(clear);
+      }, 3000);
+      return;
+    }
+    setId("");
+    setPw("");
+    setPw2("");
+    setEmailFirst("");
+    setEmailLast("");
   };
 
   const onChange = (e) => {
@@ -47,7 +77,7 @@ function Join() {
         setEmailFirst(value);
         break;
       case name === "email_last":
-        setEmailLast(`${emailFirst}@${value}`);
+        setEmailLast(value);
         setTypingEmailInput(value);
         setSelected(value);
         break;
@@ -66,7 +96,7 @@ function Join() {
             <small>비밀번호가 일치하지 않습니다</small>
           )
         ) : null}
-        <form method="POST" action="/api/login" className={styles.form}>
+        <form metohd="POST" className={styles.form}>
           <label>
             <span>아이디: </span>
             <div>
@@ -140,6 +170,11 @@ function Join() {
             관리자 추가
           </button>
         </form>
+        {error ? (
+          <div className={styles.error}>
+            <h2>중복된 아이디가 있습니다.</h2>
+          </div>
+        ) : null}
       </main>
       <Footer />
     </>
