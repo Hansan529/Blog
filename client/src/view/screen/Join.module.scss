@@ -1,0 +1,32 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 550px;
+  gap: 10px;
+  label {
+    display: flex;
+    align-items: center;
+    span {
+      display: inline-block;
+      width: 130px;
+    }
+    div {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      input {
+        padding: 5px 10px;
+      }
+    }
+    input[name="pw"] {
+      margin-right: 25px;
+    }
+  }
+  button {
+    margin-top: 10px;
+    text-align: center;
+    background-color: #eee;
+    padding: 20px 0;
+    border-radius: 20px;
+  }
+}
