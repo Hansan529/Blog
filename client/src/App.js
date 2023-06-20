@@ -2,6 +2,9 @@ import Home from "./view/screen/Home";
 import { createBrowserRouter } from "react-router-dom";
 import { RouterProvider } from "react-router-dom";
 import Login from "./view/screen/Login";
+import Join from "./view/screen/Join";
+
+import "./App.css";
 
 const router = createBrowserRouter([
   {
@@ -11,6 +14,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/join",
+    element: <Join />,
   },
 ]);
 
