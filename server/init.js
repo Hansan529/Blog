@@ -2,7 +2,7 @@ require("dotenv/config");
 require("./db");
 import app from "./server";
 
-const PORT = 4001;
+const PORT = 8000;
 
 const Listen = () => {
   console.log(`:${PORT} Listen`);
