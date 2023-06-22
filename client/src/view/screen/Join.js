@@ -34,7 +34,7 @@ function Join() {
       email: `${emailFirst}@${emailLast}`,
     };
     const response = await axios.post(
-      `${process.env.REACT_APP_API_JOIN_URL}`,
+      `${process.env.REACT_APP_API_ENDPOINT}/join`,
       JSON.stringify(data),
       {
         headers: {
