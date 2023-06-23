@@ -30,7 +30,6 @@ export const postJoin = async (req, res) => {
     body: { id, pw, email },
   } = req;
   let error;
-  const hashPw = await bcrypt.hash(pw, 5);
   const adminExists = await Admin.exists({
     $or: [
       { id: { $regex: new RegExp(id, "i") } },
@@ -42,7 +41,7 @@ export const postJoin = async (req, res) => {
   } else {
     await Admin.create({
       id,
-      pw : hashPw,
+      pw,
       email,
     });
   }
