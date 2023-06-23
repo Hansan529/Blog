@@ -1,15 +1,21 @@
+// Component 불러오기
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+
+// CSS 모듈
 import styles from "./Login.module.css";
-import React, { useState } from "react";
-import { useSelector, useDispatch, connect } from "react-redux";
+import errorStyles from "../config/statusStyle.module.css";
+
+// 패키지
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import axios from "axios";
-// import { loginActions } from "../../reducer/loginSlice";
 import { check } from "../../reducer/loginSlice";
 
 function Login() {
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
+  const [error, setError] = useState("");
   // loginSlice의 기본 값 불러오기
   // const loginState = useSelector((state) => state.login.value);
   const dispatch = useDispatch();
@@ -22,7 +28,7 @@ function Login() {
       pw,
     };
     // 로그인 시도
-    const { login } = await (
+    const { success, error } = await (
       await axios.post(
         `${process.env.REACT_APP_API_ENDPOINT}/login`,
         JSON.stringify(loginData),
@@ -34,12 +40,15 @@ function Login() {
       )
     ).data;
     /**
-     * 로그인 성공 시 true, 실패 시 false
+     * 로그인 성공 시 state를 true로 변경 후, 루트로 이동
+     * 실패할 경우 에러 메시지 지정
      */
-    if (login) {
-      // loginSlice의 check 함수의 action에 payload 값을 추가한다.
-      // dispatch(loginActions.check(true));
+    if (success) {
         dispatch(check(true));
+        window.location.href = "/";
+        return;
+    } else {
+      setError(error);
     }
   };
 
@@ -59,12 +68,20 @@ function Login() {
     }
   };
 
+  useEffect(()=>{
+    if(error){
+      setTimeout(()=>{
+        // 에러 객체 (div) 제거
+        setError("")
+      },3000)
+    }
+  },[error])
+
   return (
     <>
       <Header />
       <main className={styles.main}>
         <h2>관리자 로그인</h2>
-        {/* <p>{logged}</p> */}
         <form
           method="POST"
           className={styles.form}
@@ -90,6 +107,7 @@ function Login() {
             로그인
           </button>
         </form>
+        {error ? <div className={errorStyles.error}><h2>{error}</h2></div> : null}
       </main>
       <Footer />
     </>
