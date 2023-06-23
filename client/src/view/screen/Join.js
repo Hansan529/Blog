@@ -4,6 +4,7 @@ import Header from "../components/Header";
 
 import axios from "axios";
 import styles from "./Join.module.css";
+import errorStyles from "../config/statusStyle.module.css";
 
 function Join() {
   const [pwChk, setPwChk] = useState("");
@@ -188,7 +189,7 @@ function Join() {
             </button>
           </form>
           {error ? (
-            <div className={styles.error}>
+            <div className={errorStyles.error}>
               <h2>중복된 아이디가 있습니다.</h2>
             </div>
           ) : null}
