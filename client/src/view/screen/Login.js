@@ -4,15 +4,19 @@ import styles from "./Login.module.css";
 import React, { useState } from "react";
 import { useSelector, useDispatch, connect } from "react-redux";
 import axios from "axios";
+// import { loginActions } from "../../reducer/loginSlice";
+import { check } from "../../reducer/loginSlice";
 
 function Login() {
-  const [id, setId] = useState("a");
-  const [pw, setPw] = useState("b");
-  const logged = useSelector((state) => state.login);
+  const [id, setId] = useState("");
+  const [pw, setPw] = useState("");
+  // loginSlice의 기본 값 불러오기
+  // const loginState = useSelector((state) => state.login.value);
   const dispatch = useDispatch();
 
   const onClick = async (e) => {
     e.preventDefault();
+    // JSON 객체 생성
     const loginData = {
       id,
       pw,
@@ -33,10 +37,10 @@ function Login() {
      * 로그인 성공 시 true, 실패 시 false
      */
     if (login) {
-      dispatch({ type: "LOGIN", logged: "true" });
-      console.log("logged", logged);
+      // loginSlice의 check 함수의 action에 payload 값을 추가한다.
+      // dispatch(loginActions.check(true));
+        dispatch(check(true));
     }
-    console.log("logged Check", logged);
   };
 
   const onChange = (e) => {
@@ -60,7 +64,7 @@ function Login() {
       <Header />
       <main className={styles.main}>
         <h2>관리자 로그인</h2>
-        <p>{logged}</p>
+        {/* <p>{logged}</p> */}
         <form
           method="POST"
           className={styles.form}
@@ -91,13 +95,4 @@ function Login() {
     </>
   );
 }
-
-// function mapStateToProps(state, ownProps) {
-//   return {
-//     text: "hey",
-//   };
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Login);
-
 export default Login;
