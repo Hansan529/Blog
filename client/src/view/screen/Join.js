@@ -4,6 +4,7 @@ import Header from "../components/Header";
 
 import axios from "axios";
 import styles from "./Join.module.css";
+import errorStyles from "../config/statusStyle.module.css";
 
 function Join() {
   const [pwChk, setPwChk] = useState("");
@@ -34,7 +35,7 @@ function Join() {
       email: `${emailFirst}@${emailLast}`,
     };
     const response = await axios.post(
-      `${process.env.REACT_APP_API_JOIN_URL}`,
+      `${process.env.REACT_APP_API_ENDPOINT}/join`,
       JSON.stringify(data),
       {
         headers: {
@@ -188,7 +189,7 @@ function Join() {
             </button>
           </form>
           {error ? (
-            <div className={styles.error}>
+            <div className={errorStyles.error}>
               <h2>중복된 아이디가 있습니다.</h2>
             </div>
           ) : null}
