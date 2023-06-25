@@ -9,9 +9,9 @@ import errorStyles from "../config/statusStyle.module.css";
 // 패키지
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { check } from "../../reducer/loginSlice";
-
 function Login() {
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
@@ -19,6 +19,7 @@ function Login() {
   // loginSlice의 기본 값 불러오기
   // const loginState = useSelector((state) => state.login.value);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onClick = async (e) => {
     e.preventDefault();
@@ -45,7 +46,7 @@ function Login() {
      */
     if (success) {
         dispatch(check(true));
-        window.location.href = "/";
+        navigate('/');
         return;
     } else {
       setError(error);
