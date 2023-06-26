@@ -1,25 +1,25 @@
-import { useEffect, useRef, useState } from "react";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
+import { useEffect, useRef, useState } from 'react';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
 
-import axios from "axios";
-import styles from "./Join.module.css";
-import errorStyles from "../config/statusStyle.module.css";
+import axios from 'axios';
+import styles from './Join.module.css';
+import errorStyles from '../config/statusStyle.module.css';
 
 function Join() {
-  const [pwChk, setPwChk] = useState("");
-  const [tryJoin, setTryJoin] = useState("");
-  const [id, setId] = useState("");
-  const [pw, setPw] = useState("");
-  const [pw2, setPw2] = useState("");
-  const [emailFirst, setEmailFirst] = useState("");
-  const [emailLast, setEmailLast] = useState("");
-  const [selected, setSelected] = useState("placeholder");
+  const [pwChk, setPwChk] = useState('');
+  const [tryJoin, setTryJoin] = useState('');
+  const [id, setId] = useState('');
+  const [pw, setPw] = useState('');
+  const [pw2, setPw2] = useState('');
+  const [emailFirst, setEmailFirst] = useState('');
+  const [emailLast, setEmailLast] = useState('');
+  const [selected, setSelected] = useState('placeholder');
   const [typingEmail, setTypingEmail] = useState(false);
-  const [typingEmailInput, setTypingEmailInput] = useState("");
+  const [typingEmailInput, setTypingEmailInput] = useState('');
   const [error, setError] = useState(false);
   const [auth, setAuth] = useState(false);
-  const [authPassword, setAuthPassword] = useState("");
+  const [authPassword, setAuthPassword] = useState('');
 
   const onSubmit = async (e) => {
     setTryJoin(true);
@@ -39,7 +39,7 @@ function Join() {
       JSON.stringify(data),
       {
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
       }
     );
@@ -51,40 +51,40 @@ function Join() {
       }, 3000);
       return;
     }
-    setId("");
-    setPw("");
-    setPw2("");
-    setEmailFirst("");
-    setEmailLast("");
+    setId('');
+    setPw('');
+    setPw2('');
+    setEmailFirst('');
+    setEmailLast('');
   };
 
   const onChange = (e) => {
     const {
       target: { name, value },
     } = e;
-    if (value === "typingEmail") {
+    if (value === 'typingEmail') {
       setTypingEmail(true);
       return;
     }
     switch (true) {
-      case name === "id":
+      case name === 'id':
         setId(value);
         break;
-      case name === "pw":
+      case name === 'pw':
         setPw(value);
         break;
-      case name === "pw2":
+      case name === 'pw2':
         setPw2(value);
         break;
-      case name === "email_first":
+      case name === 'email_first':
         setEmailFirst(value);
         break;
-      case name === "email_last":
+      case name === 'email_last':
         setEmailLast(value);
         setTypingEmailInput(value);
         setSelected(value);
         break;
-      case name === "authPassword":
+      case name === 'authPassword':
         setAuthPassword(value);
         break;
       default:
