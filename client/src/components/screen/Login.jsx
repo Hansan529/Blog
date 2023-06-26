@@ -1,21 +1,21 @@
 // Component 불러오기
-import Footer from "../components/Footer";
-import Header from "../components/Header";
+import Footer from '../partials/Footer';
+import Header from '../partials/Header';
 
 // CSS 모듈
-import styles from "./Login.module.css";
-import errorStyles from "../config/statusStyle.module.css";
+import styles from '../../styles/screen/css/Login.module.css';
+import errorStyles from '../../styles/config/css/statusStyle.module.css';
 
 // 패키지
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { check } from "../../reducer/loginSlice";
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { check } from '../../reducer/loginSlice';
 function Login() {
-  const [id, setId] = useState("");
-  const [pw, setPw] = useState("");
-  const [error, setError] = useState("");
+  const [id, setId] = useState('');
+  const [pw, setPw] = useState('');
+  const [error, setError] = useState('');
   // loginSlice의 기본 값 불러오기
   // const loginState = useSelector((state) => state.login.value);
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ function Login() {
         JSON.stringify(loginData),
         {
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
         }
       )
@@ -45,9 +45,9 @@ function Login() {
      * 실패할 경우 에러 메시지 지정
      */
     if (success) {
-        dispatch(check(true));
-        navigate('/');
-        return;
+      dispatch(check(true));
+      navigate('/');
+      return;
     } else {
       setError(error);
     }
@@ -58,10 +58,10 @@ function Login() {
       target: { name, value },
     } = e;
     switch (true) {
-      case name === "id":
+      case name === 'id':
         setId(value);
         break;
-      case name === "pw":
+      case name === 'pw':
         setPw(value);
         break;
       default:
@@ -69,14 +69,14 @@ function Login() {
     }
   };
 
-  useEffect(()=>{
-    if(error){
-      setTimeout(()=>{
+  useEffect(() => {
+    if (error) {
+      setTimeout(() => {
         // 에러 객체 (div) 제거
-        setError("")
-      },3000)
+        setError('');
+      }, 3000);
     }
-  },[error])
+  }, [error]);
 
   return (
     <>
@@ -108,7 +108,11 @@ function Login() {
             로그인
           </button>
         </form>
-        {error ? <div className={errorStyles.error}><h2>{error}</h2></div> : null}
+        {error ? (
+          <div className={errorStyles.error}>
+            <h2>{error}</h2>
+          </div>
+        ) : null}
       </main>
       <Footer />
     </>

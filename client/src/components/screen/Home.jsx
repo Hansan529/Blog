@@ -1,7 +1,7 @@
 // Component 불러오기
 import { useSelector } from 'react-redux';
-import Footer from '../components/Footer';
-import Header from '../components/Header';
+import Header from '../partials/Header';
+import Footer from '../partials/Footer';
 
 import ProjectUpload from './ProjectUpload';
 

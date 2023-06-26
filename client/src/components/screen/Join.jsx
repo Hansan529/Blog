@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import Footer from '../components/Footer';
-import Header from '../components/Header';
+import Footer from '../partials/Footer';
+import Header from '../partials/Header';
 
 import axios from 'axios';
-import styles from './Join.module.css';
-import errorStyles from '../config/statusStyle.module.css';
+import styles from '../../styles/screen/css/Join.module.css';
+import errorStyles from '../../styles/config/css/statusStyle.module.css';
 
 function Join() {
   const [pwChk, setPwChk] = useState('');

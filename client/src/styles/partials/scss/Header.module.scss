@@ -1,4 +1,4 @@
-@import "../config/variables";
+@import '../../config/scss/variables';
 
 .header {
   z-index: 1000;
@@ -40,7 +40,7 @@
         position: relative;
 
         &::after {
-          content: "";
+          content: '';
           display: block;
           position: absolute;
           width: 0;

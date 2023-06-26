@@ -1,22 +1,23 @@
-import Home from "./view/screen/Home";
-import { createBrowserRouter } from "react-router-dom";
-import { RouterProvider } from "react-router-dom";
-import Login from "./view/screen/Login";
-import Join from "./view/screen/Join";
+import { createBrowserRouter } from 'react-router-dom';
+import { RouterProvider } from 'react-router-dom';
 
-import "./App.css";
+import Home from './components/screen/Home';
+import Login from './components/screen/Login';
+import Join from './components/screen/Join';
+
+// import "./App.css";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Home />,
   },
   {
-    path: "/login",
+    path: '/login',
     element: <Login />,
   },
   {
-    path: "/join",
+    path: '/join',
     element: <Join />,
   },
 ]);
