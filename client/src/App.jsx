@@ -4,7 +4,9 @@ import { RouterProvider } from 'react-router-dom';
 import Home from './components/screen/Home';
 import Login from './components/screen/Login';
 import Join from './components/screen/Join';
+import Upload from './components/screen/Upload';
 
+import './styles/global/css/App.css';
 // import "./App.css";
 
 const router = createBrowserRouter([
@@ -19,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: '/join',
     element: <Join />,
+  },
+  {
+    path: '/upload',
+    element: <Upload />,
   },
 ]);
 

@@ -11,7 +11,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { check } from '../../reducer/loginSlice';
+import { check } from '../../_redux/_reducer/loginSlice';
 function Login() {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');

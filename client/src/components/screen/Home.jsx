@@ -13,7 +13,6 @@ function Home() {
       <main>
         {logged ? (
           <div>
-            로그인 완료
             <ProjectUpload />
           </div>
         ) : null}

@@ -20,13 +20,12 @@
 
 // export default store;
 
-import { configureStore } from "@reduxjs/toolkit";
-import loginReducer from "./reducer/loginSlice";
+import { configureStore } from '@reduxjs/toolkit';
+import loginReducer from './_reducer/loginSlice';
 
 // reducer의 이름을 설정한 값을 참조하게 됨, state.login
 export default configureStore({
   reducer: {
     login: loginReducer,
-  }
-})
-
+  },
+});

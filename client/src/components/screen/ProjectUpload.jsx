@@ -1,7 +1,9 @@
+import { Link } from 'react-router-dom';
+
 function ProjectUpload() {
   return (
     <>
-      <p>테슷트!!!!!!!!!</p>
+      <Link to="/upload">업로드</Link>
     </>
   );
 }

@@ -1,11 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   value: true,
 };
 
 export const loginSlice = createSlice({
-  name: "login",
+  name: 'login',
   initialState,
   reducers: {
     check: (state, action) => {
