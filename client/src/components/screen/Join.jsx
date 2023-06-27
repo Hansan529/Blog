@@ -5,6 +5,7 @@ import Header from '../partials/Header';
 import axios from 'axios';
 import styles from '../../styles/screen/css/Join.module.css';
 import errorStyles from '../../styles/config/css/statusStyle.module.css';
+import { useNavigate } from 'react-router-dom';
 
 function Join() {
   const [pwChk, setPwChk] = useState('');
@@ -20,6 +21,7 @@ function Join() {
   const [error, setError] = useState(false);
   const [auth, setAuth] = useState(false);
   const [authPassword, setAuthPassword] = useState('');
+  const navigate = useNavigate();
 
   const onSubmit = async (e) => {
     setTryJoin(true);
@@ -45,9 +47,8 @@ function Join() {
     );
     if (response.data.error) {
       setError(true);
-      const clear = setInterval(() => {
+      setTimeout(() => {
         setError(false);
-        clearInterval(clear);
       }, 3000);
       return;
     }
@@ -56,6 +57,7 @@ function Join() {
     setPw2('');
     setEmailFirst('');
     setEmailLast('');
+    navigate('/');
   };
 
   const onChange = (e) => {
