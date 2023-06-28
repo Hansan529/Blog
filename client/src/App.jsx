@@ -6,6 +6,7 @@ import Login from './components/screen/Login';
 import Join from './components/screen/Join';
 import Upload from './components/screen/Upload';
 import DetailProject from './components/screen/DetailProject';
+import ProjectEdit from './components/screen/ProjectEdit';
 
 import './styles/global/css/App.css';
 // import "./App.css";
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
   {
     path: '/project/:id',
     element: <DetailProject />,
+  },
+  {
+    path: '/project/:id/edit',
+    element: <ProjectEdit />,
   },
 ]);
 
