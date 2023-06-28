@@ -8,11 +8,13 @@ import { init } from '../../_redux/_reducer/HomeSlice';
 
 function Project({ id, logged, title, member, img, language }) {
   // React 세팅
-  const [inputMember, setInputMember] = useState('');
-  const [inputTitle, setInputTitle] = useState('');
+  const [inputMember, setInputMember] = useState(member);
+  const [inputTitle, setInputTitle] = useState(title);
   const [inputImg, setInputImg] = useState('');
-  const [imgPreview, setImgPreview] = useState(undefined);
-  const [inputLanguage, setInputLanguage] = useState('');
+  const [imgPreview, setImgPreview] = useState(
+    `${process.env.REACT_APP_SERVER}/image/${img}`
+  );
+  const [inputLanguage, setInputLanguage] = useState(language);
   const [edit, setEdit] = useState(false);
   const dispatch = useDispatch();
 
@@ -78,18 +80,33 @@ function Project({ id, logged, title, member, img, language }) {
 
   return (
     <div className={styles.project}>
-      {logged ? <button onClick={onClick}>수정하기</button> : null}
+      {logged ? (
+        edit ? (
+          <button
+            onClick={() => setEdit(false)}
+            type="reset"
+            className={styles.edit}
+          ></button>
+        ) : (
+          <button className={styles.edit} onClick={onClick}>
+            <img
+              src={`${process.env.PUBLIC_URL}/images/ico/edit.svg`}
+              alt="수정하기"
+            />
+          </button>
+        )
+      ) : null}
       {/* 수정하기를 한 경우, div 에서 form 요소로 변경 */}
       {edit ? (
         <>
-          <form onSubmit={onSubmit} method="POST">
+          <form className={styles.form} onSubmit={onSubmit} method="POST">
             <input
               name="member"
               type="text"
               placeholder="개발자"
               value={inputMember}
               onChange={onChange}
-              className={styles.project__member}
+              className={styles.member}
             />
             <input
               name="title"
@@ -97,40 +114,39 @@ function Project({ id, logged, title, member, img, language }) {
               placeholder="타이틀"
               value={inputTitle}
               onChange={onChange}
-              className={styles.project__title}
+              className={styles.title}
             />
-            <input
-              name="img"
-              type="file"
-              onChange={onChange}
-              accept="image/*"
-            />
-            <img src={imgPreview} alt="" />
+            <div className={styles.imgWrap}>
+              <input
+                name="img"
+                type="file"
+                onChange={onChange}
+                accept="image/*"
+              />
+              <img src={imgPreview} alt="" />
+            </div>
             <input
               name="language"
               type="text"
               placeholder="언어"
               value={inputLanguage}
               onChange={onChange}
-              className={styles.project__language}
+              className={styles.language}
             />
-            <button onClick={() => setEdit(false)} type="reset">
-              X
-            </button>
             <button type="submit">수정완료</button>
           </form>
         </>
       ) : (
         <>
+          <small className={styles.member}>{member}</small>
+          <h3 className={styles.title}>{title}</h3>
           <div>
-            <small className={styles.project__member}>{member}</small>
-            <h3 className={styles.project__title}>{title}</h3>
+            <img
+              className={styles.img}
+              src={`${process.env.REACT_APP_SERVER}/image/${img}`}
+              alt="preview"
+            />
           </div>
-          <img
-            className={styles.project__img}
-            src={`${process.env.REACT_APP_SERVER}/image/${img}`}
-            alt="preview"
-          />
           <small>{language}</small>
         </>
       )}
