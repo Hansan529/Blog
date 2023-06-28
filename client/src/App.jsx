@@ -5,6 +5,7 @@ import Home from './components/screen/Home';
 import Login from './components/screen/Login';
 import Join from './components/screen/Join';
 import Upload from './components/screen/Upload';
+import DetailProject from './components/screen/DetailProject';
 
 import './styles/global/css/App.css';
 // import "./App.css";
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: '/upload',
     element: <Upload />,
+  },
+  {
+    path: '/project/:id',
+    element: <DetailProject />,
   },
 ]);
 

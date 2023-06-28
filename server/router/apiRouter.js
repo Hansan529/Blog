@@ -1,9 +1,25 @@
-import express from "express";
-import { getJoin, postJoin, postLogin } from "../controllers/apiController";
+import express from 'express';
+import {
+  getHome,
+  getImage,
+  postJoin,
+  postLogin,
+  postUpload,
+} from '../controllers/apiController';
+import multer from 'multer';
 
 const apiRouter = express.Router();
 
-apiRouter.post("/login", postLogin);
-apiRouter.route("/join").get(getJoin).post(postJoin);
+// 업로드 multer 미들웨어
+const upload = multer({
+  dest: 'uploads/projects',
+  limits: { fileSize: 5 * 1024 * 1024 },
+});
+
+apiRouter.get('/', getHome);
+apiRouter.post('/login', postLogin);
+apiRouter.route('/join').post(postJoin);
+apiRouter.post('/upload', upload.single('img'), postUpload);
+// apiRouter.get('/image/:id', getImage);
 
 export default apiRouter;
