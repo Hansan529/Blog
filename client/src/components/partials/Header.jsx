@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styles from '../../styles/partials/css/Header.module.css';
 
-function Header() {
+function Header({ logged }) {
   return (
     <header className={styles.header}>
       <div className={styles.center}>
@@ -45,8 +45,8 @@ function Header() {
           </ul>
         </nav>
         <div>
-          <Link to="/login" className={styles.button}>
-            로그인
+          <Link to={`/${logged ? 'logout' : 'login'}`}>
+            {logged ? '로그아웃' : '로그인'}
           </Link>
         </div>
       </div>
