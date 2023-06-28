@@ -35,6 +35,34 @@ export const postUpload = async (req, res) => {
 };
 
 // *
+export const postProjectEdit = async (req, res) => {
+  const {
+    body: { beforeId: id, beforeImg, title, member, language },
+    file: img,
+  } = req;
+  try {
+    // Project 업데이트
+    const project = await Project.findByIdAndUpdate(
+      id,
+      {
+        title,
+        member,
+        img: img.filename,
+        language,
+      },
+      { new: true }
+    );
+    // 기존 이미지 파일 삭제
+    fs.unlinkSync(path.join(__dirname, '../uploads', 'projects', beforeImg));
+  } catch (err) {
+    console.error('프로젝트를 찾지 못했습니다', err);
+    fs.unlinkSync(img.path);
+    return res.send('에러');
+  }
+  return res.sendStatus(200);
+};
+
+// *
 export const postLogin = async (req, res) => {
   const {
     body: { id, pw },
