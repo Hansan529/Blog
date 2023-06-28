@@ -33,7 +33,7 @@ function Project({ id, logged, title, member, img, language }) {
     formData.append('beforeId', id);
     formData.append('beforeImg', img);
     // 프로젝트 업데이트 요청
-    uploadFile.post(`/project/${img}/edit`, formData);
+    await uploadFile.post(`/project/${img}/edit`, formData);
     // 프로젝트 변경으로 인해 재 렌더링 요청
     dispatch(init(false));
     // 수정하기 종료
@@ -64,7 +64,6 @@ function Project({ id, logged, title, member, img, language }) {
           // 비동기 작업 처리
           fileReader.onload = () => {
             // 로드가 완료되면 실행
-            console.log(fileReader);
             setImgPreview(fileReader.result || null);
             resolve();
           };
@@ -86,7 +85,12 @@ function Project({ id, logged, title, member, img, language }) {
             onClick={() => setEdit(false)}
             type="reset"
             className={styles.edit}
-          ></button>
+          >
+            <img
+              src={`${process.env.PUBLIC_URL}/images/ico/cancel.svg`}
+              alt="취소하기"
+            />
+          </button>
         ) : (
           <button className={styles.edit} onClick={onClick}>
             <img
@@ -123,7 +127,7 @@ function Project({ id, logged, title, member, img, language }) {
                 onChange={onChange}
                 accept="image/*"
               />
-              <img src={imgPreview} alt="" />
+              <img src={imgPreview} alt="미리보기" className={styles.img} />
             </div>
             <input
               name="language"
@@ -133,23 +137,27 @@ function Project({ id, logged, title, member, img, language }) {
               onChange={onChange}
               className={styles.language}
             />
-            <button type="submit">수정완료</button>
+            <button type="submit" className={styles.submit}>
+              <img
+                src={`${process.env.PUBLIC_URL}/images/ico/check.svg`}
+                alt="수정완료"
+              />
+            </button>
           </form>
         </>
-      ) : (
-        <>
-          <small className={styles.member}>{member}</small>
-          <h3 className={styles.title}>{title}</h3>
-          <div>
-            <img
-              className={styles.img}
-              src={`${process.env.REACT_APP_SERVER}/image/${img}`}
-              alt="preview"
-            />
-          </div>
-          <small>{language}</small>
-        </>
-      )}
+      ) : null}
+      <div className={edit ? styles.hidden : null}>
+        <small className={styles.member}>{member}</small>
+        <h3 className={styles.title}>{title}</h3>
+        <div>
+          <img
+            className={styles.img}
+            src={`${process.env.REACT_APP_SERVER}/image/${img}`}
+            alt="preview"
+          />
+        </div>
+        <small>{language}</small>
+      </div>
     </div>
   );
 }

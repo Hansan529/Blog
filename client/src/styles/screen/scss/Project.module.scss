@@ -1,0 +1,92 @@
+$padding: 30px;
+
+.project {
+  background-color: gray;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: $padding;
+  position: relative;
+
+  .edit {
+    position: absolute;
+    right: $padding;
+    z-index: 15;
+
+    img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  .title {
+    font-size: 24px;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .member {
+    display: flex;
+    float: left;
+    position: absolute;
+    left: $padding;
+  }
+
+  .img {
+    width: 400px;
+    height: 300px;
+    margin: 0 auto;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+
+  .hidden {
+    opacity: 0;
+  }
+
+  // * Form
+  .form {
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    width: calc(100% - ($padding * 2));
+    z-index: 10;
+
+    input {
+      background-color: transparent;
+      border: none;
+    }
+
+    .member {
+      left: 0;
+    }
+
+    .title {
+      margin: 0 auto;
+      font-weight: bold;
+    }
+
+    .imgWrap {
+      width: 100%;
+      text-align: center;
+
+      input[name='img'] {
+        position: absolute;
+        left: 25%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    .submit {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+}
