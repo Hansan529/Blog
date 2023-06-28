@@ -2,14 +2,15 @@
 import Header from '../partials/Header';
 import Footer from '../partials/Footer';
 
+// Function
+import { uploadFile } from './Home';
+import { init } from '../../_redux/_reducer/HomeSlice';
+
 // Package
-import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 // import PropTypes from 'prop-types';
-
-// Function
-import { downloadFiles, uploadFile } from './Home';
 
 function Upload() {
   // React Setting
@@ -18,6 +19,7 @@ function Upload() {
   const [inputImg, setInputImg] = useState('');
   const [imgPreview, setImgPreview] = useState('');
   const [inputLanguage, setInputLanguage] = useState([]);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   // *
@@ -29,21 +31,17 @@ function Upload() {
     formData.append('member', inputMember);
     formData.append('img', inputImg);
     formData.append('language', inputLanguage);
+    // Project 생성 요청
     const {
       status,
       data: {
         img: { filename },
       },
-    } = await axios.post(
-      `${process.env.REACT_APP_API_ENDPOINT}/upload`,
-      formData,
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      }
-    );
+    } = await uploadFile.post('/upload', formData);
     if (status === 201) {
+      // 프로젝트 생성 성공, 홈 루트의 프로젝트 갱신처리
+      dispatch(init(false));
+      // 해당 프로젝트 상세 페이지로 이동
       navigate(`/project/${filename}`);
     }
   };
