@@ -4,6 +4,7 @@ import {
   getImage,
   postJoin,
   postLogin,
+  postProjectEdit,
   postUpload,
 } from '../controllers/apiController';
 import multer from 'multer';
@@ -20,6 +21,7 @@ apiRouter.get('/', getHome);
 apiRouter.post('/login', postLogin);
 apiRouter.route('/join').post(postJoin);
 apiRouter.post('/upload', upload.single('img'), postUpload);
+apiRouter.post('/project/:id/edit', upload.single('img'), postProjectEdit);
 // apiRouter.get('/image/:id', getImage);
 
 export default apiRouter;
