@@ -40,20 +40,31 @@ export const postProjectEdit = async (req, res) => {
     body: { beforeId: id, beforeImg, title, member, language },
     file: img,
   } = req;
+
+  const updateData = {
+    title,
+    member,
+    img: img ? img.filename : undefined,
+    language,
+  };
+
+  // 객체의 value 값이 undefined가 아닌 것들만 반환하고 하나의 객체로 합침
+  const undefinedFilter = Object.entries(updateData)
+    .filter(([key, value]) => value != undefined)
+    .reduce((obj, [key, value]) => {
+      obj[key] = value;
+      return obj;
+    }, {});
+
   try {
     // Project 업데이트
-    const project = await Project.findByIdAndUpdate(
-      id,
-      {
-        title,
-        member,
-        img: img.filename,
-        language,
-      },
-      { new: true }
-    );
-    // 기존 이미지 파일 삭제
-    fs.unlinkSync(path.join(__dirname, '../uploads', 'projects', beforeImg));
+    const project = await Project.findByIdAndUpdate(id, undefinedFilter, {
+      new: true,
+    });
+    // 이미지를 새로 업로드 했을 경우, 기존 이미지 파일 삭제
+    if (img) {
+      fs.unlinkSync(path.join(__dirname, '../uploads', 'projects', beforeImg));
+    }
   } catch (err) {
     console.error('프로젝트를 찾지 못했습니다', err);
     fs.unlinkSync(img.path);
