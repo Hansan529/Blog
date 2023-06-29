@@ -32,6 +32,11 @@ export const downloadFiles = axios.create({
   },
   timeout: 5000,
 });
+// 일반적인 요청
+export const server = axios.create({
+  baseURL,
+  timeout: 5000,
+});
 
 // ! Home 컴포넌트
 function Home() {
