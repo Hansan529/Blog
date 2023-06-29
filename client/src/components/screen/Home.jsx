@@ -4,7 +4,9 @@ import Footer from '../partials/Footer';
 import Project from './Project';
 
 // Function
-import { load } from '../../_redux/_reducer/HomeSlice';
+import { init } from '../../_redux/_reducer/HomeSlice';
+import { set } from '../../_redux/_reducer/ProejctSlice';
+import styles from '../../styles/screen/css/Home.module.css';
 
 // Package
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,7 +16,7 @@ import axios from 'axios';
 
 // * axios 인스턴스
 const baseURL = process.env.REACT_APP_API_ENDPOINT;
-
+// Multipart/form-dat 형식으로 파일 전송
 export const uploadFile = axios.create({
   baseURL,
   headers: {
@@ -22,6 +24,7 @@ export const uploadFile = axios.create({
   },
   timeout: 5000,
 });
+// JSON 타입으로 전송하기
 export const downloadFiles = axios.create({
   baseURL,
   headers: {
@@ -29,46 +32,63 @@ export const downloadFiles = axios.create({
   },
   timeout: 5000,
 });
+// 일반적인 요청
+export const server = axios.create({
+  baseURL,
+  timeout: 5000,
+});
 
+// ! Home 컴포넌트
 function Home() {
+  // React 설정
   const [loading, setLoading] = useState(true);
-  const [projectData, setProjectData] = useState('');
   const logged = useSelector((state) => state.login.value);
   const initPage = useSelector((state) => state.home.value);
+  const project = useSelector((state) => state.project.value);
   const dispatch = useDispatch();
 
   // *
-  // 최초 접속 시 API 요청
+  // 프로젝트 목록 API 요청
   const fetchData = async () => {
+    // API 요청
     const { data } = await downloadFiles.get('/');
-    setProjectData(data);
-    dispatch(load(true));
+    // 1회 접속 저장
+    dispatch(init(true));
+    // API 결과 값 저장
+    dispatch(set(data));
+    // 로딩 완료
     setLoading(false);
   };
 
+  // *
   useEffect(() => {
+    // 최초 접속했을 경우 API 요청하기
     if (!initPage) {
       fetchData();
+      return;
     }
+    // API 값이 이미 있으면 로딩 완료처리
+    setLoading(false);
     return;
-  }, []);
+  }, [initPage]);
 
   return (
     <>
-      <Header />
+      <Header logged={logged} />
       <main>
         {logged ? (
           <article>
             <Link to="/upload">업로드</Link>
           </article>
         ) : null}
-        <Project />
         {loading
           ? null
-          : projectData.map((data, index) => {
+          : project.map((data) => {
               return (
                 <Project
                   key={data._id}
+                  id={data._id}
+                  logged={logged}
                   title={data.title}
                   member={data.member}
                   img={data.img}

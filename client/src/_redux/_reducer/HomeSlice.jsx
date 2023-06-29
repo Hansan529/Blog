@@ -4,16 +4,16 @@ const initialState = {
   value: false,
 };
 
-export const homeSlice = createSlice({
+const homeSlice = createSlice({
   name: 'home',
   initialState,
   reducers: {
-    load: (state, action) => {
+    init: (state, action) => {
       state.value = action.payload;
     },
   },
 });
 
-export const { load } = homeSlice.actions;
+export const { init } = homeSlice.actions;
 
 export default homeSlice.reducer;
