@@ -4,6 +4,7 @@ import {
   getImage,
   postJoin,
   postLogin,
+  postProjectDelete,
   postProjectEdit,
   postUpload,
 } from '../controllers/apiController';
@@ -22,6 +23,7 @@ apiRouter.post('/login', postLogin);
 apiRouter.route('/join').post(postJoin);
 apiRouter.post('/upload', upload.single('img'), postUpload);
 apiRouter.post('/project/:id/edit', upload.single('img'), postProjectEdit);
+apiRouter.post('/project/:id/delete', postProjectDelete);
 // apiRouter.get('/image/:id', getImage);
 
 export default apiRouter;
