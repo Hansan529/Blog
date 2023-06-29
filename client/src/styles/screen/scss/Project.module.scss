@@ -1,21 +1,22 @@
 $padding: 30px;
 
 .project {
-  background-color: gray;
+  background-color: #ffede6;
   border-radius: 30px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   padding: $padding;
   position: relative;
+  button > img {
+    width: 30px;
+    height: 30px;
+  }
 
   .edit {
     position: absolute;
     right: $padding;
     z-index: 15;
-
-    img {
-      width: 30px;
-      height: 30px;
-    }
+    display: flex;
+    gap: 20px;
   }
 
   .title {
@@ -42,6 +43,17 @@ $padding: 30px;
 
   .hidden {
     opacity: 0;
+  }
+
+  .deleteCheck {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 300px;
+    height: 200px;
+    z-index: 20;
   }
 
   // * Form
@@ -82,11 +94,53 @@ $padding: 30px;
       position: absolute;
       right: 0;
       bottom: 0;
-
-      img {
-        width: 30px;
-        height: 30px;
-      }
     }
   }
+}
+
+.language {
+  display: flex;
+  gap: 5px;
+  > i {
+    display: block;
+    width: 30px;
+    height: 30px;
+    background: no-repeat center / cover;
+  }
+  [class='HTML'] {
+    background-image: url('/public/images/ico/html-icon.svg');
+  }
+  [class='CSS'] {
+    background-image: url('/public/images/ico/css-icon.svg');
+  }
+  [class='JS'] {
+    background-image: url('/public/images/ico/js-icon.svg');
+  }
+  [class='REACT'] {
+    background-image: url('/public/images/ico/reactjs-icon.svg');
+  }
+  [class='EXPRESS'] {
+    background-image: url('/public/images/ico/expressjs-icon.svg');
+  }
+  [class='NODE'] {
+    background-image: url('/public/images/ico/nodejs-icon.svg');
+  }
+  [class='MONGODB'] {
+    background-image: url('/public/images/ico/mongodb-icon.svg');
+  }
+}
+
+.langIcon {
+  background: no-repeat center / cover;
+  background-color: skyblue;
+}
+
+.CSS {
+  font-size: 24px;
+}
+
+.react {
+  width: 50px;
+  height: 50px;
+  background-color: skyblue;
 }
