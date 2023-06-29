@@ -23,7 +23,7 @@ export const postUpload = async (req, res) => {
       title,
       member,
       img: img.filename,
-      language,
+      language: language.toUpperCase(),
     });
   } catch (err) {
     console.error('프로젝트 생성에 실패했습니다', err);
@@ -45,7 +45,7 @@ export const postProjectEdit = async (req, res) => {
     title,
     member,
     img: img ? img.filename : undefined,
-    language,
+    language: language.toUpperCase(),
   };
 
   // 객체의 value 값이 undefined가 아닌 것들만 반환하고 하나의 객체로 합침
