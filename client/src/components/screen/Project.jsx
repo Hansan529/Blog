@@ -6,8 +6,9 @@ import { server, uploadFile } from './Home';
 import { useDispatch } from 'react-redux';
 import { init } from '../../_redux/_reducer/HomeSlice';
 
-function Project({ id, logged, title, member, img, language }) {
+function Project({ id, logged, date, title, member, img, language }) {
   // React 세팅
+  const [inputDate, setInputDate] = useState(date);
   const [inputMember, setInputMember] = useState(member);
   const [inputTitle, setInputTitle] = useState(title);
   const [inputImg, setInputImg] = useState('');
@@ -33,6 +34,7 @@ function Project({ id, logged, title, member, img, language }) {
     e.preventDefault();
     // 수정사항 파일 전송용 formData 생성
     const formData = new FormData();
+    formData.append('date', inputDate);
     formData.append('title', inputTitle);
     formData.append('member', inputMember);
     formData.append('img', inputImg);
@@ -50,6 +52,9 @@ function Project({ id, logged, title, member, img, language }) {
   const onChange = (e) => {
     const { name, value } = e.target;
     switch (name) {
+      case 'date':
+        setInputDate(value);
+        break;
       case 'member':
         const arrMemberValue = value.split(',').map((item) => item.trim());
         setInputMember(arrMemberValue);
@@ -131,6 +136,13 @@ function Project({ id, logged, title, member, img, language }) {
           <>
             <form className={styles.form} onSubmit={onSubmit} method="POST">
               <input
+                name="date"
+                type="date"
+                value={inputDate}
+                onChange={onChange}
+                className={styles.date}
+              />
+              <input
                 name="member"
                 type="text"
                 placeholder="개발자"
@@ -147,13 +159,15 @@ function Project({ id, logged, title, member, img, language }) {
                 className={styles.title}
               />
               <div className={styles.imgWrap}>
-                <input
-                  name="img"
-                  type="file"
-                  onChange={onChange}
-                  accept="image/*"
-                />
-                <img src={imgPreview} alt="미리보기" className={styles.img} />
+                <label>
+                  <img src={imgPreview} alt="미리보기" className={styles.img} />
+                  <input
+                    name="img"
+                    type="file"
+                    onChange={onChange}
+                    accept="image/*"
+                  />
+                </label>
               </div>
               <input
                 name="language"
@@ -173,15 +187,18 @@ function Project({ id, logged, title, member, img, language }) {
           </>
         ) : null}
         <div className={edit ? styles.hidden : null}>
+          <small className={styles.date}>{date.substring(0, 10)}</small>
           <small className={styles.member}>{member}</small>
-          <h3 className={styles.title}>{title}</h3>
-          <div>
-            <img
-              className={styles.img}
-              src={`${process.env.REACT_APP_SERVER}/image/${img}`}
-              alt="preview"
-            />
-          </div>
+          <Link to={`/project/${img}`}>
+            <h3 className={styles.title}>{title}</h3>
+            <div className={styles.imgWrap}>
+              <img
+                className={styles.img}
+                src={`${process.env.REACT_APP_SERVER}/image/${img}`}
+                alt="preview"
+              />
+            </div>
+          </Link>
           <div className={styles.language}>
             {language[0].split(',').map((item, index) => {
               return <i key={index} className={item} title={item}></i>;

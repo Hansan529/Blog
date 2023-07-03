@@ -61,7 +61,7 @@ export const postJoin = async (req, res) => {
 // 프로젝트 추가
 export const postUpload = async (req, res) => {
   const {
-    body: { title, member, language },
+    body: { date, title, member, language },
     file: img,
   } = req;
   // TODO
@@ -71,6 +71,7 @@ export const postUpload = async (req, res) => {
   try {
     // 프로젝트 모델 생성
     const project = await Project.create({
+      date,
       title,
       member,
       img: img.filename,
@@ -88,10 +89,11 @@ export const postUpload = async (req, res) => {
 // 프로젝트 수정
 export const postProjectEdit = async (req, res) => {
   const {
-    body: { beforeId: id, beforeImg, title, member, language },
+    body: { beforeId: id, beforeImg, date, title, member, language },
     file: img,
   } = req;
   const updateData = {
+    date,
     title,
     member,
     img: img ? img.filename : undefined,

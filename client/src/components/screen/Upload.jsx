@@ -5,20 +5,29 @@ import Footer from '../partials/Footer';
 // Function
 import { uploadFile } from './Home';
 import { init } from '../../_redux/_reducer/HomeSlice';
+import styles from '../../styles/screen/css/Upload.module.css';
 
 // Package
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 // import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 function Upload() {
   // React Setting
+  const date = new Date();
+  const [inputDate, setInputDate] = useState(
+    `${date.getFullYear()}-${(date.getMonth() + 1)
+      .toString()
+      .padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`
+  );
   const [inputTitle, setInputTitle] = useState('');
   const [inputMember, setInputMember] = useState([]);
   const [inputImg, setInputImg] = useState('');
   const [imgPreview, setImgPreview] = useState('');
   const [inputLanguage, setInputLanguage] = useState([]);
+  const logged = useSelector((state) => state.login.value);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -27,6 +36,7 @@ function Upload() {
     e.preventDefault();
     // multipart/form-data 생성
     const formData = new FormData();
+    formData.append('date', inputDate);
     formData.append('title', inputTitle);
     formData.append('member', inputMember);
     formData.append('img', inputImg);
@@ -52,6 +62,9 @@ function Upload() {
       target: { name, value },
     } = e;
     switch (name) {
+      case 'date':
+        setInputDate(value);
+        return;
       case 'title':
         setInputTitle(value);
         return;
@@ -88,13 +101,25 @@ function Upload() {
     }
   };
 
+  useEffect(() => {
+    if (!logged) {
+      navigate('/login');
+    }
+  }, []);
+
   return (
     <>
       <Header />
       <main>
         <div>
           <p>업로드 페이지</p>
-          <form onSubmit={onSubmit} method="POST">
+          <form onSubmit={onSubmit} method="POST" className={styles.form}>
+            <input
+              name="date"
+              type="date"
+              onChange={onChange}
+              value={inputDate}
+            />
             <input
               name="title"
               type="text"
