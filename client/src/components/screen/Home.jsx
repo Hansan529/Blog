@@ -74,28 +74,31 @@ function Home() {
 
   return (
     <>
-      <Header logged={logged} />
+      <Header />
       <main>
         {logged ? (
           <article>
             <Link to="/upload">업로드</Link>
           </article>
         ) : null}
-        {loading
-          ? null
-          : project.map((data) => {
-              return (
-                <Project
-                  key={data._id}
-                  id={data._id}
-                  logged={logged}
-                  title={data.title}
-                  member={data.member}
-                  img={data.img}
-                  language={data.language}
-                />
-              );
-            })}
+        <article className={styles.grid}>
+          {loading
+            ? null
+            : project.map((data) => {
+                return (
+                  <Project
+                    key={data._id}
+                    id={data._id}
+                    logged={logged}
+                    date={data.date}
+                    title={data.title}
+                    member={data.member}
+                    img={data.img}
+                    language={data.language}
+                  />
+                );
+              })}
+        </article>
       </main>
       <Footer />
     </>
