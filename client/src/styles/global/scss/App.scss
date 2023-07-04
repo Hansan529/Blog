@@ -1,5 +1,9 @@
 @import '../../config/scss/variables';
 
+* {
+  font-family: 'Noto Sans-KR', sans-serif;
+}
+
 main {
   margin-top: $headerHeight;
   padding: 30px;
