@@ -1,5 +1,9 @@
 $padding: 30px;
 
+.hidden {
+  opacity: 0;
+}
+
 .project {
   background-color: #ffede6;
   border-radius: 30px;
@@ -16,7 +20,15 @@ $padding: 30px;
     right: $padding;
     z-index: 15;
     display: flex;
+    flex-direction: column-reverse;
     gap: 20px;
+  }
+
+  .date {
+    top: 0;
+    font-size: 14px;
+    position: absolute;
+    transform: translateY(50%);
   }
 
   .title {
@@ -24,6 +36,10 @@ $padding: 30px;
     text-align: center;
     text-overflow: ellipsis;
     white-space: nowrap;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   .member {
@@ -34,15 +50,15 @@ $padding: 30px;
   }
 
   .img {
-    width: 400px;
-    height: 300px;
+    width: 450px;
+    height: 250px;
     margin: 0 auto;
     border-radius: 10px;
     object-fit: cover;
   }
 
-  .hidden {
-    opacity: 0;
+  .imgWrap {
+    margin: 20px 0;
   }
 
   .deleteCheck {
@@ -69,6 +85,12 @@ $padding: 30px;
       border: none;
     }
 
+    .date {
+      top: 0;
+      font-size: 14px;
+      transform: translateY(-90%);
+    }
+
     .member {
       left: 0;
     }
@@ -82,11 +104,17 @@ $padding: 30px;
       width: 100%;
       text-align: center;
 
-      input[name='img'] {
+      input[type='file'] {
         position: absolute;
-        left: 25%;
-        top: 50%;
-        transform: translate(-50%, -50%);
+        width: 0;
+        height: 0;
+        padding: 0;
+        overflow: hidden;
+        border: 0;
+      }
+
+      img {
+        cursor: pointer;
       }
     }
 
@@ -115,6 +143,9 @@ $padding: 30px;
   }
   [class='JS'] {
     background-image: url('/public/images/ico/js-icon.svg');
+  }
+  [class='JQUERY'] {
+    background-image: url('/public/images/ico/jquery-icon.svg');
   }
   [class='REACT'] {
     background-image: url('/public/images/ico/reactjs-icon.svg');
