@@ -1,11 +1,17 @@
-import { useState } from 'react';
-import Footer from '../partials/Footer';
+// Components
 import Header from '../partials/Header';
+import Footer from '../partials/Footer';
 
-import axios from 'axios';
+// Function
 import styles from '../../styles/screen/css/Join.module.css';
 import errorStyles from '../../styles/config/css/statusStyle.module.css';
+
+// Package
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { server } from './Home';
 
 function Join() {
   const [pwChk, setPwChk] = useState('');
@@ -21,8 +27,33 @@ function Join() {
   const [error, setError] = useState(false);
   const [auth, setAuth] = useState(false);
   const [authPassword, setAuthPassword] = useState('');
+  const social = useSelector((state) => state.info.value);
   const navigate = useNavigate();
 
+  // * 소셜 로그인으로 접근할 경우, DB 생성 요청
+  const socialJoin = async () => {
+    const { socialLogin, avatarImg, email } = social;
+    const data = {
+      socialLogin,
+      avatarImg,
+      email,
+    };
+    const { status } = await server.post('/join', JSON.stringify(data), {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    /**
+     * 상태코드가 201일경우 홈 루트로 이동
+     */
+    if (status === 201) {
+      navigate('/');
+    } else {
+      setError(true);
+    }
+  };
+
+  // * 관리자 추가 요청
   const onSubmit = async (e) => {
     setTryJoin(true);
     e.preventDefault();
@@ -36,30 +67,20 @@ function Join() {
       pw,
       email: `${emailFirst}@${emailLast}`,
     };
-    const response = await axios.post(
-      `${process.env.REACT_APP_API_ENDPOINT}/join`,
-      JSON.stringify(data),
-      {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    );
+    const response = await server.post(`/join`, JSON.stringify(data), {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    // 에러가 발생할 경우 에러 띄우기
     if (response.data.error) {
       setError(true);
-      setTimeout(() => {
-        setError(false);
-      }, 3000);
       return;
     }
-    setId('');
-    setPw('');
-    setPw2('');
-    setEmailFirst('');
-    setEmailLast('');
     navigate('/');
   };
 
+  // * Input 요소 State에 저장
   const onChange = (e) => {
     const {
       target: { name, value },
@@ -94,12 +115,23 @@ function Join() {
     }
   };
 
+  // * 관리자 비밀번호가 일치하는지 체크
   const authLogin = (e) => {
     e.preventDefault();
     if (authPassword === process.env.REACT_APP_ADMIN_PW) {
       setAuth(true);
+      if (social) {
+        socialJoin();
+      }
     }
   };
+
+  // * 에러가 변할 경우 3초 뒤 원복하도록 설정
+  useEffect(() => {
+    setTimeout(() => {
+      setError(false);
+    }, 3000);
+  }, [error]);
 
   return (
     <>
