@@ -65,7 +65,7 @@ export const postJoin = async (req, res) => {
 // 프로젝트 추가
 export const postUpload = async (req, res) => {
   const {
-    body: { date, title, member, language },
+    body: { date, title, member, language, body },
     file: img,
   } = req;
   // TODO
@@ -80,14 +80,15 @@ export const postUpload = async (req, res) => {
       member,
       img: img.filename,
       language: language.toUpperCase(),
+      body,
     });
+    // 생성 완료
+    return res.status(201).json(project._id);
   } catch (err) {
     console.error('프로젝트 생성에 실패했습니다', err);
     fs.unlinkSync(img.path);
     return res.sendStatus(400);
   }
-  // 생성 완료
-  return res.status(201).json({ img });
 };
 
 // 프로젝트 수정
@@ -185,8 +186,6 @@ export const postLoginGithub = async (req, res) => {
           Authorization: `token ${access_token}`,
         },
       });
-      const a = await userData.data;
-      console.log('userData: ', a);
       const emailData = await axios(`${apiUrl}/user/emails`, {
         headers: {
           Authorization: `token ${access_token}`,
@@ -213,6 +212,29 @@ export const postLoginGithub = async (req, res) => {
     }
   } catch (err) {
     console.error('오류', err);
+    return res.sendStatus(400);
+  }
+  return res.end();
+};
+
+export const getAvatarImg = async (req, res) => {
+  const admin = await Admin.find({});
+  const data = admin.map(({ avatarImg, email }) => ({
+    img: avatarImg,
+    email,
+  }));
+  return res.json(data);
+};
+
+export const getProject = async (req, res) => {
+  try {
+    const {
+      params: { id },
+    } = req;
+    const project = await Project.findById(id);
+    return res.json(project);
+  } catch (err) {
+    console.error('프로젝트 로딩에 문제가 생겼습니다.', err);
     return res.sendStatus(400);
   }
   return res.end();
