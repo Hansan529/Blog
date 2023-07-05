@@ -6,6 +6,7 @@ const projectSchema = new mongoose.Schema({
   member: [{ type: String, required: true }],
   img: { type: String },
   language: [{ type: String, required: true }],
+  body: { type: String, required: true },
 });
 
 const Project = mongoose.model('Project', projectSchema);
