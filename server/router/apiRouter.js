@@ -8,6 +8,8 @@ import {
   postProjectDelete,
   postProjectEdit,
   postUpload,
+  getAvatarImg,
+  getProject,
 } from '../controllers/apiController';
 import multer from 'multer';
 
@@ -25,8 +27,10 @@ apiRouter.get('/login/github/token', tokenLoginGithub);
 apiRouter.post('/login/github/access', postLoginGithub);
 apiRouter.route('/join').post(postJoin);
 apiRouter.post('/upload', projectImg.single('img'), postUpload);
+apiRouter.get('/project/:id', getProject);
 apiRouter.post('/project/:id/edit', projectImg.single('img'), postProjectEdit);
 apiRouter.post('/project/:id/delete', postProjectDelete);
+apiRouter.get('/avatarImg', getAvatarImg);
 // apiRouter.get('/image/:id', getImage);
 
 export default apiRouter;
