@@ -189,7 +189,7 @@ function Project({ id, logged, date, title, member, img, language }) {
         <div className={edit ? styles.hidden : null}>
           <small className={styles.date}>{date.substring(0, 10)}</small>
           <small className={styles.member}>{member}</small>
-          <Link to={`/project/${img}`}>
+          <Link to={`/project/${id}`}>
             <h3 className={styles.title}>{title}</h3>
             <div className={styles.imgWrap}>
               <img
