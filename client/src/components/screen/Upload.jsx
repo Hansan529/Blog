@@ -146,7 +146,7 @@ function Upload() {
                 <label>
                   <p className={styles.name}>날짜</p>
                   <input
-                    name="dte"
+                    name="date"
                     type="date"
                     onChange={onChange}
                     value={inputDate}
