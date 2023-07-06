@@ -3,22 +3,26 @@ import Header from '../partials/Header';
 import Footer from '../partials/Footer';
 
 // Function
-import { server } from './Home';
+import { server, uploadFile } from './Home';
 import extendStyles from '../../styles/screen/css/Upload.module.css';
 import styles from '../../styles/screen/css/DetailProject.module.css';
+import { init } from '../../_redux/_reducer/HomeSlice';
+import Loading from '../config/Loading';
 
 // Package
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import Loading from '../config/Loading';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 function DetailProject() {
   const logged = useSelector((state) => state.login.value);
+  const initPage = useSelector((state) => state.home.value);
   const [loading, setLoading] = useState(true);
+  const [importLoading, setImportLoading] = useState(true);
   const { id } = useParams();
   const [project, setProject] = useState('');
   const [edit, setEdit] = useState(false);
+  const dispatch = useDispatch();
 
   const [inputDate, setInputDate] = useState(null);
   const [inputTitle, setInputTitle] = useState(null);
@@ -27,6 +31,7 @@ function DetailProject() {
   const [imgPreview, setImgPreview] = useState(null);
   const [inputLanguage, setInputLanguage] = useState([]);
   const [inputBody, setInputBody] = useState([]);
+  const [beforeImg, setBeforeImg] = useState(null);
   const [admin, setAdmin] = useState('');
 
   // * 개발자 이미지 요청
@@ -35,7 +40,10 @@ function DetailProject() {
     if (!data) {
       return;
     }
+    // 이미지 저장
     setAdmin(data);
+    // 이미지 설정 완료
+    setImportLoading(false);
   };
 
   // * 프로젝트 내용 불러오기 #2
@@ -44,24 +52,27 @@ function DetailProject() {
     setProject(data);
     setLoading(false);
     // 기존값 설정
-    const { date, title, img, language, body } = data;
+    const { date, title, member, img, language, body } = data;
     setInputDate(date);
     setInputTitle(title);
+    setSelect(member);
     setImgPreview(`${process.env.REACT_APP_SERVER}/image/${img}`);
     setInputLanguage(language);
     setInputBody(body);
+    setBeforeImg(img);
   };
 
-  // * 페이지 로딩이 완료되면 최초 실행 #1
+  // * 페이지 로딩이 완료되면 최초 실행, 프로젝트 수정이 완료되면 실행 #1
   useEffect(() => {
     info();
-  }, []);
+  }, [initPage]);
 
-  // * 프로젝트 수정할 경우 실행
-  // TODO 의존형 추가하기
+  // * 프로젝트 수정할 경우 (로그인 후) 실행
   useEffect(() => {
-    adminImg();
-  }, []);
+    if (logged && edit) {
+      adminImg();
+    }
+  }, [edit]);
 
   // ^ Event
   // ^ 개발자 선택
@@ -121,105 +132,127 @@ function DetailProject() {
   };
 
   // ^ 수정 업데이트
-  const onSubmit = () => {};
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    // Form 생성
+    const formData = new FormData();
+    formData.append('date', inputDate);
+    formData.append('title', inputTitle);
+    formData.append('member', select);
+    formData.append('img', inputImg);
+    formData.append('language', inputLanguage);
+    formData.append('body', inputBody);
+    formData.append('beforeId', id);
+    formData.append('beforeImg', beforeImg);
+
+    // 수정 요청
+    await uploadFile.post(`/project/${id}/edit`, formData);
+
+    // 재렌더링 및 수정하기 종료
+    dispatch(init(false));
+    setEdit(false);
+  };
 
   return (
     <>
+      <Header />
       {loading ? (
         <Loading />
       ) : (
         <>
-          <Header />
           <main>
             {logged ? <button onClick={onClick}>수정하기</button> : null}
             {edit ? (
-              <>
-                <form
-                  onSubmit={onSubmit}
-                  method="POST"
-                  className={extendStyles.form}
-                >
-                  <label>
-                    <p className={extendStyles.name}>날짜</p>
-                    <input
-                      name="date"
-                      type="date"
-                      onChange={onChange}
-                      value={inputDate}
-                    />
-                  </label>
-                  <label>
-                    <p className={extendStyles.name}>제목</p>
-                    <input
-                      name="title"
-                      type="text"
-                      value={inputTitle}
-                      onChange={onChange}
-                      placeholder="제목"
-                    />
-                  </label>
-                  <label>
-                    <p className={extendStyles.name}>개발자</p>
-                    <div className={extendStyles.select}>
-                      <ul className={extendStyles.select}>
-                        {admin.map((value, index) => (
-                          <li
-                            key={index}
-                            data-id={value.email.split('@')[0]}
-                            onClick={devSelect}
-                          >
-                            {select.map((data, index) =>
-                              data === value.email.split('@')[0] ? (
-                                <i
-                                  key={index}
-                                  className={extendStyles.check}
-                                ></i>
-                              ) : null
-                            )}
-                            <img
-                              src={value.img}
-                              alt=""
-                              crossOrigin="anonymous"
-                            />{' '}
-                            {value.email.split('@')[0]}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </label>
-                  <label>
-                    <p className={extendStyles.name}>이미지</p>
-                    <input
-                      name="img"
-                      type="file"
-                      onChange={onChange}
-                      placeholder="이미지"
-                      accept="image/*"
-                    />
-                  </label>
-                  {imgPreview ? <img src={imgPreview} alt="" /> : null}
-                  <label>
-                    <p className={extendStyles.name}>언어</p>
-                    <input
-                      name="language"
-                      type="text"
-                      value={inputLanguage}
-                      onChange={onChange}
-                      placeholder="언어"
-                    />
-                  </label>
-                  <label>
-                    <textarea
-                      name="body"
-                      type="text"
-                      value={inputBody}
-                      onChange={onChange}
-                      placeholder="본문"
-                    />
-                  </label>
-                  <button type="submit">업로드</button>
-                </form>
-              </>
+              importLoading ? null : (
+                <>
+                  <form
+                    method="POST"
+                    onSubmit={onSubmit}
+                    className={extendStyles.form}
+                  >
+                    <label>
+                      <p className={extendStyles.name}>날짜</p>
+                      <input
+                        name="date"
+                        type="date"
+                        onChange={onChange}
+                        value={inputDate}
+                      />
+                    </label>
+                    <label>
+                      <p className={extendStyles.name}>제목</p>
+                      <input
+                        name="title"
+                        type="text"
+                        value={inputTitle}
+                        onChange={onChange}
+                        placeholder="제목"
+                      />
+                    </label>
+                    <label>
+                      <p className={extendStyles.name}>개발자</p>
+                      <div className={extendStyles.select}>
+                        <ul className={extendStyles.select}>
+                          {admin.map((value, index) => (
+                            <li
+                              key={index}
+                              data-id={value.email.split('@')[0]}
+                              onClick={devSelect}
+                            >
+                              {select.map((data, index) =>
+                                data === value.email.split('@')[0] ? (
+                                  <i
+                                    key={index}
+                                    className={extendStyles.check}
+                                  ></i>
+                                ) : null
+                              )}
+                              <img
+                                src={value.img}
+                                alt=""
+                                crossOrigin="anonymous"
+                              />{' '}
+                              {value.email.split('@')[0]}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </label>
+                    <label>
+                      <p className={extendStyles.name}>이미지</p>
+                      <input
+                        name="img"
+                        type="file"
+                        onChange={onChange}
+                        placeholder="이미지"
+                        accept="image/*"
+                      />
+                    </label>
+                    {imgPreview ? <img src={imgPreview} alt="" /> : null}
+                    <label>
+                      <p className={extendStyles.name}>언어</p>
+                      <input
+                        name="language"
+                        type="text"
+                        value={inputLanguage}
+                        onChange={onChange}
+                        placeholder="언어"
+                      />
+                    </label>
+                    <label>
+                      <textarea
+                        name="body"
+                        type="text"
+                        value={inputBody}
+                        onChange={onChange}
+                        placeholder="본문"
+                      />
+                    </label>
+                    <button type="submit">수정</button>
+                  </form>
+                </>
+              )
             ) : (
               <>
                 <h2>{project.title}</h2>
@@ -236,9 +269,10 @@ function DetailProject() {
               </>
             )}
           </main>
-          <Footer />
+          {/* <Footer /> */}
         </>
       )}
+      {/* <Footer /> */}
     </>
   );
 }
