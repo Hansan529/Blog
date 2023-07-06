@@ -94,7 +94,7 @@ export const postUpload = async (req, res) => {
 // 프로젝트 수정
 export const postProjectEdit = async (req, res) => {
   const {
-    body: { beforeId: id, beforeImg, date, title, member, language },
+    body: { beforeId: id, beforeImg, date, title, member, language, body },
     file: img,
   } = req;
   const updateData = {
@@ -103,6 +103,7 @@ export const postProjectEdit = async (req, res) => {
     member,
     img: img ? img.filename : undefined,
     language: language.toUpperCase(),
+    body,
   };
   // 객체의 value 값이 undefined가 아닌 것들만 반환하고 하나의 객체로 합침
   const undefinedFilter = Object.entries(updateData)
@@ -120,12 +121,12 @@ export const postProjectEdit = async (req, res) => {
     if (img) {
       fs.unlinkSync(path.join(__dirname, '../uploads', 'projects', beforeImg));
     }
+    return res.sendStatus(200);
   } catch (err) {
     console.error('프로젝트를 찾지 못했습니다', err);
     fs.unlinkSync(img.path);
     return res.send('에러');
   }
-  return res.sendStatus(200);
 };
 
 // 프로젝트 삭제
