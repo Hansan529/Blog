@@ -5,13 +5,13 @@ import Footer from '../partials/Footer';
 // Function
 import styles from '../../styles/screen/css/Join.module.css';
 import errorStyles from '../../styles/config/css/statusStyle.module.css';
+import { server } from './Home';
 
 // Package
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-import { server } from './Home';
 
 function Join() {
   const [pwChk, setPwChk] = useState('');
@@ -27,7 +27,7 @@ function Join() {
   const [error, setError] = useState(false);
   const [auth, setAuth] = useState(false);
   const [authPassword, setAuthPassword] = useState('');
-  const social = useSelector((state) => state.info.value);
+  const social = useSelector((state) => state.info.socialLogin);
   const navigate = useNavigate();
 
   // * 소셜 로그인으로 접근할 경우, DB 생성 요청

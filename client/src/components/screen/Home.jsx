@@ -4,9 +4,10 @@ import Footer from '../partials/Footer';
 import Project from './Project';
 
 // Function
-import { init } from '../../_redux/_reducer/HomeSlice';
 import { set } from '../../_redux/_reducer/ProejctSlice';
 import styles from '../../styles/screen/css/Home.module.css';
+import { initial } from '../../_redux/_reducer/InfoSlice';
+import { getAdminAvatar } from '../../_redux/_reducer/fetchSlice';
 
 // Package
 import { useDispatch, useSelector } from 'react-redux';
@@ -42,9 +43,10 @@ export const server = axios.create({
 function Home() {
   // React 설정
   const [loading, setLoading] = useState(true);
-  const logged = useSelector((state) => state.login.value);
-  const initPage = useSelector((state) => state.home.value);
+  const logged = useSelector((state) => state.info.logged);
+  const initPage = useSelector((state) => state.info.initial);
   const project = useSelector((state) => state.project.value);
+  const devAvatar = useSelector((state) => state.fetchData.devAvatar);
   const dispatch = useDispatch();
 
   // *
@@ -53,7 +55,7 @@ function Home() {
     // API 요청
     const { data } = await downloadFiles.get('/');
     // 1회 접속 저장
-    dispatch(init(true));
+    dispatch(initial(true));
     // API 결과 값 저장
     dispatch(set(data));
     // 로딩 완료

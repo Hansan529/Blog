@@ -6,8 +6,8 @@ import Footer from '../partials/Footer';
 import { server, uploadFile } from './Home';
 import extendStyles from '../../styles/screen/css/Upload.module.css';
 import styles from '../../styles/screen/css/DetailProject.module.css';
-import { init } from '../../_redux/_reducer/HomeSlice';
 import Loading from '../config/Loading';
+import { initial } from '../../_redux/_reducer/InfoSlice';
 
 // Package
 import { useParams } from 'react-router-dom';
@@ -15,8 +15,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 function DetailProject() {
-  const logged = useSelector((state) => state.login.value);
-  const initPage = useSelector((state) => state.home.value);
+  const logged = useSelector((state) => state.info.logged);
+  const initPage = useSelector((state) => state.info.initial);
   const [loading, setLoading] = useState(true);
   const [importLoading, setImportLoading] = useState(true);
   const { id } = useParams();
@@ -150,7 +150,7 @@ function DetailProject() {
     await uploadFile.post(`/project/${id}/edit`, formData);
 
     // 재렌더링 및 수정하기 종료
-    dispatch(init(false));
+    dispatch(initial(false));
     setEdit(false);
   };
 

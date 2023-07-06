@@ -1,10 +1,12 @@
 // Function
 import styles from '../../styles/screen/css/Project.module.css';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
 import { server, uploadFile } from './Home';
+import { initial } from '../../_redux/_reducer/InfoSlice';
+
+// Package
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { init } from '../../_redux/_reducer/HomeSlice';
+import { useState } from 'react';
 
 function Project({ id, logged, date, title, member, img, language }) {
   // React 세팅
@@ -26,7 +28,7 @@ function Project({ id, logged, date, title, member, img, language }) {
     const { status } = await server.post(`/project/${id}/delete`, { img });
     if (status === 200) {
       // 프로젝트 변경으로 인해 재 렌더링 요청
-      dispatch(init(false));
+      dispatch(initial(false));
     }
   };
 
@@ -44,7 +46,7 @@ function Project({ id, logged, date, title, member, img, language }) {
     // 프로젝트 업데이트 요청
     await uploadFile.post(`/project/${id}/edit`, formData);
     // 프로젝트 변경으로 인해 재 렌더링 요청
-    dispatch(init(false));
+    dispatch(initial(false));
     // 수정하기 종료
     setEdit(false);
   };

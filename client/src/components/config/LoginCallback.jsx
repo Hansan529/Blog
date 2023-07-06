@@ -5,8 +5,7 @@ import Loading from './Loading';
 
 // Function
 import { server } from '../screen/Home';
-import { check } from '../../_redux/_reducer/loginSlice';
-import { info } from '../../_redux/_reducer/InfoSlice';
+import { login, socialLogin } from '../../_redux/_reducer/InfoSlice';
 
 // Package
 import { useDispatch } from 'react-redux';
@@ -31,11 +30,11 @@ function LoginCallback() {
     const data = await (await server.post('/login/github/access', obj)).data;
     if (data.logged) {
       // 소셜 로그인일 경우, 로그인 처리
-      dispatch(check(data.logged));
+      dispatch(login(data.logged));
       navigate('/');
     } else {
       // 소셜 로그인이 아닐 경우, 데이터를 갖고 회원가입 페이지로 이동
-      dispatch(info(data));
+      dispatch(socialLogin(data));
       navigate('/join');
     }
   };

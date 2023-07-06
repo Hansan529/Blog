@@ -1,11 +1,12 @@
 // Component
 import Header from '../partials/Header';
 import Footer from '../partials/Footer';
+import Loading from '../config/Loading';
 
 // Function
 import { server, uploadFile } from './Home';
-import { init } from '../../_redux/_reducer/HomeSlice';
 import styles from '../../styles/screen/css/Upload.module.css';
+import { initial } from '../../_redux/_reducer/InfoSlice';
 
 // Package
 import { useEffect, useState } from 'react';
@@ -13,7 +14,6 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 // import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import Loading from '../config/Loading';
 
 function Upload() {
   // React Setting
@@ -32,7 +32,7 @@ function Upload() {
   const [inputBody, setInputBody] = useState([]);
   const [admin, setAdmin] = useState(null);
   // const [adminEmails, setAdminEmails] = useState(null);
-  const logged = useSelector((state) => state.login.value);
+  const logged = useSelector((state) => state.info.logged);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -72,7 +72,7 @@ function Upload() {
     const { status, data } = await uploadFile.post('/upload', formData);
     if (status === 201) {
       // 프로젝트 생성 성공, 홈 루트의 프로젝트 갱신처리
-      dispatch(init(false));
+      dispatch(initial(false));
       // 해당 프로젝트 상세 페이지로 이동
       navigate(`/project/${data}`);
     }
