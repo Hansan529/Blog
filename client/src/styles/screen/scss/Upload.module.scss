@@ -1,0 +1,64 @@
+.form {
+  display: grid;
+  justify-content: center;
+  gap: 15px;
+  label {
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    .name {
+      width: 50px;
+    }
+
+    input {
+      border: none;
+      border-bottom: 1px solid #ddd;
+      width: 100%;
+      &[type='file'] {
+        width: 80px;
+        overflow: hidden;
+      }
+    }
+
+    .select {
+      ul {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        > li {
+          position: relative;
+          cursor: pointer;
+
+          .check {
+            display: block;
+            width: 15px;
+            height: 15px;
+            background: no-repeat center / cover;
+            background-image: url('/public/images/ico/check.svg');
+            position: absolute;
+            right: 0;
+          }
+
+          img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+    textarea {
+      all: unset;
+      width: 100%;
+      height: 200px;
+      border: 1px solid #eee;
+      padding: 10px;
+    }
+  }
+  img {
+    margin: 0 auto;
+    max-width: 400px;
+    max-height: 300px;
+  }
+}

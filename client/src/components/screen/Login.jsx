@@ -2,25 +2,25 @@
 import Footer from '../partials/Footer';
 import Header from '../partials/Header';
 
-// CSS 모듈
+// Function
 import styles from '../../styles/screen/css/Login.module.css';
 import errorStyles from '../../styles/config/css/statusStyle.module.css';
-
-// 패키지
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { check } from '../../_redux/_reducer/loginSlice';
+import { server } from './Home';
+
+// Package
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+// *
 function Login() {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
   const [error, setError] = useState('');
-  // loginSlice의 기본 값 불러오기
-  // const loginState = useSelector((state) => state.login.value);
+  const logged = useSelector((state) => state.login.value);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const onClick = async (e) => {
     e.preventDefault();
     // JSON 객체 생성
@@ -30,15 +30,11 @@ function Login() {
     };
     // 로그인 시도
     const { success, error } = await (
-      await axios.post(
-        `${process.env.REACT_APP_API_ENDPOINT}/login`,
-        JSON.stringify(loginData),
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      )
+      await server.post('/login', JSON.stringify(loginData), {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
     ).data;
     /**
      * 로그인 성공 시 state를 true로 변경 후, 루트로 이동
@@ -53,6 +49,13 @@ function Login() {
     }
   };
 
+  // 깃허브 로그인 함수
+  const onClickGithub = async () => {
+    const data = await (await server.get('/login/github/token')).data;
+    window.location.href = data;
+  };
+
+  // Input 값 저장
   const onChange = (e) => {
     const {
       target: { name, value },
@@ -77,6 +80,13 @@ function Login() {
       }, 3000);
     }
   }, [error]);
+
+  // Login을 이미 했으면 접근할 수 없음
+  useEffect(() => {
+    if (logged) {
+      navigate('/');
+    }
+  }, []);
 
   return (
     <>
@@ -108,6 +118,9 @@ function Login() {
             로그인
           </button>
         </form>
+        <button type="button" onClick={onClickGithub}>
+          깃허브 로그인
+        </button>
         {error ? (
           <div className={errorStyles.error}>
             <h2>{error}</h2>
