@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import styles from '../../styles/partials/css/Header.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { check } from '../../_redux/_reducer/loginSlice';
+import { login } from '../../_redux/_reducer/InfoSlice';
 
 function Header() {
-  const logged = useSelector((state) => state.login.value);
+  const logged = useSelector((state) => state.info.logged);
   const dispatch = useDispatch();
   return (
     <header className={styles.header}>
@@ -50,7 +50,7 @@ function Header() {
         </nav>
         <div>
           {logged ? (
-            <button onClick={() => dispatch(check(false))}>로그아웃</button>
+            <button onClick={() => dispatch(login(false))}>로그아웃</button>
           ) : (
             <Link to="/login">로그인</Link>
           )}

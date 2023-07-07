@@ -5,7 +5,6 @@ import Header from '../partials/Header';
 function Loading() {
   return (
     <>
-      <Header />
       <div className={styles.background}>
         <p className={styles.Loading}>로딩 중입니다...</p>
         <img
@@ -13,7 +12,6 @@ function Loading() {
           alt="로딩중"
         />
       </div>
-      <Footer />
     </>
   );
 }
