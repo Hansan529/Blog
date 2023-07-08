@@ -56,6 +56,7 @@ function Login() {
     setLoading(true);
     const data = await (await server.get('/login/github/token')).data;
     window.location.href = data;
+    // 이 후 LoginCallback 컴포넌트에서 진행됨
   };
 
   // Input 값 저장
