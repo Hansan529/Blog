@@ -3,7 +3,14 @@ import mongoose from 'mongoose';
 
 const adminSchema = new mongoose.Schema({
   socialLogin: { type: Boolean, default: false },
-  avatarImg: { type: String, default: null },
+  avatarImg: {
+    type: String,
+    default: null,
+  },
+  username: {
+    type: String,
+    default: null,
+  },
   id: { type: String },
   pw: {
     type: String,

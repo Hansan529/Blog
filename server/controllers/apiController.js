@@ -38,7 +38,7 @@ export const postLogin = async (req, res) => {
 export const postJoin = async (req, res) => {
   try {
     const {
-      body: { id, pw, email, socialLogin, avatarImg },
+      body: { id, pw, email, socialLogin, avatarImg, username },
     } = req;
     let error;
     const adminExists = await Admin.exists({
@@ -52,7 +52,7 @@ export const postJoin = async (req, res) => {
     }
     const adminData = id
       ? { id, pw, email }
-      : { socialLogin, avatarImg, email };
+      : { socialLogin, avatarImg, email, username };
     await Admin.create(adminData);
     return res.sendStatus(201);
   } catch (err) {
@@ -187,6 +187,8 @@ export const postLoginGithub = async (req, res) => {
           Authorization: `token ${access_token}`,
         },
       });
+      console.log('userData: ', userData);
+      console.log('userDataLogin: ', userData.data.login);
       const emailData = await axios(`${apiUrl}/user/emails`, {
         headers: {
           Authorization: `token ${access_token}`,
@@ -206,6 +208,7 @@ export const postLoginGithub = async (req, res) => {
       } else {
         return res.json({
           socialLogin: true,
+          username: userData.data.login,
           avatarImg: userData.data.avatar_url,
           email: emailObj.email,
         });
