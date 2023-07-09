@@ -81,7 +81,7 @@ export const postUpload = async (req, res) => {
       title,
       developer,
       thumbnail: thumbnail.filename,
-      language: language.toUpperCase(),
+      language: language.split(',').map((value) => value.trim().toUpperCase()),
       description,
       sourceCode,
     });
@@ -116,7 +116,7 @@ export const postProjectEdit = async (req, res) => {
     title,
     developer,
     thumbnail: thumbnail ? thumbnail.filename : undefined,
-    language: language.toUpperCase(),
+    language: language.split(',').map((value) => value.trim().toUpperCase()),
     description,
     sourceCode,
   };
@@ -236,6 +236,7 @@ export const postLoginGithub = async (req, res) => {
   return res.end();
 };
 
+// * 개발자 이미지 호출 API
 export const getAvatarImg = async (req, res) => {
   const admin = await Admin.find({});
   const data = admin.map(({ avatarImg, username }) => ({
@@ -245,6 +246,7 @@ export const getAvatarImg = async (req, res) => {
   return res.json(data);
 };
 
+// * 프로젝트 목록 호출 API
 export const getProject = async (req, res) => {
   try {
     const {
