@@ -8,14 +8,13 @@ import Login from './components/screen/Login';
 import Join from './components/screen/Join';
 import Upload from './components/screen/Upload';
 import DetailProject from './components/screen/DetailProject';
-import ProjectEdit from './components/screen/ProjectEdit';
 
 // Config
 import LoginCallback from './components/config/LoginCallback';
 
 // CSS
 import './styles/global/css/App.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getAdminAvatar } from './_redux/_reducer/fetchSlice';
 // import "./App.css";
