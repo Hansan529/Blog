@@ -19,7 +19,6 @@ function Project({ id, logged, date, title, developer, thumbnail, language }) {
     `${process.env.REACT_APP_SERVER}/image/${thumbnail}`
   );
   const [inputLanguage, setInputLanguage] = useState(language);
-  console.log('AAinputLanguage: ', inputLanguage);
   // 프로젝트 수정 관련 State
   const [more, setMore] = useState(false);
   const [edit, setEdit] = useState(false);

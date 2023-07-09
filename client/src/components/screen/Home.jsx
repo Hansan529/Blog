@@ -46,7 +46,6 @@ function Home() {
   const logged = useSelector((state) => state.info.logged);
   const initPage = useSelector((state) => state.info.initial);
   const project = useSelector((state) => state.project.value);
-  const devAvatar = useSelector((state) => state.fetchData.devAvatar);
   const dispatch = useDispatch();
 
   // *
@@ -94,8 +93,8 @@ function Home() {
                     logged={logged}
                     date={data.date}
                     title={data.title}
-                    member={data.member}
-                    img={data.img}
+                    developer={data.developer}
+                    thumbnail={data.thumbnail}
                     language={data.language}
                   />
                 );
