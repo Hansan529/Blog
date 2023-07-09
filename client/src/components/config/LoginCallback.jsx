@@ -33,7 +33,11 @@ function LoginCallback() {
       dispatch(login(data.logged));
       navigate('/');
     } else {
-      // 소셜 로그인이 아닐 경우, 데이터를 갖고 회원가입 페이지로 이동
+      /**
+       * 소셜 로그인이 아닐 경우,
+       * 데이터(socialLogin, username, avatarImg, email)를 갖고
+       * Join 컴포넌트로 이동
+       */
       dispatch(socialLogin(data));
       navigate('/join');
     }

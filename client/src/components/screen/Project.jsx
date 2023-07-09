@@ -5,11 +5,12 @@ import { initial } from '../../_redux/_reducer/InfoSlice';
 
 // Package
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 
 function Project({ id, logged, date, title, member, img, language }) {
   // React 세팅
+  const dispatch = useDispatch();
   const [inputDate, setInputDate] = useState(date);
   const [inputMember, setInputMember] = useState(member);
   const [inputTitle, setInputTitle] = useState(title);
@@ -18,9 +19,11 @@ function Project({ id, logged, date, title, member, img, language }) {
     `${process.env.REACT_APP_SERVER}/image/${img}`
   );
   const [inputLanguage, setInputLanguage] = useState(language);
+  // 프로젝트 수정 관련 State
   const [more, setMore] = useState(false);
   const [edit, setEdit] = useState(false);
-  const dispatch = useDispatch();
+  // 개발자 이미지 정보
+  const devAvatar = useSelector((state) => state.fetchData.devAvatar);
 
   // 프로젝트 삭제
   const onClick = async () => {
@@ -69,11 +72,9 @@ function Project({ id, logged, date, title, member, img, language }) {
         file.date = new Date();
         // 업로드할 이미지 파일
         setInputImg(file);
-
         // 미리보기 이미지용
         const fileReader = new FileReader(); // 파일을 읽음
         fileReader.readAsDataURL(file); // 결과에 파일 데이터를 나타내는 URL을 포함시킴
-
         return new Promise((resolve) => {
           // 비동기 작업 처리
           fileReader.onload = () => {
@@ -94,8 +95,10 @@ function Project({ id, logged, date, title, member, img, language }) {
   return (
     <>
       <div className={styles.project}>
+        {/* 로그인을 한 상태(Admin) 일 경우 프로젝트 정보 더보기 버튼이 활성화 */}
         {logged ? (
           more ? (
+            // 더보기 버튼이 눌렸을 경우, 3가지의 아이콘이 생성됨 (삭제, 수정, 취소)
             <div className={styles.edit}>
               <button type="button" onClick={onClick}>
                 <img
@@ -188,9 +191,26 @@ function Project({ id, logged, date, title, member, img, language }) {
             </form>
           </>
         ) : null}
+        {/* 수정하기를 한 경우, 기존 div는 숨김 처리함 */}
         <div className={edit ? styles.hidden : null}>
+          {/* 업로드한 날짜 */}
           <small className={styles.date}>{date.substring(0, 10)}</small>
-          <small className={styles.member}>{member}</small>
+          {/* 개발자 이미지 배열 */}
+          <small className={styles.member}>
+            {devAvatar.map((value, index) => {
+              return value.email.split('@')[0] === member ? (
+                <img
+                  key={index}
+                  src={value.img}
+                  className={styles.devImg}
+                  alt={value.email.split('@')[0]}
+                />
+              ) : (
+                value.email.split('@')[0]
+              );
+            })}
+          </small>
+          {/* 프로젝트 제목, 이미지 */}
           <Link to={`/project/${id}`}>
             <h3 className={styles.title}>{title}</h3>
             <div className={styles.imgWrap}>
@@ -201,9 +221,16 @@ function Project({ id, logged, date, title, member, img, language }) {
               />
             </div>
           </Link>
+          {/* 프로젝트 사용 언어 */}
           <div className={styles.language}>
             {language[0].split(',').map((item, index) => {
-              return <i key={index} className={item} title={item}></i>;
+              return (
+                <img
+                  key={index}
+                  src={`${process.env.PUBLIC_URL}/images/ico/${item}-icon.svg`}
+                  alt={item}
+                />
+              );
             })}
           </div>
         </div>

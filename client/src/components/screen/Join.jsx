@@ -32,10 +32,12 @@ function Join() {
 
   // * 소셜 로그인으로 접근할 경우, DB 생성 요청
   const socialJoin = async () => {
-    const { socialLogin, avatarImg, email } = social;
+    // LoginCallback 컴포넌트에서 넘어옴, 해당 값들을 추출한 뒤, JSON으로 만들어서 서버에 요청함
+    const { socialLogin, avatarImg, username, email } = social;
     const data = {
       socialLogin,
       avatarImg,
+      username,
       email,
     };
     const { status } = await server.post('/join', JSON.stringify(data), {

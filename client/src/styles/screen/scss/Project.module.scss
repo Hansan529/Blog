@@ -15,6 +15,7 @@ $padding: 30px;
     height: 30px;
   }
 
+  // * 프로젝트 간단 수정
   .edit {
     position: absolute;
     right: $padding;
@@ -24,6 +25,7 @@ $padding: 30px;
     gap: 20px;
   }
 
+  // * 날짜
   .date {
     top: 0;
     font-size: 14px;
@@ -31,6 +33,7 @@ $padding: 30px;
     transform: translateY(50%);
   }
 
+  // * 타이틀(제목)
   .title {
     font-size: 24px;
     text-align: center;
@@ -42,37 +45,45 @@ $padding: 30px;
     }
   }
 
+  // * 개발자 목록
   .member {
     display: flex;
     float: left;
     position: absolute;
     left: $padding;
+    // 개발자 이미지
+    .devImg {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
   }
 
-  .img {
-    width: 450px;
-    height: 250px;
-    margin: 0 auto;
-    border-radius: 10px;
-    object-fit: cover;
-  }
-
+  // * 프로젝트 이미지
   .imgWrap {
     margin: 20px 0;
+    // 이미지
+    .img {
+      width: 450px;
+      height: 250px;
+      margin: 0 auto;
+      border-radius: 10px;
+      object-fit: cover;
+    }
   }
 
-  .deleteCheck {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(255, 255, 255, 0.5);
-    width: 300px;
-    height: 200px;
-    z-index: 20;
-  }
+  // .deleteCheck {
+  //   position: absolute;
+  //   top: 50%;
+  //   left: 50%;
+  //   transform: translate(-50%, -50%);
+  //   background-color: rgba(255, 255, 255, 0.5);
+  //   width: 300px;
+  //   height: 200px;
+  //   z-index: 20;
+  // }
 
-  // * Form
+  // & Form
   .form {
     display: flex;
     flex-wrap: wrap;
@@ -80,30 +91,31 @@ $padding: 30px;
     width: calc(100% - ($padding * 2));
     z-index: 10;
 
+    // & 입력 창 서식
     input {
       background-color: transparent;
       border: none;
     }
 
+    // & (폼)날짜
     .date {
       top: 0;
       font-size: 14px;
       transform: translateY(-90%);
     }
 
-    .member {
-      left: 0;
-    }
-
+    // & (폼)타이틀
     .title {
       margin: 0 auto;
       font-weight: bold;
     }
 
+    // & (폼)이미지 박스
     .imgWrap {
       width: 100%;
       text-align: center;
 
+      // & (폼)이미지 업로드
       input[type='file'] {
         position: absolute;
         width: 0;
@@ -113,11 +125,13 @@ $padding: 30px;
         border: 0;
       }
 
+      // & (폼)이미지
       img {
         cursor: pointer;
       }
     }
 
+    // & (폼)업데이트
     .submit {
       position: absolute;
       right: 0;
@@ -126,52 +140,13 @@ $padding: 30px;
   }
 }
 
+// * 언어
 .language {
   display: flex;
   gap: 5px;
-  > i {
-    display: block;
+  // 프로그래밍 언어 이미지
+  > img {
     width: 30px;
     height: 30px;
-    background: no-repeat center / cover;
   }
-  [class='HTML'] {
-    background-image: url('/public/images/ico/html-icon.svg');
-  }
-  [class='CSS'] {
-    background-image: url('/public/images/ico/css-icon.svg');
-  }
-  [class='JS'] {
-    background-image: url('/public/images/ico/js-icon.svg');
-  }
-  [class='JQUERY'] {
-    background-image: url('/public/images/ico/jquery-icon.svg');
-  }
-  [class='REACT'] {
-    background-image: url('/public/images/ico/reactjs-icon.svg');
-  }
-  [class='EXPRESS'] {
-    background-image: url('/public/images/ico/expressjs-icon.svg');
-  }
-  [class='NODE'] {
-    background-image: url('/public/images/ico/nodejs-icon.svg');
-  }
-  [class='MONGODB'] {
-    background-image: url('/public/images/ico/mongodb-icon.svg');
-  }
-}
-
-.langIcon {
-  background: no-repeat center / cover;
-  background-color: skyblue;
-}
-
-.CSS {
-  font-size: 24px;
-}
-
-.react {
-  width: 50px;
-  height: 50px;
-  background-color: skyblue;
 }
