@@ -1,12 +1,15 @@
 import mongoose from 'mongoose';
 
 const projectSchema = new mongoose.Schema({
-  date: { type: Date, default: Date.now },
+  url: { type: String, required: true },
+  date: { type: String, required: true },
+  dateSearch: { type: Date, default: Date.now },
   title: { type: String, required: true },
-  member: [{ type: String, required: true }],
-  img: { type: String },
+  developer: [{ type: String, required: true }],
+  thumbnail: { type: String, required: true },
   language: [{ type: String, required: true }],
-  body: { type: String, required: true },
+  description: { type: String, required: true },
+  sourceCode: { type: String, required: true },
 });
 
 const Project = mongoose.model('Project', projectSchema);
