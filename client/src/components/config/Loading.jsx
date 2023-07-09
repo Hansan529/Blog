@@ -1,6 +1,4 @@
 import styles from '../../styles/config/css/Loading.module.css';
-import Footer from '../partials/Footer';
-import Header from '../partials/Header';
 
 function Loading() {
   return (
