@@ -10,7 +10,7 @@ import styles from '../../styles/screen/css/DetailProject.module.css';
 import { initial } from '../../_redux/_reducer/InfoSlice';
 
 // Package
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -315,12 +315,14 @@ function DetailProject() {
                     수정하기
                   </button>
                 ) : null}
-                <picture className={styles.picture}>
-                  <img
-                    src={`${process.env.REACT_APP_SERVER}/image/${project.thumbnail}`}
-                    alt="이미지"
-                  />
-                </picture>
+                <Link to={project.url} target="_blank">
+                  <picture className={styles.picture}>
+                    <img
+                      src={`${process.env.REACT_APP_SERVER}/image/${project.thumbnail}`}
+                      alt="이미지"
+                    />
+                  </picture>
+                </Link>
                 <div className={styles.flex}>
                   {!project
                     ? null
