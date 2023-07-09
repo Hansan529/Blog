@@ -65,28 +65,31 @@ export const postJoin = async (req, res) => {
 // 프로젝트 추가
 export const postUpload = async (req, res) => {
   const {
-    body: { date, title, member, language, body },
-    file: img,
+    body: { url, date, title, developer, language, description, sourceCode },
+    file: thumbnail,
   } = req;
   // TODO
-  if (!img) {
+  if (!thumbnail) {
     return res.end();
   }
   try {
     // 프로젝트 모델 생성
     const project = await Project.create({
+      url,
       date,
+      dateSearch: date,
       title,
-      member,
-      img: img.filename,
+      developer,
+      thumbnail: thumbnail.filename,
       language: language.toUpperCase(),
-      body,
+      description,
+      sourceCode,
     });
     // 생성 완료
     return res.status(201).json(project._id);
   } catch (err) {
     console.error('프로젝트 생성에 실패했습니다', err);
-    fs.unlinkSync(img.path);
+    fs.unlinkSync(thumbnail.path);
     return res.sendStatus(400);
   }
 };
@@ -94,16 +97,28 @@ export const postUpload = async (req, res) => {
 // 프로젝트 수정
 export const postProjectEdit = async (req, res) => {
   const {
-    body: { beforeId: id, beforeImg, date, title, member, language, body },
-    file: img,
+    body: {
+      beforeId: id,
+      beforeThumbnail,
+      url,
+      date,
+      title,
+      developer,
+      language,
+      description,
+      sourceCode,
+    },
+    file: thumbnail,
   } = req;
   const updateData = {
+    url,
     date,
     title,
-    member,
-    img: img ? img.filename : undefined,
+    developer,
+    thumbnail: thumbnail ? thumbnail.filename : undefined,
     language: language.toUpperCase(),
-    body,
+    description,
+    sourceCode,
   };
   // 객체의 value 값이 undefined가 아닌 것들만 반환하고 하나의 객체로 합침
   const undefinedFilter = Object.entries(updateData)
@@ -118,8 +133,10 @@ export const postProjectEdit = async (req, res) => {
       new: true,
     });
     // 이미지를 새로 업로드 했을 경우, 기존 이미지 파일 삭제
-    if (img) {
-      fs.unlinkSync(path.join(__dirname, '../uploads', 'projects', beforeImg));
+    if (thumbnail) {
+      fs.unlinkSync(
+        path.join(__dirname, '../uploads', 'projects', beforeThumbnail)
+      );
     }
     return res.sendStatus(200);
   } catch (err) {
@@ -133,11 +150,11 @@ export const postProjectEdit = async (req, res) => {
 export const postProjectDelete = async (req, res) => {
   const {
     params: { id },
-    body: { img },
+    body: { thumbnail },
   } = req;
   try {
     const project = await Project.findByIdAndDelete(id);
-    fs.unlinkSync(path.join(__dirname, '../uploads', 'projects', img));
+    fs.unlinkSync(path.join(__dirname, '../uploads', 'projects', thumbnail));
   } catch (err) {
     console.error('프로젝트 삭제에 실패했습니다', err);
     return res.sendStatus(400);
@@ -187,8 +204,6 @@ export const postLoginGithub = async (req, res) => {
           Authorization: `token ${access_token}`,
         },
       });
-      console.log('userData: ', userData);
-      console.log('userDataLogin: ', userData.data.login);
       const emailData = await axios(`${apiUrl}/user/emails`, {
         headers: {
           Authorization: `token ${access_token}`,
@@ -223,9 +238,9 @@ export const postLoginGithub = async (req, res) => {
 
 export const getAvatarImg = async (req, res) => {
   const admin = await Admin.find({});
-  const data = admin.map(({ avatarImg, email }) => ({
+  const data = admin.map(({ avatarImg, username }) => ({
     img: avatarImg,
-    email,
+    username,
   }));
   return res.json(data);
 };

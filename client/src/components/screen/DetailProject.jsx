@@ -1,12 +1,12 @@
 // Components
 import Header from '../partials/Header';
 import Footer from '../partials/Footer';
+import Loading from '../config/Loading';
 
 // Function
 import { server, uploadFile } from './Home';
 import extendStyles from '../../styles/screen/css/Upload.module.css';
 import styles from '../../styles/screen/css/DetailProject.module.css';
-import Loading from '../config/Loading';
 import { initial } from '../../_redux/_reducer/InfoSlice';
 
 // Package
@@ -15,24 +15,29 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 function DetailProject() {
+  const dispatch = useDispatch();
+  // 상태 정보
   const logged = useSelector((state) => state.info.logged);
   const initPage = useSelector((state) => state.info.initial);
+  const devAvatar = useSelector((state) => state.fetchData.devAvatar);
   const [loading, setLoading] = useState(true);
   const [importLoading, setImportLoading] = useState(true);
   const { id } = useParams();
   const [project, setProject] = useState('');
-  const [edit, setEdit] = useState(false);
-  const dispatch = useDispatch();
+  const [admin, setAdmin] = useState('');
 
+  // 유저 행동에 따른 값 변화
+  const [edit, setEdit] = useState(false);
+  const [inputUrl, setInputUrl] = useState(null);
   const [inputDate, setInputDate] = useState(null);
   const [inputTitle, setInputTitle] = useState(null);
-  const [select, setSelect] = useState([]);
-  const [inputImg, setInputImg] = useState(null);
-  const [imgPreview, setImgPreview] = useState(null);
+  const [developerSelect, setDeveloperSelect] = useState([]);
+  const [inputThumbnail, setInputThumbnail] = useState(null);
+  const [thumbnailPreview, setThumbnailPreview] = useState(null);
   const [inputLanguage, setInputLanguage] = useState([]);
-  const [inputBody, setInputBody] = useState([]);
-  const [beforeImg, setBeforeImg] = useState(null);
-  const [admin, setAdmin] = useState('');
+  const [inputDescription, setInputDescription] = useState([]);
+  const [inputSourceCode, setInputSourceCode] = useState(null);
+  const [beforeThumbnail, setBeforeThumbnail] = useState(null);
 
   // * 개발자 이미지 요청
   const adminImg = async () => {
@@ -52,14 +57,25 @@ function DetailProject() {
     setProject(data);
     setLoading(false);
     // 기존값 설정
-    const { date, title, member, img, language, body } = data;
+    const {
+      url,
+      date,
+      title,
+      developer,
+      thumbnail,
+      language,
+      description,
+      sourceCode,
+    } = data;
+    setInputUrl(url);
     setInputDate(date);
     setInputTitle(title);
-    setSelect(member);
-    setImgPreview(`${process.env.REACT_APP_SERVER}/image/${img}`);
+    setDeveloperSelect(developer);
+    setThumbnailPreview(`${process.env.REACT_APP_SERVER}/image/${thumbnail}`);
     setInputLanguage(language);
-    setInputBody(body);
-    setBeforeImg(img);
+    setInputDescription(description);
+    setBeforeThumbnail(thumbnail);
+    setInputSourceCode(sourceCode);
   };
 
   // * 페이지 로딩이 완료되면 최초 실행, 프로젝트 수정이 완료되면 실행 #1
@@ -78,11 +94,11 @@ function DetailProject() {
   // ^ 개발자 선택
   const devSelect = (e) => {
     const data = e.currentTarget.dataset.id;
-    const duplicated = select.includes(data);
+    const duplicated = developerSelect.includes(data);
     if (duplicated) {
-      setSelect((prevData) => prevData.filter((id) => id !== data));
+      setDeveloperSelect((prevData) => prevData.filter((id) => id !== data));
     } else {
-      setSelect((prevData) => [...prevData, data]);
+      setDeveloperSelect((prevData) => [...prevData, data]);
     }
   };
 
@@ -95,17 +111,20 @@ function DetailProject() {
   const onChange = (e) => {
     const { name, value } = e.target;
     switch (name) {
+      case 'url':
+        setInputUrl(value);
+        return;
       case 'date':
         setInputDate(value);
         return;
       case 'title':
         setInputTitle(value);
         return;
-      case 'img':
+      case 'thumbnail':
         const file = e.target.files[0];
         file.date = new Date();
         // 업로드할 이미지 파일
-        setInputImg(file);
+        setInputThumbnail(file);
 
         // 미리보기 이미지용
         const fileReader = new FileReader(); // 파일을 읽음
@@ -115,7 +134,7 @@ function DetailProject() {
           // 비동기 작업 처리
           fileReader.onload = () => {
             // 로드가 완료되면 실행
-            setImgPreview(fileReader.result || null);
+            setThumbnailPreview(fileReader.result || null);
             resolve();
           };
         });
@@ -123,8 +142,11 @@ function DetailProject() {
         const arrLanguageValue = value.split(',').map((item) => item.trim());
         setInputLanguage(arrLanguageValue);
         return;
-      case 'body':
-        setInputBody(value);
+      case 'description':
+        setInputDescription(value);
+        return;
+      case 'sourceCode':
+        setInputSourceCode(value);
         return;
       default:
         break;
@@ -137,14 +159,16 @@ function DetailProject() {
 
     // Form 생성
     const formData = new FormData();
+    formData.append('url', inputUrl);
     formData.append('date', inputDate);
     formData.append('title', inputTitle);
-    formData.append('member', select);
-    formData.append('img', inputImg);
+    formData.append('developer', developerSelect);
+    formData.append('thumbnail', inputThumbnail);
     formData.append('language', inputLanguage);
-    formData.append('body', inputBody);
+    formData.append('description', inputDescription);
+    formData.append('sourceCode', inputSourceCode);
     formData.append('beforeId', id);
-    formData.append('beforeImg', beforeImg);
+    formData.append('beforeThumbnail', beforeThumbnail);
 
     // 수정 요청
     await uploadFile.post(`/project/${id}/edit`, formData);
@@ -162,7 +186,6 @@ function DetailProject() {
       ) : (
         <>
           <main>
-            {logged ? <button onClick={onClick}>수정하기</button> : null}
             {edit ? (
               importLoading ? null : (
                 <>
@@ -197,11 +220,11 @@ function DetailProject() {
                           {admin.map((value, index) => (
                             <li
                               key={index}
-                              data-id={value.email.split('@')[0]}
+                              data-id={value.username}
                               onClick={devSelect}
                             >
-                              {select.map((data, index) =>
-                                data === value.email.split('@')[0] ? (
+                              {developerSelect.map((data, index) =>
+                                data === value.username ? (
                                   <i
                                     key={index}
                                     className={extendStyles.check}
@@ -213,7 +236,7 @@ function DetailProject() {
                                 alt=""
                                 crossOrigin="anonymous"
                               />{' '}
-                              {value.email.split('@')[0]}
+                              {value.username}
                             </li>
                           ))}
                         </ul>
@@ -222,14 +245,16 @@ function DetailProject() {
                     <label>
                       <p className={extendStyles.name}>이미지</p>
                       <input
-                        name="img"
+                        name="thumbnail"
                         type="file"
                         onChange={onChange}
                         placeholder="이미지"
                         accept="image/*"
                       />
                     </label>
-                    {imgPreview ? <img src={imgPreview} alt="" /> : null}
+                    {thumbnailPreview ? (
+                      <img src={thumbnailPreview} alt="" />
+                    ) : null}
                     <label>
                       <p className={extendStyles.name}>언어</p>
                       <input
@@ -242,11 +267,20 @@ function DetailProject() {
                     </label>
                     <label>
                       <textarea
-                        name="body"
+                        name="description"
                         type="text"
-                        value={inputBody}
+                        value={inputDescription}
                         onChange={onChange}
                         placeholder="본문"
+                      />
+                    </label>
+                    <label>
+                      <input
+                        name="sourceCode"
+                        type="url"
+                        value={inputSourceCode}
+                        onChange={onChange}
+                        placeholder="소스코드 주소"
                       />
                     </label>
                     <button type="submit">수정</button>
@@ -255,17 +289,57 @@ function DetailProject() {
               )
             ) : (
               <>
-                <h2>{project.title}</h2>
-                <small>{project.date}</small>
-                <p>{project.member}</p>
-                <picture className={extendStyles.picture}>
+                <div className={styles.devImgWrap}>
+                  {devAvatar.map((value, index) => {
+                    return value.username === project.developer.join() ? (
+                      <>
+                        <img
+                          key={index}
+                          src={value.img}
+                          className={styles.devImg}
+                          alt={value.username}
+                        />
+                        <p>{value.username}</p>
+                      </>
+                    ) : (
+                      <p>{value.username}</p>
+                    );
+                  })}
+                </div>
+                <div className={styles.titleWrap}>
+                  <h2>{project.title}</h2>
+                  <small>{project.date.substring(0, 10)}</small>
+                </div>
+                {logged ? (
+                  <button className={styles.editBtn} onClick={onClick}>
+                    수정하기
+                  </button>
+                ) : null}
+                <picture className={styles.picture}>
                   <img
-                    src={`${process.env.REACT_APP_SERVER}/image/${project.img}`}
+                    src={`${process.env.REACT_APP_SERVER}/image/${project.thumbnail}`}
                     alt="이미지"
                   />
                 </picture>
-                <p>{project.language}</p>
-                <pre>{project.body}</pre>
+                <div className={styles.flex}>
+                  {!project
+                    ? null
+                    : project.language[0].split(',').map((item, index) => {
+                        return (
+                          <div className={item}>
+                            <img
+                              key={index}
+                              className={styles.logoImg}
+                              src={`${process.env.PUBLIC_URL}/images/ico/${item}-icon.svg`}
+                              alt={item}
+                            />
+                            <p>{item}</p>
+                          </div>
+                        );
+                      })}
+                </div>
+                <pre>{project.description}</pre>
+                <small>{project.sourceCode}</small>
               </>
             )}
           </main>

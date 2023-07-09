@@ -8,27 +8,29 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 
-function Project({ id, logged, date, title, member, img, language }) {
+function Project({ id, logged, date, title, developer, thumbnail, language }) {
   // React 세팅
   const dispatch = useDispatch();
   const [inputDate, setInputDate] = useState(date);
-  const [inputMember, setInputMember] = useState(member);
+  const [inputDeveloper, setInputDeveloper] = useState(developer);
   const [inputTitle, setInputTitle] = useState(title);
-  const [inputImg, setInputImg] = useState('');
-  const [imgPreview, setImgPreview] = useState(
-    `${process.env.REACT_APP_SERVER}/image/${img}`
+  const [inputThumbnail, setInputThumbnail] = useState('');
+  const [thumbnailPreview, setThumbnailPreview] = useState(
+    `${process.env.REACT_APP_SERVER}/image/${thumbnail}`
   );
   const [inputLanguage, setInputLanguage] = useState(language);
   // 프로젝트 수정 관련 State
   const [more, setMore] = useState(false);
   const [edit, setEdit] = useState(false);
   // 개발자 이미지 정보
-  const devAvatar = useSelector((state) => state.fetchData.devAvatar);
+  const devAvatar = useSelector((state) => state.fetchData.devAvatar); // img, username
 
   // 프로젝트 삭제
   const onClick = async () => {
     // 서버에 삭제 요청
-    const { status } = await server.post(`/project/${id}/delete`, { img });
+    const { status } = await server.post(`/project/${id}/delete`, {
+      thumbnail,
+    });
     if (status === 200) {
       // 프로젝트 변경으로 인해 재 렌더링 요청
       dispatch(initial(false));
@@ -41,11 +43,11 @@ function Project({ id, logged, date, title, member, img, language }) {
     const formData = new FormData();
     formData.append('date', inputDate);
     formData.append('title', inputTitle);
-    formData.append('member', inputMember);
-    formData.append('img', inputImg);
+    formData.append('developer', inputDeveloper);
+    formData.append('thumbnail', inputThumbnail);
     formData.append('language', inputLanguage);
     formData.append('beforeId', id);
-    formData.append('beforeImg', img);
+    formData.append('beforeImg', thumbnail);
     // 프로젝트 업데이트 요청
     await uploadFile.post(`/project/${id}/edit`, formData);
     // 프로젝트 변경으로 인해 재 렌더링 요청
@@ -60,18 +62,18 @@ function Project({ id, logged, date, title, member, img, language }) {
       case 'date':
         setInputDate(value);
         break;
-      case 'member':
-        const arrMemberValue = value.split(',').map((item) => item.trim());
-        setInputMember(arrMemberValue);
+      case 'developer':
+        const arrDeveloperValue = value.split(',').map((item) => item.trim());
+        setInputDeveloper(arrDeveloperValue);
         break;
       case 'title':
         setInputTitle(value);
         break;
-      case 'img':
+      case 'thumbnail':
         const file = e.target.files[0];
         file.date = new Date();
         // 업로드할 이미지 파일
-        setInputImg(file);
+        setInputThumbnail(file);
         // 미리보기 이미지용
         const fileReader = new FileReader(); // 파일을 읽음
         fileReader.readAsDataURL(file); // 결과에 파일 데이터를 나타내는 URL을 포함시킴
@@ -79,7 +81,7 @@ function Project({ id, logged, date, title, member, img, language }) {
           // 비동기 작업 처리
           fileReader.onload = () => {
             // 로드가 완료되면 실행
-            setImgPreview(fileReader.result || null);
+            setThumbnailPreview(fileReader.result || null);
             resolve();
           };
         });
@@ -148,12 +150,12 @@ function Project({ id, logged, date, title, member, img, language }) {
                 className={styles.date}
               />
               <input
-                name="member"
+                name="developer"
                 type="text"
                 placeholder="개발자"
-                value={inputMember}
+                value={inputDeveloper}
                 onChange={onChange}
-                className={styles.member}
+                className={styles.developer}
               />
               <input
                 name="title"
@@ -165,7 +167,11 @@ function Project({ id, logged, date, title, member, img, language }) {
               />
               <div className={styles.imgWrap}>
                 <label>
-                  <img src={imgPreview} alt="미리보기" className={styles.img} />
+                  <img
+                    src={thumbnailPreview}
+                    alt="미리보기"
+                    className={styles.thumbnail}
+                  />
                   <input
                     name="img"
                     type="file"
@@ -196,17 +202,18 @@ function Project({ id, logged, date, title, member, img, language }) {
           {/* 업로드한 날짜 */}
           <small className={styles.date}>{date.substring(0, 10)}</small>
           {/* 개발자 이미지 배열 */}
-          <small className={styles.member}>
+          <small className={styles.developer}>
             {devAvatar.map((value, index) => {
-              return value.email.split('@')[0] === member ? (
+              // Developer의 배열에서 해제하고, 비교
+              return value.username === developer.join() ? (
                 <img
                   key={index}
                   src={value.img}
                   className={styles.devImg}
-                  alt={value.email.split('@')[0]}
+                  alt={value.username}
                 />
               ) : (
-                value.email.split('@')[0]
+                value.username
               );
             })}
           </small>
@@ -216,22 +223,24 @@ function Project({ id, logged, date, title, member, img, language }) {
             <div className={styles.imgWrap}>
               <img
                 className={styles.img}
-                src={`${process.env.REACT_APP_SERVER}/image/${img}`}
+                src={`${process.env.REACT_APP_SERVER}/image/${thumbnail}`}
                 alt="preview"
               />
             </div>
           </Link>
           {/* 프로젝트 사용 언어 */}
           <div className={styles.language}>
-            {language[0].split(',').map((item, index) => {
-              return (
-                <img
-                  key={index}
-                  src={`${process.env.PUBLIC_URL}/images/ico/${item}-icon.svg`}
-                  alt={item}
-                />
-              );
-            })}
+            {!language
+              ? null
+              : language[0].split(',').map((item, index) => {
+                  return (
+                    <img
+                      key={index}
+                      src={`${process.env.PUBLIC_URL}/images/ico/${item}-icon.svg`}
+                      alt={item}
+                    />
+                  );
+                })}
           </div>
         </div>
       </div>
