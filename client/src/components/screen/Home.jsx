@@ -8,12 +8,10 @@ import Project from './Project';
 import { set } from '../../_redux/_reducer/ProejctSlice';
 import styles from '../../styles/screen/css/Home.module.css';
 import { initial } from '../../_redux/_reducer/InfoSlice';
-import { getAdminAvatar } from '../../_redux/_reducer/fetchSlice';
 
 // Package
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 // * axios 인스턴스
