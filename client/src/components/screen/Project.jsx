@@ -54,6 +54,7 @@ function Project({ id, logged, date, title, developer, thumbnail, language }) {
     dispatch(initial(false));
     // 수정하기 종료
     setEdit(false);
+    setMore(false);
   };
 
   const onChange = (e) => {
