@@ -38,18 +38,6 @@ function DetailProject() {
   const [inputSourceCode, setInputSourceCode] = useState(null);
   const [beforeThumbnail, setBeforeThumbnail] = useState(null);
 
-  // * 개발자 이미지 요청
-  // const adminImg = async () => {
-  //   const { data } = await server.get('/avatarImg');
-  //   if (!data) {
-  //     return;
-  //   }
-  //   // 이미지 저장
-  //   setAdmin(data);
-  //   // 이미지 설정 완료
-  //   setImportLoading(false);
-  // };
-
   // * 프로젝트 내용 불러오기 #2
   const info = async () => {
     const data = await (await server.get(`/project/${id}`)).data;
