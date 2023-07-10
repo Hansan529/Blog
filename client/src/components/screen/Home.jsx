@@ -1,6 +1,7 @@
 // Component 불러오기
 import Header from '../partials/Header';
 import Footer from '../partials/Footer';
+import Page from '../partials/Page';
 import Project from './Project';
 
 // Function
@@ -77,12 +78,9 @@ function Home() {
     <>
       <Header />
       <main>
-        {logged ? (
-          <article>
-            <Link to="/upload">업로드</Link>
-          </article>
-        ) : null}
+        <Page />
         <article className={styles.grid}>
+          <div id="project" className="part"></div>
           {loading
             ? null
             : project.map((data) => {
