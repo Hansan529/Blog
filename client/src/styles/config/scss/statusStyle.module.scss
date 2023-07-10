@@ -1,3 +1,5 @@
+@import '../../config/scss/variables';
+
 @keyframes error {
   from {
     transform: translate(-50%, 0);
@@ -12,7 +14,7 @@
 
 .error {
   position: absolute;
-  top: 0;
+  top: -$headerHeight;
   left: 50%;
   transform: translateX(-50%);
   width: 350px;
