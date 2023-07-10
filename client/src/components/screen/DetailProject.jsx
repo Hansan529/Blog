@@ -19,12 +19,11 @@ function DetailProject() {
   // 상태 정보
   const logged = useSelector((state) => state.info.logged);
   const initPage = useSelector((state) => state.info.initial);
-  const devAvatar = useSelector((state) => state.fetchData.devAvatar);
   const [loading, setLoading] = useState(true);
-  const [importLoading, setImportLoading] = useState(true);
   const { id } = useParams();
   const [project, setProject] = useState('');
-  const [admin, setAdmin] = useState('');
+  const devAvatar = useSelector((state) => state.fetchData.devAvatar);
+  const [importLoading, setImportLoading] = useState(true);
 
   // 유저 행동에 따른 값 변화
   const [edit, setEdit] = useState(false);
@@ -40,16 +39,16 @@ function DetailProject() {
   const [beforeThumbnail, setBeforeThumbnail] = useState(null);
 
   // * 개발자 이미지 요청
-  const adminImg = async () => {
-    const { data } = await server.get('/avatarImg');
-    if (!data) {
-      return;
-    }
-    // 이미지 저장
-    setAdmin(data);
-    // 이미지 설정 완료
-    setImportLoading(false);
-  };
+  // const adminImg = async () => {
+  //   const { data } = await server.get('/avatarImg');
+  //   if (!data) {
+  //     return;
+  //   }
+  //   // 이미지 저장
+  //   setAdmin(data);
+  //   // 이미지 설정 완료
+  //   setImportLoading(false);
+  // };
 
   // * 프로젝트 내용 불러오기 #2
   const info = async () => {
@@ -85,12 +84,12 @@ function DetailProject() {
     }
   }, [initPage, edit]);
 
-  // * 프로젝트 수정할 경우 (로그인 후) 실행
+  // * 해당 페이지에서 새로고침할 경우, 개발자 이미지 데이터가 적용되면(App.jsx) 로딩 완료
   useEffect(() => {
-    if (logged && edit) {
-      adminImg();
+    if (devAvatar) {
+      setImportLoading(false);
     }
-  }, [edit]);
+  }, [devAvatar]);
 
   // ^ Event
   // ^ 개발자 선택
@@ -182,7 +181,7 @@ function DetailProject() {
   return (
     <>
       <Header />
-      {loading ? (
+      {loading || importLoading ? (
         <Loading />
       ) : (
         <>
@@ -218,7 +217,7 @@ function DetailProject() {
                       <p className={extendStyles.name}>개발자</p>
                       <div className={extendStyles.select}>
                         <ul className={extendStyles.select}>
-                          {admin.map((value, index) => (
+                          {devAvatar.map((value, index) => (
                             <li
                               key={index}
                               data-id={value.username}
@@ -293,17 +292,18 @@ function DetailProject() {
                 <div className={styles.devImgWrap}>
                   {devAvatar.map((value, index) => {
                     return value.username === project.developer.join() ? (
-                      <>
+                      <div key={index}>
                         <img
-                          key={index}
                           src={value.img}
                           className={styles.devImg}
                           alt={value.username}
                         />
                         <p>{value.username}</p>
-                      </>
+                      </div>
                     ) : (
-                      <p>{value.username}</p>
+                      <div key={index}>
+                        <p>{value.username}</p>
+                      </div>
                     );
                   })}
                 </div>
@@ -329,9 +329,8 @@ function DetailProject() {
                     ? null
                     : project.language.map((item, index) => {
                         return (
-                          <div className={item}>
+                          <div key={index} className={item}>
                             <img
-                              key={index}
                               className={styles.logoImg}
                               src={`${process.env.PUBLIC_URL}/images/ico/${item}-icon.svg`}
                               alt={item}
