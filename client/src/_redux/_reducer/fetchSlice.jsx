@@ -17,12 +17,17 @@ const initialState = {
   isLoading: false,
   devAvatar: null,
   error: null,
+  loading: true,
 };
 
 const fetchSlice = createSlice({
   name: 'fetchData',
   initialState,
-  reducers: {},
+  reducers: {
+    loading: (state, action) => {
+      state.loading = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       // 로딩 중
@@ -41,5 +46,7 @@ const fetchSlice = createSlice({
       });
   },
 });
+
+export const { loading } = fetchSlice.actions;
 
 export default fetchSlice.reducer;
