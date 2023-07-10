@@ -49,9 +49,12 @@ function Header() {
               </li>
             </ul>
           </nav>
-          <div>
+          <div className={styles.btn}>
             {logged ? (
-              <button onClick={() => dispatch(login(false))}>로그아웃</button>
+              <>
+                <Link to="/upload">업로드</Link>
+                <button onClick={() => dispatch(login(false))}>로그아웃</button>
+              </>
             ) : (
               <Link to="/login">로그인</Link>
             )}

@@ -60,22 +60,9 @@
         }
       }
     }
-
-    // login
-    .button {
-      padding: 5px 10px;
-      border: 1px solid trasnparent;
-      border-radius: 10px;
-      background-color: #fff;
-      color: #000;
-      transition: 0.3s;
-      box-shadow: 0 0 10px 3px #fff;
-
-      &:hover {
-        background-color: #000;
-        color: #fff;
-        border: 1px solid #fff;
-      }
+    .btn {
+      display: flex;
+      gap: 10px;
     }
   }
 }
