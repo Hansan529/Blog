@@ -8,7 +8,7 @@ import axios from 'axios';
 // *
 export const getHome = async (req, res) => {
   // 프로젝트 불러오고, 반환
-  const project = await Project.find({});
+  const project = await Project.find({}).sort({ dateSearch: 'desc' });
   return res.json(project);
 };
 
