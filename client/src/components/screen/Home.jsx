@@ -1,6 +1,7 @@
 // Component 불러오기
 import Header from '../partials/Header';
 import Footer from '../partials/Footer';
+import Page from '../partials/Page';
 import Project from './Project';
 
 // Function
@@ -46,7 +47,6 @@ function Home() {
   const logged = useSelector((state) => state.info.logged);
   const initPage = useSelector((state) => state.info.initial);
   const project = useSelector((state) => state.project.value);
-  const devAvatar = useSelector((state) => state.fetchData.devAvatar);
   const dispatch = useDispatch();
 
   // *
@@ -78,12 +78,9 @@ function Home() {
     <>
       <Header />
       <main>
-        {logged ? (
-          <article>
-            <Link to="/upload">업로드</Link>
-          </article>
-        ) : null}
+        <Page />
         <article className={styles.grid}>
+          <div id="project" className="part"></div>
           {loading
             ? null
             : project.map((data) => {
@@ -94,8 +91,8 @@ function Home() {
                     logged={logged}
                     date={data.date}
                     title={data.title}
-                    member={data.member}
-                    img={data.img}
+                    developer={data.developer}
+                    thumbnail={data.thumbnail}
                     language={data.language}
                   />
                 );

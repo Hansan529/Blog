@@ -118,8 +118,7 @@ function Upload() {
         });
       // 순서 정렬을 위해 업로드한 시간 정보 추가
       case 'language':
-        const arrLanguageValue = value.split(',').map((item) => item.trim());
-        setInputLanguage(arrLanguageValue);
+        setInputLanguage(value);
         return;
       case 'description':
         setInputDescription(value);

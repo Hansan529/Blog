@@ -10,7 +10,7 @@ import styles from '../../styles/screen/css/DetailProject.module.css';
 import { initial } from '../../_redux/_reducer/InfoSlice';
 
 // Package
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -80,8 +80,10 @@ function DetailProject() {
 
   // * 페이지 로딩이 완료되면 최초 실행, 프로젝트 수정이 완료되면 실행 #1
   useEffect(() => {
-    info();
-  }, [initPage]);
+    if (!edit) {
+      info();
+    }
+  }, [initPage, edit]);
 
   // * 프로젝트 수정할 경우 (로그인 후) 실행
   useEffect(() => {
@@ -139,8 +141,7 @@ function DetailProject() {
           };
         });
       case 'language':
-        const arrLanguageValue = value.split(',').map((item) => item.trim());
-        setInputLanguage(arrLanguageValue);
+        setInputLanguage(value);
         return;
       case 'description':
         setInputDescription(value);
@@ -315,16 +316,18 @@ function DetailProject() {
                     수정하기
                   </button>
                 ) : null}
-                <picture className={styles.picture}>
-                  <img
-                    src={`${process.env.REACT_APP_SERVER}/image/${project.thumbnail}`}
-                    alt="이미지"
-                  />
-                </picture>
+                <Link to={project.url} target="_blank">
+                  <picture className={styles.picture}>
+                    <img
+                      src={`${process.env.REACT_APP_SERVER}/image/${project.thumbnail}`}
+                      alt="이미지"
+                    />
+                  </picture>
+                </Link>
                 <div className={styles.flex}>
                   {!project
                     ? null
-                    : project.language[0].split(',').map((item, index) => {
+                    : project.language.map((item, index) => {
                         return (
                           <div className={item}>
                             <img
@@ -339,7 +342,9 @@ function DetailProject() {
                       })}
                 </div>
                 <pre>{project.description}</pre>
-                <small>{project.sourceCode}</small>
+                <Link to={project.sourceCode} target="_blank">
+                  소스코드
+                </Link>
               </>
             )}
           </main>

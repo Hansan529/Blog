@@ -95,46 +95,48 @@ function Login() {
   return (
     <>
       <Header />
-      <main className={styles.main}>
+      <main>
         {loading ? (
           <Loading />
         ) : (
-          <>
-            <h2>관리자 로그인</h2>
-            <form
-              method="POST"
-              className={styles.form}
-              action={`${process.env.REACT_APP_API_ENDPOINT}/login`}
-            >
-              <input
-                type="text"
-                name="id"
-                placeholder="아이디"
-                required
-                value={id}
-                onChange={onChange}
-              />
-              <input
-                type="password"
-                name="pw"
-                placeholder="패스워드"
-                required
-                value={pw}
-                onChange={onChange}
-              />
-              <button type="submit" onClick={onClick}>
-                로그인
+          <article className={styles.screen}>
+            <div className={styles.formWrap}>
+              <h2>관리자 로그인</h2>
+              <form
+                method="POST"
+                className={styles.form}
+                action={`${process.env.REACT_APP_API_ENDPOINT}/login`}
+              >
+                <input
+                  type="text"
+                  name="id"
+                  placeholder="아이디"
+                  required
+                  value={id}
+                  onChange={onChange}
+                />
+                <input
+                  type="password"
+                  name="pw"
+                  placeholder="패스워드"
+                  required
+                  value={pw}
+                  onChange={onChange}
+                />
+                <button type="submit" onClick={onClick}>
+                  로그인
+                </button>
+              </form>
+              <button type="button" onClick={onClickGithub}>
+                깃허브 로그인
               </button>
-            </form>
-            <button type="button" onClick={onClickGithub}>
-              깃허브 로그인
-            </button>
+            </div>
             {error ? (
               <div className={errorStyles.error}>
                 <h2>{error}</h2>
               </div>
             ) : null}
-          </>
+          </article>
         )}
       </main>
       <Footer />

@@ -54,6 +54,7 @@ function Project({ id, logged, date, title, developer, thumbnail, language }) {
     dispatch(initial(false));
     // 수정하기 종료
     setEdit(false);
+    setMore(false);
   };
 
   const onChange = (e) => {
@@ -86,8 +87,7 @@ function Project({ id, logged, date, title, developer, thumbnail, language }) {
           };
         });
       case 'language':
-        const arrLanguageValue = value.split(',').map((item) => item.trim());
-        setInputLanguage(arrLanguageValue);
+        setInputLanguage(value);
         break;
       default:
         break;
@@ -232,7 +232,7 @@ function Project({ id, logged, date, title, developer, thumbnail, language }) {
           <div className={styles.language}>
             {!language
               ? null
-              : language[0].split(',').map((item, index) => {
+              : language.map((item, index) => {
                   return (
                     <img
                       key={index}

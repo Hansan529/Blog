@@ -1,0 +1,44 @@
+.editBtn {
+  float: right;
+}
+
+.picture {
+  img {
+    max-width: 1200px;
+    object-fit: cover;
+  }
+}
+
+.titleWrap {
+  text-align: center;
+  font-size: 24px;
+  line-height: 1;
+  > small {
+    font-size: 12px;
+  }
+}
+
+.devImgWrap {
+  float: left;
+}
+.devImg {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.flex {
+  display: flex;
+  gap: 10px;
+}
+
+.logoImg {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 5px;
+
+  & + p {
+    font-size: 8px;
+    text-align: center;
+  }
+}
