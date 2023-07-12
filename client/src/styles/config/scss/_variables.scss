@@ -22,4 +22,26 @@
   }
 }
 
+@mixin pos($p: null, $t: null, $r: null, $b: null, $l: null, $d: null) {
+  position: $p;
+  top: $t;
+  right: $r;
+  bottom: $b;
+  left: $l;
+  display: $d;
+}
+
+@mixin type($d: null, $w: null, $h: null) {
+  display: $d;
+  width: $w;
+  height: $h;
+}
+
+@mixin layout($d: null, $jc: null, $ai: null, $g: null) {
+  display: $d;
+  justify-content: $jc;
+  align-items: $ai;
+  gap: $g;
+}
+
 $headerHeight: 80px;
