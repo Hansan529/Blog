@@ -8,12 +8,12 @@ const projectSlice = createSlice({
   name: 'project',
   initialState,
   reducers: {
-    set: (state, action) => {
+    projectData: (state, action) => {
       state.value = action.payload;
     },
   },
 });
 
-export const { set } = projectSlice.actions;
+export const { projectData } = projectSlice.actions;
 
 export default projectSlice.reducer;
