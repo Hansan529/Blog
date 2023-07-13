@@ -43,6 +43,17 @@ function Home() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const initPage = useSelector((state) => state.info.initial);
+  const [homepage, setHomepage] = useState('');
+  const [project, setProject] = useState('');
+  const [info, setInfo] = useState('');
+
+  const onHomepage = (value) => {
+    setHomepage(value);
+  };
+
+  const onProject = (value) => {
+    setProject(value);
+  };
 
   // *
   // 프로젝트 목록 API 요청
@@ -72,13 +83,13 @@ function Home() {
   // React 설정
   return (
     <>
-      <Header />
+      <Header homepage={homepage} project={project} info={info} />
       {loading ? (
         <Loading />
       ) : (
         <main>
-          <Homepage />
-          <Projects />
+          <Homepage LinkHomepage={onHomepage} project={project} />
+          <Projects LinkProject={onProject} />
         </main>
       )}
       <Footer />
