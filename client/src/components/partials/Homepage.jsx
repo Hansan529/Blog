@@ -1,15 +1,34 @@
+// Components
+
+// Functions
 import styles from '../../styles/partials/css/Page.module.css';
 
-function Homepage({ scrollToRef }) {
-  const onClick = () => {
-    if (scrollToRef.current) {
-      scrollToRef.current.scrollIntoView({ behavior: 'smooth' });
+// Packages
+import { useEffect, useRef } from 'react';
+
+function Homepage({ LinkHomepage, project }) {
+  const homepageRef = useRef();
+
+  // * homepageRef가 선택되면, 해당 Ref를 부모 컴포넌트로 전달
+  useEffect(() => {
+    if (homepageRef) {
+      homepageRef.current.focus();
+      LinkHomepage(homepageRef);
+    }
+  }, [homepageRef]);
+
+  // * 프로젝트 바로가기 버튼 이동하기
+  const onClick = (e) => {
+    const { name } = e.target;
+    if (name === 'project') {
+      console.log('테스트');
+      project.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
   return (
     <>
       <article className={styles.article}>
-        <div id="homepage" className="part"></div>
+        <div ref={homepageRef} id="homepage" className="part"></div>
         <h2 className={styles.title}>Hxan Portfolio</h2>
         <strong>
           해당 웹 페이지는 FHD(1920x1080) 기준으로 제작되었습니다.
@@ -126,7 +145,11 @@ function Homepage({ scrollToRef }) {
             <span>mysql</span>
           </div>
         </div>
-        <button onClick={onClick} className={styles.scrollBtn}></button>
+        <button
+          name="project"
+          onClick={onClick}
+          className={styles.scrollBtn}
+        ></button>
       </article>
     </>
   );

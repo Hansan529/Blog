@@ -1,11 +1,34 @@
-import { Link } from 'react-router-dom';
+// Components
+
+// Function
 import styles from '../../styles/partials/css/Header.module.css';
-import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../_redux/_reducer/InfoSlice';
 
-function Header() {
+// Package
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
+function Header({ homepage, project, info }) {
   const logged = useSelector((state) => state.info.logged);
   const dispatch = useDispatch();
+
+  // * 바로가기 버튼을 누르면, 해당 위치로 스크롤이 이동하도록 하는 함수
+  const onClick = (e) => {
+    const { name } = e.target;
+    switch (name) {
+      case 'homepage':
+        homepage.current.scrollIntoView({ behavior: 'smooth' });
+        return;
+      case 'project':
+        project.current.scrollIntoView({ behavior: 'smooth' });
+        return;
+      case 'info':
+        // info.current.scrollIntoView({ behavior: 'smooth' });
+        return;
+      default:
+        return;
+    }
+  };
   return (
     <>
       <header className={styles.header}>
@@ -39,13 +62,19 @@ function Header() {
           <nav>
             <ul className={styles.ul}>
               <li>
-                <a href="#homepage">홈페이지 소개</a>
+                <button name="homepage" onClick={onClick}>
+                  홈페이지 소개
+                </button>
               </li>
               <li>
-                <a href="#project">프로젝트</a>
+                <button name="project" onClick={onClick}>
+                  프로젝트
+                </button>
               </li>
               <li>
-                <a href="#info">정보 모음</a>
+                <button name="info" onClick={onClick}>
+                  정보 모음
+                </button>
               </li>
             </ul>
           </nav>
