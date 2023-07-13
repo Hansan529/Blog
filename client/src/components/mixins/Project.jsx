@@ -1,6 +1,6 @@
 // Function
-import styles from '../../styles/screen/css/Project.module.css';
-import { server, uploadFile } from './Home';
+import styles from '../../styles/mixins/css/Projects.module.css';
+import { server, uploadFile } from '../screen/Home';
 import { initial } from '../../_redux/_reducer/InfoSlice';
 
 // Package

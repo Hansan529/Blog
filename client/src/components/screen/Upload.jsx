@@ -151,7 +151,7 @@ function Upload() {
         <>
           <Header />
           <main>
-            <div>
+            <article className={styles.article}>
               <form onSubmit={onSubmit} method="POST" className={styles.form}>
                 <label>
                   <p className={styles.url}>프로젝트 주소</p>
@@ -248,7 +248,7 @@ function Upload() {
                 </label>
                 <button type="submit">업로드</button>
               </form>
-            </div>
+            </article>
           </main>
           <Footer />
         </>

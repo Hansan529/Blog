@@ -127,8 +127,12 @@ function Login() {
                   로그인
                 </button>
               </form>
-              <button type="button" onClick={onClickGithub}>
-                깃허브 로그인
+              <button
+                className={styles.githubLogin}
+                type="button"
+                onClick={onClickGithub}
+              >
+                깃허브 로그인 &rarr;
               </button>
             </div>
             {error ? (
