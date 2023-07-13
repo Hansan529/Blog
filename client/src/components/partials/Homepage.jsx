@@ -1,6 +1,11 @@
 import styles from '../../styles/partials/css/Page.module.css';
 
-function Page() {
+function Homepage({ scrollToRef }) {
+  const onClick = () => {
+    if (scrollToRef.current) {
+      scrollToRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
     <>
       <article className={styles.article}>
@@ -121,10 +126,10 @@ function Page() {
             <span>mysql</span>
           </div>
         </div>
-        <a href="#project" className={styles.scrollBtn}></a>
+        <button onClick={onClick} className={styles.scrollBtn}></button>
       </article>
     </>
   );
 }
 
-export default Page;
+export default Homepage;

@@ -1,18 +1,18 @@
 // Component 불러오기
 import Header from '../partials/Header';
+import Loading from '../config/Loading';
+import Homepage from '../partials/Homepage';
+import Projects from '../partials/Projects';
 import Footer from '../partials/Footer';
-import Page from '../partials/Page';
-import Project from './Project';
 
 // Function
-import { set } from '../../_redux/_reducer/ProejctSlice';
-import styles from '../../styles/screen/css/Home.module.css';
 import { initial } from '../../_redux/_reducer/InfoSlice';
+import { projectData } from '../../_redux/_reducer/ProejctSlice';
 
 // Package
+import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 
 // * axios 인스턴스
 const baseURL = process.env.REACT_APP_API_ENDPOINT;
@@ -40,12 +40,9 @@ export const server = axios.create({
 
 // ! Home 컴포넌트
 function Home() {
-  // React 설정
-  const [loading, setLoading] = useState(true);
-  const logged = useSelector((state) => state.info.logged);
-  const initPage = useSelector((state) => state.info.initial);
-  const project = useSelector((state) => state.project.value);
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
+  const initPage = useSelector((state) => state.info.initial);
 
   // *
   // 프로젝트 목록 API 요청
@@ -55,7 +52,7 @@ function Home() {
     // 1회 접속 저장
     dispatch(initial(true));
     // API 결과 값 저장
-    dispatch(set(data));
+    dispatch(projectData(data));
     // 로딩 완료
     setLoading(false);
   };
@@ -72,31 +69,18 @@ function Home() {
     return;
   }, [initPage]);
 
+  // React 설정
   return (
     <>
       <Header />
-      <main>
-        <Page />
-        <article className={styles.grid}>
-          <div id="project" className="part"></div>
-          {loading
-            ? null
-            : project.map((data) => {
-                return (
-                  <Project
-                    key={data._id}
-                    id={data._id}
-                    logged={logged}
-                    date={data.date}
-                    title={data.title}
-                    developer={data.developer}
-                    thumbnail={data.thumbnail}
-                    language={data.language}
-                  />
-                );
-              })}
-        </article>
-      </main>
+      {loading ? (
+        <Loading />
+      ) : (
+        <main>
+          <Homepage />
+          <Projects />
+        </main>
+      )}
       <Footer />
     </>
   );
