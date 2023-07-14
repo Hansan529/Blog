@@ -10,12 +10,13 @@ import styles from '../../styles/screen/css/DetailProject.module.css';
 import { initial } from '../../_redux/_reducer/InfoSlice';
 
 // Package
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 function DetailProject() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   // 상태 정보
   const logged = useSelector((state) => state.info.logged);
   const initPage = useSelector((state) => state.info.initial);
@@ -166,6 +167,11 @@ function DetailProject() {
     setEdit(false);
   };
 
+  // ^ 이전 페이지로 이동
+  const prevPage = () => {
+    navigate(-1);
+  };
+
   return (
     <>
       <Header />
@@ -174,166 +180,179 @@ function DetailProject() {
       ) : (
         <>
           <main>
-            {edit ? (
-              importLoading ? null : (
-                <>
-                  <form
-                    method="POST"
-                    onSubmit={onSubmit}
-                    className={extendStyles.form}
-                  >
-                    <label>
-                      <p className={extendStyles.name}>날짜</p>
-                      <input
-                        name="date"
-                        type="date"
-                        onChange={onChange}
-                        value={inputDate}
-                      />
-                    </label>
-                    <label>
-                      <p className={extendStyles.name}>제목</p>
-                      <input
-                        name="title"
-                        type="text"
-                        value={inputTitle}
-                        onChange={onChange}
-                        placeholder="제목"
-                      />
-                    </label>
-                    <label>
-                      <p className={extendStyles.name}>개발자</p>
-                      <div className={extendStyles.select}>
-                        <ul className={extendStyles.select}>
-                          {devAvatar.map((value, index) => (
-                            <li
-                              key={index}
-                              data-id={value.username}
-                              onClick={devSelect}
-                            >
-                              {developerSelect.map((data, index) =>
-                                data === value.username ? (
-                                  <i
-                                    key={index}
-                                    className={extendStyles.check}
-                                  ></i>
-                                ) : null
-                              )}
-                              <img
-                                src={value.img}
-                                alt=""
-                                crossOrigin="anonymous"
-                              />{' '}
-                              {value.username}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </label>
-                    <label>
-                      <p className={extendStyles.name}>이미지</p>
-                      <input
-                        name="thumbnail"
-                        type="file"
-                        onChange={onChange}
-                        placeholder="이미지"
-                        accept="image/*"
-                      />
-                    </label>
-                    {thumbnailPreview ? (
-                      <img src={thumbnailPreview} alt="" />
-                    ) : null}
-                    <label>
-                      <p className={extendStyles.name}>언어</p>
-                      <input
-                        name="language"
-                        type="text"
-                        value={inputLanguage}
-                        onChange={onChange}
-                        placeholder="언어"
-                      />
-                    </label>
-                    <label>
-                      <textarea
-                        name="description"
-                        type="text"
-                        value={inputDescription}
-                        onChange={onChange}
-                        placeholder="본문"
-                      />
-                    </label>
-                    <label>
-                      <input
-                        name="sourceCode"
-                        type="url"
-                        value={inputSourceCode}
-                        onChange={onChange}
-                        placeholder="소스코드 주소"
-                      />
-                    </label>
-                    <button type="submit">수정</button>
-                  </form>
-                </>
-              )
-            ) : (
-              <>
-                <div className={styles.devImgWrap}>
-                  {devAvatar.map((value, index) => {
-                    return value.username === project.developer.join() ? (
-                      <div key={index}>
-                        <img
-                          src={value.img}
-                          className={styles.devImg}
-                          alt={value.username}
+            <article className={styles.article}>
+              {edit ? (
+                importLoading ? null : (
+                  <>
+                    <form
+                      method="POST"
+                      onSubmit={onSubmit}
+                      className={extendStyles.form}
+                    >
+                      <label>
+                        <p className={extendStyles.name}>날짜</p>
+                        <input
+                          name="date"
+                          type="date"
+                          onChange={onChange}
+                          value={inputDate}
                         />
-                        <p>{value.username}</p>
-                      </div>
-                    ) : (
-                      <div key={index}>
-                        <p>{value.username}</p>
-                      </div>
-                    );
-                  })}
-                </div>
-                <div className={styles.titleWrap}>
-                  <h2>{project.title}</h2>
-                  <small>{project.date.substring(0, 10)}</small>
-                </div>
-                {logged ? (
-                  <button className={styles.editBtn} onClick={onClick}>
-                    수정하기
-                  </button>
-                ) : null}
-                <Link to={project.url} target="_blank">
-                  <picture className={styles.picture}>
-                    <img
-                      src={`${process.env.REACT_APP_SERVER}/image/${project.thumbnail}`}
-                      alt="이미지"
-                    />
-                  </picture>
-                </Link>
-                <div className={styles.flex}>
-                  {!project
-                    ? null
-                    : project.language.map((item, index) => {
-                        return (
-                          <div key={index} className={item}>
+                      </label>
+                      <label>
+                        <p className={extendStyles.name}>제목</p>
+                        <input
+                          name="title"
+                          type="text"
+                          value={inputTitle}
+                          onChange={onChange}
+                          placeholder="제목"
+                        />
+                      </label>
+                      <label>
+                        <p className={extendStyles.name}>개발자</p>
+                        <div className={extendStyles.select}>
+                          <ul className={extendStyles.select}>
+                            {devAvatar.map((value, index) => (
+                              <li
+                                key={index}
+                                data-id={value.username}
+                                onClick={devSelect}
+                              >
+                                {developerSelect.map((data, index) =>
+                                  data === value.username ? (
+                                    <i
+                                      key={index}
+                                      className={extendStyles.check}
+                                    ></i>
+                                  ) : null
+                                )}
+                                <img
+                                  src={value.img}
+                                  alt=""
+                                  crossOrigin="anonymous"
+                                />{' '}
+                                {value.username}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </label>
+                      <label>
+                        <p className={extendStyles.name}>이미지</p>
+                        <input
+                          name="thumbnail"
+                          type="file"
+                          onChange={onChange}
+                          placeholder="이미지"
+                          accept="image/*"
+                        />
+                      </label>
+                      {thumbnailPreview ? (
+                        <img src={thumbnailPreview} alt="" />
+                      ) : null}
+                      <label>
+                        <p className={extendStyles.name}>언어</p>
+                        <input
+                          name="language"
+                          type="text"
+                          value={inputLanguage}
+                          onChange={onChange}
+                          placeholder="언어"
+                        />
+                      </label>
+                      <label>
+                        <textarea
+                          name="description"
+                          type="text"
+                          value={inputDescription}
+                          onChange={onChange}
+                          placeholder="본문"
+                        />
+                      </label>
+                      <label>
+                        <input
+                          name="sourceCode"
+                          type="url"
+                          value={inputSourceCode}
+                          onChange={onChange}
+                          placeholder="소스코드 주소"
+                        />
+                      </label>
+                      <button type="submit">수정</button>
+                    </form>
+                  </>
+                )
+              ) : (
+                <>
+                  <div className={styles.topWrap}>
+                    <div className={styles.devImgWrap}>
+                      {devAvatar.map((value, index) => {
+                        return value.username === project.developer.join() ? (
+                          <div key={index}>
                             <img
-                              className={styles.logoImg}
-                              src={`${process.env.PUBLIC_URL}/images/ico/${item}-icon.svg`}
-                              alt={item}
+                              src={value.img}
+                              className={styles.devImg}
+                              alt={value.username}
                             />
-                            <p>{item}</p>
+                            <p>{value.username}</p>
+                          </div>
+                        ) : (
+                          <div key={index}>
+                            <p>{value.username}</p>
                           </div>
                         );
                       })}
-                </div>
-                <pre>{project.description}</pre>
-                <Link to={project.sourceCode} target="_blank">
-                  소스코드
-                </Link>
-              </>
-            )}
+                    </div>
+                    <div className={styles.titleWrap}>
+                      <h2>{project.title}</h2>
+                      <small>{project.date.substring(0, 10)}</small>
+                    </div>
+                    {logged ? (
+                      <button className={styles.editBtn} onClick={onClick}>
+                        수정하기
+                      </button>
+                    ) : null}
+                  </div>
+                  <Link to={project.url} target="_blank">
+                    <picture className={styles.picture}>
+                      <img
+                        src={`${process.env.REACT_APP_SERVER}/image/${project.thumbnail}`}
+                        alt="이미지"
+                      />
+                    </picture>
+                  </Link>
+                  <div className={styles.language}>
+                    {!project
+                      ? null
+                      : project.language.map((item, index) => {
+                          return (
+                            <div key={index} className={item}>
+                              <img
+                                className={styles.logoImg}
+                                src={`${process.env.PUBLIC_URL}/images/ico/${item}-icon.svg`}
+                                alt={item}
+                              />
+                              <p>{item}</p>
+                            </div>
+                          );
+                        })}
+                  </div>
+                  <pre className={styles.description}>
+                    {project.description}
+                  </pre>
+                  <div className={styles.info}>
+                    <Link
+                      className={styles.sourceCode}
+                      to={project.sourceCode}
+                      target="_blank"
+                    >
+                      소스코드
+                    </Link>
+                  </div>
+                </>
+              )}
+              <button className={styles.prevBtn} onClick={prevPage}></button>
+            </article>
           </main>
           {/* <Footer /> */}
         </>
