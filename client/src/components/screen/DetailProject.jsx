@@ -59,6 +59,8 @@ function DetailProject() {
     // 현재 접근한 프로젝트 필터링
     const filterData = data.filter((value) => value._id === id)[0];
     setProject(filterData);
+    // 나머지 전체 프로젝트
+    setAllProject(data);
     // 기존값 설정
     const {
       url,
@@ -79,11 +81,14 @@ function DetailProject() {
     setInputDescription(description);
     setBeforeThumbnail(thumbnail);
     setInputSourceCode(sourceCode);
-
-    // 나머지 전체 프로젝트
-    setAllProject(data);
-    asideFilter();
   };
+
+  // * 프로젝트가 설정되면 Aside 필터 실행
+  useEffect(() => {
+    if (allProject) {
+      asideFilter();
+    }
+  }, [allProject]);
 
   // * 페이지 로딩이 완료되면 최초 실행, 프로젝트 수정이 완료되면 실행 #1
   useEffect(() => {
