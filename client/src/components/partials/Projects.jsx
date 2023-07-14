@@ -29,6 +29,7 @@ function Projects({ LinkProject }) {
       projectRef.current.focus();
       LinkProject(projectRef);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [projectRef]);
 
   return (
