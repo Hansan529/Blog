@@ -121,8 +121,8 @@
 
 // * 이전 페이지로 이동
 .prevBtn {
-  position: absolute;
-  top: 50px;
+  position: fixed;
+  top: calc($headerHeight + 50px);
   left: 50px;
   width: 30px;
   height: 30px;
