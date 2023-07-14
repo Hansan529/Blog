@@ -24,8 +24,21 @@
 - Footer 컴포넌트 생성
 - Login 컴포넌트 스타일링 및 기본 동작 구현
 
+<br>
+
 ![img](https://github.com/Hansan529/Blog/assets/115819770/cab229ff-4dde-4ce2-a09f-3959a5dbaabd)
 
 <br>
 
-##
+## 컴포넌트 생성 (23.06.20)
+
+- nodemon 설정 (자동 build)
+- HTML 타이틀 변경 (hxan &rarr; Hxan)
+- `Home 컴포넌트`에 `Footer` 추가
+- `Footer 컴포넌트`에 `Source Code` (깃허브) 이미지 `alt` 추가
+- 전체 컴포넌트에 스타일링 추가 (`margin-top`, `padding`)
+- `Join 라우터` 및 컴포넌트 생성
+
+<br>
+
+![img](https://github.com/Hansan529/Blog/assets/115819770/4d6c47fc-98f6-4277-89f9-e01521d91919)
