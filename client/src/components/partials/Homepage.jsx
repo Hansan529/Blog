@@ -1,10 +1,10 @@
 // Components
 
 // Functions
-import styles from '../../styles/partials/css/Page.module.css';
+import styles from "../../styles/partials/css/Page.module.css";
 
 // Packages
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 
 function Homepage({ LinkHomepage, project }) {
   const homepageRef = useRef();
@@ -21,9 +21,8 @@ function Homepage({ LinkHomepage, project }) {
   // * 프로젝트 바로가기 버튼 이동하기
   const onClick = (e) => {
     const { name } = e.target;
-    if (name === 'project') {
-      console.log('테스트');
-      project.current.scrollIntoView({ behavior: 'smooth' });
+    if (name === "project") {
+      project.current.scrollIntoView({ behavior: "smooth" });
     }
   };
   return (

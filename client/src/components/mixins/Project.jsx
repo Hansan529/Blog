@@ -1,12 +1,12 @@
 // Function
-import styles from '../../styles/mixins/css/Projects.module.css';
-import { server, uploadFile } from '../screen/Home';
-import { initial } from '../../_redux/_reducer/InfoSlice';
+import styles from "../../styles/mixins/css/Projects.module.css";
+import { server, uploadFile } from "../screen/Home";
+import { initial } from "../../_redux/_reducer/InfoSlice";
 
 // Package
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 
 function Project({ id, logged, date, title, developer, thumbnail, language }) {
   // React 세팅
@@ -14,7 +14,7 @@ function Project({ id, logged, date, title, developer, thumbnail, language }) {
   const [inputDate, setInputDate] = useState(date);
   const [inputDeveloper, setInputDeveloper] = useState(developer);
   const [inputTitle, setInputTitle] = useState(title);
-  const [inputThumbnail, setInputThumbnail] = useState('');
+  const [inputThumbnail, setInputThumbnail] = useState("");
   const [thumbnailPreview, setThumbnailPreview] = useState(
     `${process.env.REACT_APP_SERVER}/image/${thumbnail}`
   );
@@ -41,13 +41,13 @@ function Project({ id, logged, date, title, developer, thumbnail, language }) {
     e.preventDefault();
     // 수정사항 파일 전송용 formData 생성
     const formData = new FormData();
-    formData.append('date', inputDate);
-    formData.append('title', inputTitle);
-    formData.append('developer', inputDeveloper);
-    formData.append('thumbnail', inputThumbnail);
-    formData.append('language', inputLanguage);
-    formData.append('beforeId', id);
-    formData.append('beforeImg', thumbnail);
+    formData.append("date", inputDate);
+    formData.append("title", inputTitle);
+    formData.append("developer", inputDeveloper);
+    formData.append("thumbnail", inputThumbnail);
+    formData.append("language", inputLanguage);
+    formData.append("beforeId", id);
+    formData.append("beforeImg", thumbnail);
     // 프로젝트 업데이트 요청
     await uploadFile.post(`/project/${id}/edit`, formData);
     // 프로젝트 변경으로 인해 재 렌더링 요청
@@ -60,17 +60,17 @@ function Project({ id, logged, date, title, developer, thumbnail, language }) {
   const onChange = (e) => {
     const { name, value } = e.target;
     switch (name) {
-      case 'date':
+      case "date":
         setInputDate(value);
         break;
-      case 'developer':
-        const arrDeveloperValue = value.split(',').map((item) => item.trim());
+      case "developer":
+        const arrDeveloperValue = value.split(",").map((item) => item.trim());
         setInputDeveloper(arrDeveloperValue);
         break;
-      case 'title':
+      case "title":
         setInputTitle(value);
         break;
-      case 'thumbnail':
+      case "thumbnail":
         const file = e.target.files[0];
         file.date = new Date();
         // 업로드할 이미지 파일
@@ -86,7 +86,7 @@ function Project({ id, logged, date, title, developer, thumbnail, language }) {
             resolve();
           };
         });
-      case 'language':
+      case "language":
         setInputLanguage(value);
         break;
       default:
@@ -236,7 +236,9 @@ function Project({ id, logged, date, title, developer, thumbnail, language }) {
                   return (
                     <img
                       key={index}
-                      src={`${process.env.PUBLIC_URL}/images/ico/${item}-icon.svg`}
+                      src={`${
+                        process.env.PUBLIC_URL
+                      }/images/ico/${item.toLowerCase()}-icon.svg`}
                       alt={item}
                     />
                   );
