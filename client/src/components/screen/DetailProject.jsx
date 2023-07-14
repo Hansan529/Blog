@@ -88,6 +88,7 @@ function DetailProject() {
     if (allProject) {
       asideFilter();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [allProject]);
 
   // * 페이지 로딩이 완료되면 최초 실행, 프로젝트 수정이 완료되면 실행 #1
@@ -95,6 +96,7 @@ function DetailProject() {
     if (!edit) {
       info();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initPage, edit, loading]);
 
   // * 해당 페이지에서 새로고침할 경우, 개발자 이미지 데이터가 적용되면(App.jsx) 로딩 완료
@@ -406,10 +408,9 @@ function DetailProject() {
               <button className={styles.prevBtn} onClick={prevPage}></button>
             </article>
           </main>
-          {/* <Footer /> */}
         </>
       )}
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }

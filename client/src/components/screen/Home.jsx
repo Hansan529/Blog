@@ -45,7 +45,7 @@ function Home() {
   const initPage = useSelector((state) => state.info.initial);
   const [homepage, setHomepage] = useState('');
   const [project, setProject] = useState('');
-  const [info, setInfo] = useState('');
+  // const [info, setInfo] = useState('');
 
   const onHomepage = (value) => {
     setHomepage(value);
@@ -78,12 +78,13 @@ function Home() {
     // API 값이 이미 있으면 로딩 완료처리
     setLoading(false);
     return;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initPage]);
 
   // React 설정
   return (
     <>
-      <Header homepage={homepage} project={project} info={info} />
+      <Header homepage={homepage} project={project} /* info={info} */ />
       {loading ? (
         <Loading />
       ) : (

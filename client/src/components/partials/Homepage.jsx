@@ -15,6 +15,7 @@ function Homepage({ LinkHomepage, project }) {
       homepageRef.current.focus();
       LinkHomepage(homepageRef);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [homepageRef]);
 
   // * 프로젝트 바로가기 버튼 이동하기

@@ -64,6 +64,7 @@ function Header({ homepage, project, info }) {
         break;
     }
     dispatch(linkPart(null));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [part]);
 
   return (
