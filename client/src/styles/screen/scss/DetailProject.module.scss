@@ -9,11 +9,10 @@
 
 // * Aside 다른 프로젝트
 .aside {
-  position: absolute;
-  left: 0;
-  top: calc(100vh / 2);
+  position: fixed;
+  left: 50px;
+  top: 50%;
   transform: translateY(-50%);
-  padding: 20px;
 
   > ul {
     li {
