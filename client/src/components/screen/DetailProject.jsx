@@ -2,9 +2,8 @@
 import Header from '../partials/Header';
 import Footer from '../partials/Footer';
 import Loading from '../config/Loading';
-
 // Function
-import { server, uploadFile } from './Home';
+import { downloadFiles, uploadFile } from './Home';
 import extendStyles from '../../styles/screen/css/Upload.module.css';
 import styles from '../../styles/screen/css/DetailProject.module.css';
 import { initial } from '../../_redux/_reducer/InfoSlice';
@@ -23,6 +22,7 @@ function DetailProject() {
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
   const [project, setProject] = useState('');
+  const [allProject, setAllProject] = useState(null);
   const devAvatar = useSelector((state) => state.fetchData.devAvatar);
   const [importLoading, setImportLoading] = useState(true);
 
@@ -41,9 +41,10 @@ function DetailProject() {
 
   // * 프로젝트 내용 불러오기 #2
   const info = async () => {
-    const data = await (await server.get(`/project/${id}`)).data;
-    setProject(data);
-    setLoading(false);
+    const data = await (await downloadFiles('/')).data;
+    // 현재 접근한 프로젝트 필터링
+    const filterData = data.filter((value) => value._id === id)[0];
+    setProject(filterData);
     // 기존값 설정
     const {
       url,
@@ -64,6 +65,10 @@ function DetailProject() {
     setInputDescription(description);
     setBeforeThumbnail(thumbnail);
     setInputSourceCode(sourceCode);
+
+    // 나머지 전체 프로젝트
+    setAllProject(data);
+    setLoading(false);
   };
 
   // * 페이지 로딩이 완료되면 최초 실행, 프로젝트 수정이 완료되면 실행 #1
@@ -71,7 +76,7 @@ function DetailProject() {
     if (!edit) {
       info();
     }
-  }, [initPage, edit]);
+  }, [initPage, edit, loading]);
 
   // * 해당 페이지에서 새로고침할 경우, 개발자 이미지 데이터가 적용되면(App.jsx) 로딩 완료
   useEffect(() => {
@@ -181,6 +186,21 @@ function DetailProject() {
         <>
           <main>
             <article className={styles.article}>
+              <aside className={styles.aside}>
+                <ul>
+                  {allProject.map((value, index) => (
+                    <li key={index}>
+                      <Link
+                        className={value._id === id ? styles.active : null}
+                        onClick={() => setLoading(true)}
+                        to={`/project/${value._id}`}
+                      >
+                        {value.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </aside>
               {edit ? (
                 importLoading ? null : (
                   <>
@@ -311,7 +331,9 @@ function DetailProject() {
                       <button className={styles.editBtn} onClick={onClick}>
                         수정하기
                       </button>
-                    ) : null}
+                    ) : (
+                      <span className={styles.empty}></span>
+                    )}
                   </div>
                   <Link to={project.url} target="_blank">
                     <picture className={styles.picture}>
