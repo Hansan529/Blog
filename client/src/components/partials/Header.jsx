@@ -2,33 +2,70 @@
 
 // Function
 import styles from '../../styles/partials/css/Header.module.css';
-import { login } from '../../_redux/_reducer/InfoSlice';
+import { linkPart, login } from '../../_redux/_reducer/InfoSlice';
 
 // Package
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useRef } from 'react';
 
 function Header({ homepage, project, info }) {
   const logged = useSelector((state) => state.info.logged);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const homepageBtn = useRef();
+  const projectBtn = useRef();
+  const infoBtn = useRef();
+  const part = useSelector((state) => state.info.part);
 
   // * 바로가기 버튼을 누르면, 해당 위치로 스크롤이 이동하도록 하는 함수
   const onClick = (e) => {
     const { name } = e.target;
     switch (name) {
       case 'homepage':
-        homepage.current.scrollIntoView({ behavior: 'smooth' });
+        if (homepage) {
+          homepage.current.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          navigate('/');
+          dispatch(linkPart('homepage'));
+        }
         return;
       case 'project':
-        project.current.scrollIntoView({ behavior: 'smooth' });
+        if (project) {
+          project.current.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          navigate('/');
+          dispatch(linkPart('project'));
+        }
         return;
       case 'info':
         // info.current.scrollIntoView({ behavior: 'smooth' });
+        // dispatch(linkPart('info'))
         return;
       default:
         return;
     }
   };
+
+  // FIXME: 실행되지 않음 (Home 컴포넌트를 제외한 다른 곳에서는 사용 불가능 Ref가 연결되어 있지 않기 때문에)
+  useEffect(() => {
+    switch (part) {
+      case 'homepage':
+        homepageBtn.current.click();
+        break;
+      case 'project':
+        console.log(project);
+        projectBtn.current.click();
+        break;
+      case 'info':
+        infoBtn.current.click();
+        break;
+      default:
+        break;
+    }
+    dispatch(linkPart(null));
+  }, [part]);
+
   return (
     <>
       <header className={styles.header}>
@@ -62,17 +99,17 @@ function Header({ homepage, project, info }) {
           <nav>
             <ul className={styles.ul}>
               <li>
-                <button name="homepage" onClick={onClick}>
+                <button ref={homepageBtn} name="homepage" onClick={onClick}>
                   홈페이지 소개
                 </button>
               </li>
               <li>
-                <button name="project" onClick={onClick}>
+                <button ref={projectBtn} name="project" onClick={onClick}>
                   프로젝트
                 </button>
               </li>
               <li>
-                <button name="info" onClick={onClick}>
+                <button ref={infoBtn} name="info" onClick={onClick}>
                   정보 모음
                 </button>
               </li>

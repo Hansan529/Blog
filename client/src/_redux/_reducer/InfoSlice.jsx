@@ -4,6 +4,7 @@ const initialState = {
   inital: false,
   logged: false,
   socialLogin: false,
+  part: null,
 };
 
 const infoSlice = createSlice({
@@ -22,9 +23,13 @@ const infoSlice = createSlice({
     socialLogin: (state, action) => {
       state.socialLogin = action.payload;
     },
+    // * 특정 위치로 이동
+    linkPart: (state, action) => {
+      state.part = action.payload;
+    },
   },
 });
 
-export const { initial, login, socialLogin } = infoSlice.actions;
+export const { initial, login, socialLogin, linkPart } = infoSlice.actions;
 
 export default infoSlice.reducer;
