@@ -23,6 +23,7 @@ function DetailProject() {
   const { id } = useParams();
   const [project, setProject] = useState('');
   const [allProject, setAllProject] = useState(null);
+  const [asideProject, setAsideProject] = useState(null);
   const devAvatar = useSelector((state) => state.fetchData.devAvatar);
   const [importLoading, setImportLoading] = useState(true);
 
@@ -38,6 +39,19 @@ function DetailProject() {
   const [inputDescription, setInputDescription] = useState([]);
   const [inputSourceCode, setInputSourceCode] = useState(null);
   const [beforeThumbnail, setBeforeThumbnail] = useState(null);
+
+  // * 모든 프로젝트 필터로 10개씩만 보여주기
+  const asideFilter = () => {
+    const filterProject = 10;
+    const startIndex = filterProject - 1;
+
+    const filterData = allProject.filter(
+      (item, index) => (index) =>
+        startIndex && index <= startIndex + filterProject
+    );
+    setAsideProject(filterData);
+    setLoading(false);
+  };
 
   // * 프로젝트 내용 불러오기 #2
   const info = async () => {
@@ -68,7 +82,7 @@ function DetailProject() {
 
     // 나머지 전체 프로젝트
     setAllProject(data);
-    setLoading(false);
+    asideFilter();
   };
 
   // * 페이지 로딩이 완료되면 최초 실행, 프로젝트 수정이 완료되면 실행 #1
@@ -188,7 +202,7 @@ function DetailProject() {
             <article className={styles.article}>
               <aside className={styles.aside}>
                 <ul>
-                  {allProject.map((value, index) => (
+                  {asideProject.map((value, index) => (
                     <li key={index}>
                       <Link
                         className={value._id === id ? styles.active : null}
@@ -199,6 +213,17 @@ function DetailProject() {
                       </Link>
                     </li>
                   ))}
+                  {/* {allProject.map((value, index) => (
+                    <li key={index}>
+                      <Link
+                        className={value._id === id ? styles.active : null}
+                        onClick={() => setLoading(true)}
+                        to={`/project/${value._id}`}
+                      >
+                        {value.title}
+                      </Link>
+                    </li>
+                  ))} */}
                 </ul>
               </aside>
               {edit ? (
