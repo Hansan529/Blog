@@ -1,8 +1,40 @@
+@import '../../config//scss//variables';
+
 // ^ 컴포넌트
 .article {
   display: grid;
   place-content: center;
   gap: 20px;
+}
+
+// * Aside 다른 프로젝트
+.aside {
+  position: absolute;
+  left: 0;
+  top: calc(100vh / 2);
+  transform: translateY(-50%);
+  padding: 20px;
+
+  > ul {
+    li {
+      margin: 10px 0;
+      &:hover {
+        text-decoration: underline;
+      }
+
+      a {
+        display: block;
+      }
+
+      // 현재 프로젝트
+      .active {
+        color: $themeColor;
+        border-left: 5px solid #000;
+        text-indent: 10px;
+        text-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
 }
 
 // ^ 프로젝트 상단 정보 (개발자, 타이틀, 수정하기)
