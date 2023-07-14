@@ -78,3 +78,22 @@
   background: url('/public/images/ico/github-icon.svg') no-repeat left / 30px;
   line-height: 2;
 }
+
+// * 이전 페이지로 이동
+.prevBtn {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  width: 30px;
+  height: 30px;
+  &::after {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-top: 2px solid #000;
+    border-left: 2px solid #000;
+    rotate: -45deg;
+    transform: translate(50%, 50%);
+  }
+}

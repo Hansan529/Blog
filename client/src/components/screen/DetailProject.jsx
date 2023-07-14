@@ -10,12 +10,13 @@ import styles from '../../styles/screen/css/DetailProject.module.css';
 import { initial } from '../../_redux/_reducer/InfoSlice';
 
 // Package
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 function DetailProject() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   // 상태 정보
   const logged = useSelector((state) => state.info.logged);
   const initPage = useSelector((state) => state.info.initial);
@@ -164,6 +165,11 @@ function DetailProject() {
     // 재렌더링 및 수정하기 종료
     dispatch(initial(false));
     setEdit(false);
+  };
+
+  // ^ 이전 페이지로 이동
+  const prevPage = () => {
+    navigate(-1);
   };
 
   return (
@@ -345,6 +351,7 @@ function DetailProject() {
                   </div>
                 </>
               )}
+              <button className={styles.prevBtn} onClick={prevPage}></button>
             </article>
           </main>
           {/* <Footer /> */}
