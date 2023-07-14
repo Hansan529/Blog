@@ -1,0 +1,4 @@
+{
+  "watch": ["src"],
+  "exec": "react-scripts build"
+}
