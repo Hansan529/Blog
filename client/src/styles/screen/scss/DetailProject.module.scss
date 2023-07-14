@@ -1,7 +1,23 @@
+// ^ 컴포넌트
+.article {
+  display: grid;
+  place-content: center;
+  gap: 20px;
+}
+
+// ^ 프로젝트 상단 정보 (개발자, 타이틀, 수정하기)
+.topWrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// 수정하기 버튼
 .editBtn {
   float: right;
 }
 
+// 프로젝트 이미지
 .picture {
   img {
     max-width: 1200px;
@@ -9,6 +25,7 @@
   }
 }
 
+// 타이틀
 .titleWrap {
   text-align: center;
   font-size: 24px;
@@ -18,6 +35,7 @@
   }
 }
 
+// ^ 개발자 이미지
 .devImgWrap {
   float: left;
 }
@@ -27,18 +45,36 @@
   border-radius: 50%;
 }
 
-.flex {
+// 프로그램 언어 및 도구
+.language {
   display: flex;
   gap: 10px;
 }
-
 .logoImg {
   width: 50px;
   height: 50px;
   margin-bottom: 5px;
-
   & + p {
-    font-size: 8px;
+    font-size: 12px;
     text-align: center;
   }
+}
+
+// ^ 본문
+.description {
+  font-size: 18px;
+  padding: 10px;
+}
+
+// ^ 소스코드, API 등등
+.info {
+  display: flex;
+}
+
+// ^ 소스코드
+.sourceCode {
+  display: block;
+  text-indent: 40px;
+  background: url('/public/images/ico/github-icon.svg') no-repeat left / 30px;
+  line-height: 2;
 }
