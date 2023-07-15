@@ -183,3 +183,19 @@
 - 관리자 이미지 비동기 처리로 Redux State 설정
 - Loading 컴포넌트 안에 Header, Footer 컴포넌트 제거
 - 상세 프로젝트 페이지에서 수정하기 기능 구현, 그로 인해 별도의 `ProjectEdit 컴포넌트` 및 **라우터** 제거
+
+<br>
+
+## 언어 이미지 구현 CSS에서 REACT로 변경 [#18](https://github.com/Hansan529/Blog/pull/18) (23.07.07 ~ 09)
+
+**클라이언트**
+
+- 소셜 회원가입에 `username` 추가하도록 설정
+- 프로그래밍 언어 이미지 CSS → ReactJS img 태그로 변경
+- Admin 모델에 username 추가, 종속성을 가진 Join 컴포넌트도 업데이트
+- 선언되고 사용되지 않은 코드 삭제
+- `Loading 컴포넌트`에서 `Header`, `Footer 컴포넌트` 제거
+
+**서버**
+
+- 관리자 모델에 `username` 추가
