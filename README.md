@@ -56,3 +56,18 @@
 ![img](https://github.com/Hansan529/Blog/assets/115819770/4d6c47fc-98f6-4277-89f9-e01521d91919)
 
 <br>
+
+## 로그인 클라이언트 - 서버 연동 및 상태 저장 (23.06.22~23)
+
+**클라이언트**
+
+- 로그인을 서버에 요청하고, 결과 값을 바탕으로 로그인 상태 값 지정
+- Redux 활성화 (login)
+- Redux Toolkit 으로 state 생성 (createStore &rarr; configureStore)
+- 로그인 실패 시 에러 객체를 사용자에게 보여주도록 구현
+
+**서버**
+
+- 데이터베이스에서 해당 데이터와 일치하는지 체크하고 결과 반환
+
+<br>
