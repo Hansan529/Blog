@@ -199,3 +199,11 @@
 **서버**
 
 - 관리자 모델에 `username` 추가
+
+<br>
+
+## 이름 변경 및 프로젝트 상세 정보 추가 [#19](https://github.com/Hansan529/Blog/pull/19) (23.07.09)
+
+- img &rarr; thumbnail
+- select &rarr; developSelect
+- body &rarr; description
