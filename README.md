@@ -256,3 +256,21 @@
 - 해당 Props을 받아 컴포넌트에서 useRef로 변경시킨 뒤 부모 컴포넌트로 전달
 - Home 컴포넌트에서 각 Ref가 필요한 컴포넌트에게 Props 전달
 - 해당 컴포넌트에서 scrollIntoView 를 사용해 해당 객체 위치로 스크롤 이동
+
+![img](https://github.com/Hansan529/Blog/assets/115819770/43197844-a56e-4790-9c53-b23564ba1a13)
+
+<br>
+
+## 1차 배포 (릴리즈 1.0.0) [#28](https://github.com/Hansan529/Blog/pull/28)
+
+**클라이언트**
+
+- DetailProject 오류 수정
+- &lt;Upload&gt; 컴포넌트에서 &lt;Loading&gt; 컴포넌트에도 Header, Footer 컴포넌트가 적용되도록 수정
+- 상세 컴포넌트에서 이전 페이지로 이동하는 버튼 고정화
+- 포트 수정 3002 &rarr; 8000
+- 이미지 경로 소문자로 변경
+
+**서버**
+
+- 포트 수정 8000 &rarr; 8001
