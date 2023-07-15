@@ -233,7 +233,17 @@
 
 <br>
 
-## 상세 프로젝트 페이지에서 새로고침 오류 수정 [#21](https://github.com/Hansan529/Blog/pull/21)
+## 상세 프로젝트 페이지에서 새로고침 오류 수정 [#21](https://github.com/Hansan529/Blog/pull/21) (23.07.10)
 
 - `DetailProject 컴포넌트`에서 중복으로 개발자 이미지를 요청해 해당 요소 삭제
 - `상세 프로젝트 컴포넌트`에서 새로고침 할 경우 개발자 이미지 로드가 될 때 까지 로딩 컴포넌트가 보이도록 수정
+
+<br>
+
+## Project 구조 변경 및 컴포넌트 높이 지정 [#23](https://github.com/Hansan529/Blog/pull/23) (23.07.10 ~ 13)
+
+- 소셜 로그인 이미지 추가
+- SCSS mixin 추가
+- 컴포넌트 최소 높이 지정
+- `div.center` &rarr; `article` 변경
+- 컴포넌트 중앙 정렬
