@@ -207,3 +207,26 @@
 - img &rarr; thumbnail
 - select &rarr; developSelect
 - body &rarr; description
+
+<br>
+
+## 메인 페이지 생성 [#20](https://github.com/Hansan529/Blog/pull/20) (23.07.09 ~ 10)
+
+**클라이언트**
+
+- 프로젝트 홈페이지로 이동하는 Link 추가
+- 프로젝트 수정 후 프로젝트를 불러오지 않는 현상 수정
+- `Header 컴포넌트`에서 해당 영역에 스크롤이 이동하도록 `Link 태그`에서 `a 태그`로 **변경**
+- 프로젝트 수정 후 더보기 상태 제거
+- &lt;Login&gt;, &lt;Header&gt;, &lt;DetailProject&gt; 컴포넌트 스타일링
+- 파트를 나타내는 empty 객체 생성
+- 프로젝트 업로드 버튼을 &lt;Header&gt; 컴포넌트로 이동
+- 메인 배너로 나올 &lt;Page&gt; 컴포넌트 구현
+
+**서버**
+
+- 프로젝트 업로드 및 수정에서 Language 에 대한 정보를 Client가 아닌, 서버에서 변환하도록 수정
+- 프로젝트 목록을 날짜를 기준으로 내림차순으로 전송
+
+![img](https://github.com/Hansan529/Blog/assets/115819770/6b8448b5-a162-46a3-b8c5-038897eb3500)
+![img](https://github.com/Hansan529/Blog/assets/115819770/74a1d9e3-5299-4c93-b160-fba6da4decb3)
