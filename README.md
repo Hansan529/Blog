@@ -230,3 +230,10 @@
 
 ![img](https://github.com/Hansan529/Blog/assets/115819770/6b8448b5-a162-46a3-b8c5-038897eb3500)
 ![img](https://github.com/Hansan529/Blog/assets/115819770/74a1d9e3-5299-4c93-b160-fba6da4decb3)
+
+<br>
+
+## 상세 프로젝트 페이지에서 새로고침 오류 수정 [#21](https://github.com/Hansan529/Blog/pull/21)
+
+- `DetailProject 컴포넌트`에서 중복으로 개발자 이미지를 요청해 해당 요소 삭제
+- `상세 프로젝트 컴포넌트`에서 새로고침 할 경우 개발자 이미지 로드가 될 때 까지 로딩 컴포넌트가 보이도록 수정
