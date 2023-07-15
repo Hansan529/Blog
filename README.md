@@ -247,3 +247,12 @@
 - 컴포넌트 최소 높이 지정
 - `div.center` &rarr; `article` 변경
 - 컴포넌트 중앙 정렬
+
+<br>
+
+## 홈페이지 소개, 프로젝트 바로가기 버튼 구현 [#24](https://github.com/Hansan529/Blog/pull/24) (23.07.14)
+
+- Home 컴포넌트에서 해당 Dom을 저장할 State 생성, Homepage 컴포넌트에 setState 를 Props으로 전달
+- 해당 Props을 받아 컴포넌트에서 useRef로 변경시킨 뒤 부모 컴포넌트로 전달
+- Home 컴포넌트에서 각 Ref가 필요한 컴포넌트에게 Props 전달
+- 해당 컴포넌트에서 scrollIntoView 를 사용해 해당 객체 위치로 스크롤 이동
