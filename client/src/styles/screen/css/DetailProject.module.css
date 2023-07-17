@@ -67,6 +67,7 @@
 }
 .picture img {
   max-width: 1200px;
+  max-height: 675px;
   -o-object-fit: cover;
      object-fit: cover;
 }
