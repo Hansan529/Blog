@@ -61,13 +61,27 @@
 }
 
 .picture {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.05);
   border-radius: 50px;
+  margin: 10px 0;
 }
 .picture img {
   max-width: 1200px;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.info .url {
+  display: block;
+  width: 40px;
+  height: 40px;
+  background: url("/public/images/ico/github-icon.svg") no-repeat center/cover;
 }
 
 .language {
@@ -88,18 +102,6 @@
 .description {
   font-size: 18px;
   padding: 10px;
-}
-
-.info {
-  display: flex;
-  gap: 20px;
-}
-
-.sourceCode {
-  display: block;
-  text-indent: 40px;
-  background: url("/public/images/ico/github-icon.svg") no-repeat left/30px;
-  line-height: 2;
 }
 
 .prevBtn {
