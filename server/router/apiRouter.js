@@ -34,7 +34,7 @@ apiRouter.put(
   postProjectEdit
 );
 apiRouter.delete('/projects/:id/:thumbnail', postProjectDelete);
-apiRouter.get('/avatarImg', getAvatarImg);
+apiRouter.get('/avatarimg', getAvatarImg);
 // apiRouter.get('/image/:id', getImage);
 
 export default apiRouter;
