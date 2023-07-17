@@ -3,7 +3,7 @@ import Header from '../partials/Header';
 import Footer from '../partials/Footer';
 import Loading from '../config/Loading';
 // Function
-import { downloadFiles, uploadFile } from './Home';
+import { downloadFiles, server, uploadFile } from './Home';
 import extendStyles from '../../styles/screen/css/Upload.module.css';
 import styles from '../../styles/screen/css/DetailProject.module.css';
 import { initial } from '../../_redux/_reducer/InfoSlice';
@@ -37,7 +37,6 @@ function DetailProject() {
   const [thumbnailPreview, setThumbnailPreview] = useState(null);
   const [inputLanguage, setInputLanguage] = useState([]);
   const [inputDescription, setInputDescription] = useState([]);
-  const [inputSourceCode, setInputSourceCode] = useState(null);
   const [beforeThumbnail, setBeforeThumbnail] = useState(null);
 
   // * 모든 프로젝트 필터로 10개씩만 보여주기
@@ -68,6 +67,7 @@ function DetailProject() {
     setInputDate(date);
     setInputTitle(title);
     setDeveloperSelect(developer);
+    setInputThumbnail(thumbnail);
     setThumbnailPreview(`${process.env.REACT_APP_SERVER}/image/${thumbnail}`);
     setInputLanguage(language);
     setInputDescription(description);
@@ -112,6 +112,17 @@ function DetailProject() {
   // ^ 수정하기
   const onClick = () => {
     edit ? setEdit(false) : setEdit(true);
+  };
+
+  // ^ 삭제하기
+  const deleteProject = async () => {
+    // 서버에 삭제 요청
+    const { status } = await server.delete(`/project/${id}/${inputThumbnail}`);
+    if (status === 200) {
+      // 프로젝트 변경으로 인해 재 렌더링 요청
+      dispatch(initial(false));
+      navigate('/');
+    }
   };
 
   // ^ 데이터 저장
@@ -173,7 +184,7 @@ function DetailProject() {
     formData.append('beforeThumbnail', beforeThumbnail);
 
     // 수정 요청
-    await uploadFile.post(`/project/${id}/edit`, formData);
+    await uploadFile.put(`/project/${id}/edit`, formData);
 
     // 재렌더링 및 수정하기 종료
     dispatch(initial(false));
@@ -207,17 +218,6 @@ function DetailProject() {
                       </Link>
                     </li>
                   ))}
-                  {/* {allProject.map((value, index) => (
-                    <li key={index}>
-                      <Link
-                        className={value._id === id ? styles.active : null}
-                        onClick={() => setLoading(true)}
-                        to={`/project/${value._id}`}
-                      >
-                        {value.title}
-                      </Link>
-                    </li>
-                  ))} */}
                 </ul>
               </aside>
               {edit ? (
@@ -347,9 +347,10 @@ function DetailProject() {
                       <small>{project.date.substring(0, 10)}</small>
                     </div>
                     {logged ? (
-                      <button className={styles.editBtn} onClick={onClick}>
-                        수정하기
-                      </button>
+                      <div className={styles.edit}>
+                        <button onClick={onClick}>수정하기</button>
+                        <button onClick={deleteProject}>삭제하기</button>
+                      </div>
                     ) : (
                       <span className={styles.empty}></span>
                     )}

@@ -149,8 +149,7 @@ export const postProjectEdit = async (req, res) => {
 // 프로젝트 삭제
 export const postProjectDelete = async (req, res) => {
   const {
-    params: { id },
-    body: { thumbnail },
+    params: { id, thumbnail },
   } = req;
   try {
     const project = await Project.findByIdAndDelete(id);
