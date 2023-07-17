@@ -66,8 +66,10 @@
 }
 
 // 수정하기 버튼
-.editBtn {
+.edit {
   float: right;
+  display: flex;
+  gap: 20px;
 }
 // 비로그인시 차지 영역
 .empty {

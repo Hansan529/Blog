@@ -52,8 +52,10 @@
   font-size: 12px;
 }
 
-.editBtn {
+.edit {
   float: right;
+  display: flex;
+  gap: 20px;
 }
 
 .empty {
