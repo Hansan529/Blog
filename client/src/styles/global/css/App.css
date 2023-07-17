@@ -1,0 +1,16 @@
+* {
+  font-family: "Noto Sans-KR", sans-serif;
+}
+
+main {
+  padding: 0 30px;
+}
+main > article {
+  min-height: calc(100vh - 80px);
+  position: relative;
+  padding: 30px 0;
+}
+main .part {
+  position: absolute;
+  transform: translateY(-80px);
+}

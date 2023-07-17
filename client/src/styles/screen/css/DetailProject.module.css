@@ -1,0 +1,121 @@
+.article {
+  display: grid;
+  place-content: center;
+  gap: 20px;
+}
+
+.aside {
+  position: fixed;
+  left: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.aside > ul li {
+  margin: 10px 0;
+}
+.aside > ul li:hover {
+  text-decoration: underline;
+}
+.aside > ul li a {
+  display: block;
+}
+.aside > ul li .active {
+  color: #ecdad1;
+  border-left: 5px solid #000;
+  text-indent: 10px;
+  text-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.5);
+}
+
+.topWrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.devImgWrap {
+  float: left;
+}
+
+.devImg {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.titleWrap {
+  text-align: center;
+  font-size: 24px;
+  line-height: 1;
+}
+.titleWrap > small {
+  font-size: 12px;
+}
+
+.editBtn {
+  float: right;
+}
+
+.empty {
+  width: 100px;
+}
+
+.picture {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+}
+.picture img {
+  max-width: 1200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.language {
+  display: flex;
+  gap: 10px;
+}
+
+.logoImg {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 5px;
+}
+.logoImg + p {
+  font-size: 12px;
+  text-align: center;
+}
+
+.description {
+  font-size: 18px;
+  padding: 10px;
+}
+
+.info {
+  display: flex;
+  gap: 20px;
+}
+
+.sourceCode {
+  display: block;
+  text-indent: 40px;
+  background: url("/public/images/ico/github-icon.svg") no-repeat left/30px;
+  line-height: 2;
+}
+
+.prevBtn {
+  position: fixed;
+  top: 130px;
+  left: 50px;
+  width: 30px;
+  height: 30px;
+}
+.prevBtn::after {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-top: 2px solid #000;
+  border-left: 2px solid #000;
+  rotate: -45deg;
+  transform: translate(50%, 50%);
+}
