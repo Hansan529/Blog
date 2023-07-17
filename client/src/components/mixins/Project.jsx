@@ -28,7 +28,7 @@ function Project({ id, logged, date, title, developer, thumbnail, language }) {
   // 프로젝트 삭제
   const onClick = async () => {
     // 서버에 삭제 요청
-    const { status } = await server.delete(`/project/${id}/${thumbnail}`);
+    const { status } = await server.delete(`/projects/${id}/${thumbnail}`);
     if (status === 200) {
       // 프로젝트 변경으로 인해 재 렌더링 요청
       dispatch(initial(false));
@@ -47,7 +47,7 @@ function Project({ id, logged, date, title, developer, thumbnail, language }) {
     formData.append('beforeId', id);
     formData.append('beforeImg', thumbnail);
     // 프로젝트 업데이트 요청
-    await uploadFile.put(`/project/${id}/edit`, formData);
+    await uploadFile.put(`/projects/${id}/edit`, formData);
     // 프로젝트 변경으로 인해 재 렌더링 요청
     dispatch(initial(false));
     // 수정하기 종료
@@ -216,7 +216,7 @@ function Project({ id, logged, date, title, developer, thumbnail, language }) {
             })}
           </small>
           {/* 프로젝트 제목, 이미지 */}
-          <Link to={`/project/${id}`}>
+          <Link to={`/projects/${id}`}>
             <h3 className={styles.title}>{title}</h3>
             <div className={styles.imgWrap}>
               <img

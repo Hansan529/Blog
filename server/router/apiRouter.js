@@ -27,13 +27,13 @@ apiRouter.get('/login/github/token', tokenLoginGithub);
 apiRouter.post('/login/github/access', postLoginGithub);
 apiRouter.route('/join').post(postJoin);
 apiRouter.post('/upload', projectImg.single('thumbnail'), postUpload);
-apiRouter.get('/project/:id', getProject);
+apiRouter.get('/projects/:id', getProject);
 apiRouter.put(
-  '/project/:id/edit',
+  '/projects/:id/edit',
   projectImg.single('thumbnail'),
   postProjectEdit
 );
-apiRouter.delete('/project/:id/:thumbnail', postProjectDelete);
+apiRouter.delete('/projects/:id/:thumbnail', postProjectDelete);
 apiRouter.get('/avatarImg', getAvatarImg);
 // apiRouter.get('/image/:id', getImage);
 

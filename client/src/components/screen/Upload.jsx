@@ -36,7 +36,6 @@ function Upload() {
   const [thumbnailPreview, setThumbnailPreview] = useState('');
   const [inputLanguage, setInputLanguage] = useState([]);
   const [inputDescription, setInputDescription] = useState();
-  const [inputSourceCode, setInputSourceCode] = useState('');
 
   // * 개발자 이미지 요청
   const adminImg = async () => {
@@ -72,14 +71,13 @@ function Upload() {
     formData.append('thumbnail', inputThumbnail);
     formData.append('language', inputLanguage);
     formData.append('description', inputDescription);
-    formData.append('sourceCode', inputSourceCode);
     // Project 생성 요청
     const { status, data } = await uploadFile.post('/upload', formData);
     if (status === 201) {
       // 프로젝트 생성 성공, 홈 루트의 프로젝트 갱신처리
       dispatch(initial(false));
       // 해당 프로젝트 상세 페이지로 이동
-      navigate(`/project/${data}`);
+      navigate(`/projects/${data}`);
     }
   };
 
@@ -122,9 +120,6 @@ function Upload() {
         return;
       case 'description':
         setInputDescription(value);
-        return;
-      case 'sourceCode':
-        setInputSourceCode(value);
         return;
       default:
         break;
@@ -233,15 +228,6 @@ function Upload() {
                   value={inputDescription}
                   onChange={onChange}
                   placeholder="본문"
-                />
-              </label>
-              <label>
-                <input
-                  name="sourceCode"
-                  type="url"
-                  value={inputSourceCode}
-                  onChange={onChange}
-                  placeholder="소스코드 주소"
                 />
               </label>
               <button type="submit">업로드</button>

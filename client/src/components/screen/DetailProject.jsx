@@ -117,7 +117,7 @@ function DetailProject() {
   // ^ 삭제하기
   const deleteProject = async () => {
     // 서버에 삭제 요청
-    const { status } = await server.delete(`/project/${id}/${inputThumbnail}`);
+    const { status } = await server.delete(`/projects/${id}/${inputThumbnail}`);
     if (status === 200) {
       // 프로젝트 변경으로 인해 재 렌더링 요청
       dispatch(initial(false));
@@ -184,7 +184,7 @@ function DetailProject() {
     formData.append('beforeThumbnail', beforeThumbnail);
 
     // 수정 요청
-    await uploadFile.put(`/project/${id}/edit`, formData);
+    await uploadFile.put(`/projects/${id}/edit`, formData);
 
     // 재렌더링 및 수정하기 종료
     dispatch(initial(false));
@@ -212,7 +212,7 @@ function DetailProject() {
                       <Link
                         className={value._id === id ? styles.active : null}
                         onClick={() => setLoading(true)}
-                        to={`/project/${value._id}`}
+                        to={`/projects/${value._id}`}
                       >
                         {value.title}
                       </Link>
