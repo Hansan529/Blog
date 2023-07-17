@@ -6,7 +6,7 @@ main {
   padding: 0 30px;
 }
 main > article {
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 160px);
   position: relative;
   padding: 30px 0;
 }
