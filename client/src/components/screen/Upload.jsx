@@ -21,6 +21,7 @@ function Upload() {
   const [loading, setLoading] = useState(true);
   const [admin, setAdmin] = useState(null); //img, username
   const logged = useSelector((state) => state.info.logged);
+  const devAvatar = useSelector((state) => state.fetchData.devAvatar);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // input
@@ -39,11 +40,10 @@ function Upload() {
 
   // * 개발자 이미지 요청
   const adminImg = async () => {
-    const { data } = await server.get('/avatarImg');
-    if (!data) {
+    if (!devAvatar) {
       return navigate('/');
     }
-    setAdmin(data);
+    setAdmin(devAvatar);
     setLoading(false);
   };
 
