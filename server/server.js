@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 app.use(flash());
-// app.use(express.static(path.join(__dirname, "../client/build")));
+app.use(express.static(path.join(__dirname, '../client/build')));
 app.use('/image', express.static(path.join(__dirname, 'uploads', 'projects')));
 app.use('/api', apiRouter);
 app.get('*', (req, res) => {
