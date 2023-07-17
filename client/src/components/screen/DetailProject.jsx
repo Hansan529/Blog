@@ -182,7 +182,7 @@ function DetailProject() {
 
   // ^ 이전 페이지로 이동
   const prevPage = () => {
-    navigate(-1);
+    navigate('/');
   };
 
   return (
