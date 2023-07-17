@@ -41,7 +41,7 @@ const router = createBrowserRouter([
     element: <Upload />,
   },
   {
-    path: '/project/:id',
+    path: '/projects/:id',
     element: <DetailProject />,
   },
 ]);

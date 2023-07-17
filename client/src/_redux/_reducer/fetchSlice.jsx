@@ -5,7 +5,7 @@ export const getAdminAvatar = createAsyncThunk(
   'admin/getAdminAvatar',
   async (thunkAPI) => {
     try {
-      const res = await server.get('/avatarImg');
+      const res = await server.get('/avatarimg');
       return res.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err);

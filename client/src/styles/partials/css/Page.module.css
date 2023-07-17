@@ -1,0 +1,56 @@
+.article {
+  display: grid;
+  place-content: center;
+  text-align: center;
+  font-size: 24px;
+}
+
+.title {
+  position: relative;
+  text-align: center;
+  font-size: 36px;
+  text-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
+
+.language {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px;
+}
+.language img {
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
+}
+.language span {
+  display: block;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.scrollBtn {
+  display: block;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 50%;
+  bottom: 50px;
+  transform: translate(-50%, -50%);
+  border-bottom: 1px solid #000;
+  border-right: 1px solid #000;
+  rotate: 45deg;
+  animation: btnAni 1s ease-out alternate infinite;
+}
+
+@keyframes btnAni {
+  from {
+    transform: translate(-50%, -50%);
+  }
+  to {
+    transform: translate(-150%, -150%);
+  }
+}

@@ -66,8 +66,10 @@
 }
 
 // 수정하기 버튼
-.editBtn {
+.edit {
   float: right;
+  display: flex;
+  gap: 20px;
 }
 // 비로그인시 차지 영역
 .empty {
@@ -76,15 +78,33 @@
 
 // ^ 프로젝트 이미지
 .picture {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.05);
   border-radius: 50px;
+  margin: 10px 0;
   img {
     max-width: 1200px;
+    max-height: 675px;
     object-fit: cover;
   }
 }
+// ^ 소스코드
+.info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 
-// 프로그램 언어 및 도구
+  // 소스코드
+  .url {
+    display: block;
+    width: 40px;
+    height: 40px;
+    background: url('/public/images/ico/github-icon.svg') no-repeat center /
+      cover;
+  }
+}
+
+// ^ 프로그램 언어 및 도구
 .language {
   display: flex;
   gap: 10px;
@@ -92,7 +112,7 @@
 .logoImg {
   width: 50px;
   height: 50px;
-  margin-bottom: 5px;
+  margin: 0 auto 5px;
   & + p {
     font-size: 12px;
     text-align: center;
@@ -103,20 +123,6 @@
 .description {
   font-size: 18px;
   padding: 10px;
-}
-
-// ^ 소스코드, API 등등
-.info {
-  display: flex;
-  gap: 20px;
-}
-
-// ^ 소스코드
-.sourceCode {
-  display: block;
-  text-indent: 40px;
-  background: url('/public/images/ico/github-icon.svg') no-repeat left / 30px;
-  line-height: 2;
 }
 
 // * 이전 페이지로 이동
