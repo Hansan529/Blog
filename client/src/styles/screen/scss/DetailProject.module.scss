@@ -102,7 +102,7 @@
   }
 }
 
-// 프로그램 언어 및 도구
+// ^ 프로그램 언어 및 도구
 .language {
   display: flex;
   gap: 10px;
@@ -110,7 +110,7 @@
 .logoImg {
   width: 50px;
   height: 50px;
-  margin-bottom: 5px;
+  margin: 0 auto 5px;
   & + p {
     font-size: 12px;
     text-align: center;
