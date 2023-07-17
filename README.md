@@ -1,276 +1,264 @@
 # Hxan Develop Blog
 
-## 프로젝트 시작 (2023.06.17)
+<div align="center">
+<img src="https://github.com/Hansan529/Blog/assets/115819770/662224d3-0969-4718-bf1d-d673a71fe2ef" width="300" />
+</div>
 
-**Client 기초 설정**
+# **프로젝트 정보**
 
-- `Home`, `Header` `Login` 컴포넌트 및 스타일시트 생성
-- 라우터 생성 `<Home />`, `<Login />`
-- HTML, CSS, JS, LOGO, mongoDB, Node SVG 추가
+> 1인 개발  
+> 개발 기간: **2023.06.17 ~ ing**
 
-<br>
+## 홈페이지 배포 주소
 
-## 서버 생성 (2023.06.18)
+> 프론트 서버: https://hxan.net  
+> 백엔드 서버: https://api.hxan.net
 
-**React와 상호작용 할 서버 설정**
+> 백엔드 서버는 직접적인 페이지가 없어 브라우저로 접근이 불가능하고, REST API 를 통해 접근이 가능하도록 구성했다.
 
-- 서버 Babel 설정 (ES6)
-- 4001번 포트로 서버 설정
-- env 환경변수 설정
-- 개발 환경 구성 (nodemon, morgan)
-- mongoDB 연결
-- create-react-app 을 통해 React 라이브 개발 서버 생성
-- 서버에서 모든 경로에 접근할 시 Client의 Build 파일 (정적) 연동
-- Footer 컴포넌트 생성
-- Login 컴포넌트 스타일링 및 기본 동작 구현
+## 프로젝트 소개
 
-<br>
+제작에 참여한 홈페이지들의 소스코드 및 페이지를 목록으로 **나열해 볼 수 있도록** 하기 위해 제작되었습니다.
 
-![img](https://github.com/Hansan529/Blog/assets/115819770/cab229ff-4dde-4ce2-a09f-3959a5dbaabd)
+웹 개발을 진행하면서 하나씩 추가되는 프로젝트를 보면서 동기를 얻을 수도 있고  
+개발에 도움이 되는 정보나 간단한 예시들을 볼 수 있는 페이지를 만들려고 합니다.
 
-<br>
+한산: @Hansan529 / 웹퍼블리셔 및 프론트엔드 스터디
 
-## 회원가입, 로그인 컴포넌트 (23.06.20~21)
+## 프로젝트 목표
 
-**클라이언트**
-
-- HTML 타이틀 변경 (hxan &rarr; Hxan)
-- `Home 컴포넌트`에 `Footer` 추가
-- `Footer 컴포넌트`에 `Source Code` (깃허브) 이미지 `alt` 추가
-- 전체 컴포넌트에 스타일링 추가 (`margin-top`, `padding`)
-- `Join 라우터` 및 컴포넌트 생성
-- 서버 요청하기 위해 axios 패키지 추가
-- 회원가입(관리자 추가) 하기 위해 관리자 비밀번호 입력 추가
-
-**서버**
-
-- nodemon 설정 (자동 build)
-- 포트 번호 4001 &rarr; 8000 수정
-- 회원가입 데이터 전송, 중복된 아이디가 있을 경우 오류 출력
-- CORS 설정 및 JSON 값으로 데이터 받도록 설정
-- 관리자 모델 (DB) 추가
-- Join 데이터베이스 중복 체크 후 관리자 모델에 추가하는 컨트롤러 설정
+1. 반응형 웹 디자인으로 어느 플랫폼에서도 정보를 개발자 취지대로 정확하게 전달하고자 합니다.
+2. 추후에 Comment 기능을 구현해 사용자와 정보 교환을 할 수 있도록 하고자 합니다.
+3. 홈페이지 내 포스팅을 외부로 공유하는 별도의 페이지를 제작하고자 합니다.
 
 <br>
 
-![img](https://github.com/Hansan529/Blog/assets/115819770/4d6c47fc-98f6-4277-89f9-e01521d91919)
+## 코드 도우미
+
+### Package
+
+Frontend && Backend
+
+- [axios: 1.4.0](https://www.npmjs.com/package/axios)
+
+Frontend
+
+- [@reduxjs/toolkit: 1.9.5](https://www.npmjs.com/package/@reduxjs/toolkit)
+- [react: 18.2.0](https://www.npmjs.com/package/react)
+- [react-dom: 18.2.0](https://www.npmjs.com/package/react-dom)
+- [react-redux: 8.1.1](https://www.npmjs.com/package/react-redux)
+- [react-router-dom: 6.13.0](https://www.npmjs.com/package/react-router-dom)
+- [react-scripts: 5.0.1](https://www.npmjs.com/package/react-scripts)
+- [redux: 4.2.1](https://www.npmjs.com/package/redux)
+
+Backend
+
+- [bcrypt: 5.1.0](https://www.npmjs.com/package/bcrypt)
+- [concurrently: 8.2.0](https://www.npmjs.com/package/concurrently)
+- [connect-mongo: 5.0.0](https://www.npmjs.com/package/connect-mongo)
+- [cors: 2.8.5](https://www.npmjs.com/package/cors)
+- [dotenv: 16.0.3](https://www.npmjs.com/package/dotenv)
+- [express: 4.18.2](https://www.npmjs.com/package/express)
+- [express-flash: 0.0.2](https://www.npmjs.com/package/express-flash)
+- [express-session: 1.17.3](https://www.npmjs.com/package/express-session)
+- [mongoose: 7.3.0](https://www.npmjs.com/package/mongoose)
+- [multer: 1.4.5-lts.1](https://www.npmjs.com/package/multer)
+- [@babel/core: 7.22.5](https://www.npmjs.com/package/@babel/core)
+- [@babel/node: 7.22.5](https://www.npmjs.com/package/@babel/node)
+- [@babel/preset-env: 7.22.5](https://www.npmjs.com/package/@babel/preset-env)
+- [morgan: 1.10.0](https://www.npmjs.com/package/morgan)
+- [nodemon: 2.0.22](https://www.npmjs.com/package/nodemon)
+
+개발 환경
+
+- nodeJS
+- SASS
+- mongoDB
 
 <br>
 
-## 로그인 클라이언트 - 서버 연동 및 상태 저장 (23.06.22~23)
+## 기술 스택
 
-**클라이언트**
+### Environment
 
-- 로그인을 서버에 요청하고, 결과 값을 바탕으로 로그인 상태 값 지정
-- Redux 활성화 (login)
-- Redux Toolkit 으로 state 생성 (createStore &rarr; configureStore)
-- 로그인 실패 시 에러 객체를 사용자에게 보여주도록 구현
+![Visual Studio Code](https://img.shields.io/badge/visual%20studio%20code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white)
+![Git](https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![Github](https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white)
 
-**서버**
+### Config
 
-- 데이터베이스에서 해당 데이터와 일치하는지 체크하고 결과 반환
+![Yarn](https://img.shields.io/badge/yarn-2C8EBB?style=for-the-badge&logo=yarn&logoColor=white)
 
-<br>
+### Developement
 
-### 페이지 이동 및 확장자 수정 (23.06.25~26)
-
-**클라이언트**
-
-- `window.location.href` &rarr; `navigate`로 redux 상태값을 보존한 채로 페이지 이동하도록 수정
-- js &rarr; jsx 확장자 변경
-- 스타일시트 파일 경로 수정
-- &lt;Upload&gt; 컴포넌트 라우터 설정
-- `Login`: form 중앙 스타일링
-
-**서버**
-
-- 파일 업로드를 하기 위한 패키지 `multer` 추가
-- 개발 환경 (동시 서버 오픈) moment 패키지 추가
+![Javascript](https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white)
+![React](https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=white)
+![Redux](https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=white)
+![Node.js](https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![Express](https://img.shields.io/badge/express-000000?style=for-the-badge&logo=express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/mongodb-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+![Mongoose](https://img.shields.io/badge/mongoose-880000?style=for-the-badge&logo=mongoose&logoColor=white)
 
 <br>
 
-## 프로젝트 데이터베이스 (23.06.27)
+### Planned
 
-**클라이언트**
-
-- 프로젝트 데이터베이스 로드 구현
-- 관리자 추가 후 홈페이지로 페이지 이동
-
-**서버**
-
-- moment 제거
+![Typescript](https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Next.js](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
 
 <br>
 
-## 파일 업로드 (23.06.28)
+## 화면 구성
 
-**클라이언트**
-
-- 상세 프로젝트 라우터 및 컴포넌트 설정
-- 홈 루트에서 프로젝트 나열하도록 구현
-- &lt;Upload&gt; 컴포넌트 구현 (프로젝트 추가)
-- **서버**
-
-- 프로젝트를 데이터베이스에 저장
-- 업로드된 파일에 접근하기 위해 `static` 설정
-
-![img](https://github.com/Hansan529/Blog/assets/115819770/f364f215-6739-4b5e-9a56-e271ef31ea76)
-
-## 프로젝트 설정 [#14](https://github.com/Hansan529/Blog/pull/14) (23.06.28~29)
-
-**클라이언트**
-
-- 로그인 시, 레이아웃 변경
-- 프로젝트 업로드 성공 시, 재렌더링
-- 프로젝트 목록에서 가벼운 수정 기능 구현 (날짜, 제목, 개발자, 이미지, 언어)
-- 프로젝트 수정에 기존 값을 유지하도록 값 설정
-- 이미지를 변경하지 않았을 경우 기존 이미지를 사용하도록 설정
-- 프로젝트 목록 Redux로 저장하도록 구현
-- 상세 프로젝트의 수정 컴포넌트 라우터 및 컴포넌트 생성
-- 로그인: 프로젝트 더보기(more), 수정, 삭제 버튼 구현
-
-**서버**
-
-- 프로젝트 모델 수정하는 함수 추가, 이미지를 변경했다면 기존 이미지 파일 제거
-- 프로젝트에 저장될 **언어** 대문자로 저장되도록 설정
-- 프로젝트 모델 제거, 이미지 삭제 구현
-- 프로젝트 삭제 함수를 실행시킬 API 라우터 구현
+| 메인 페이지                                                                                                           | 상세 프로젝트                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| <img src="https://github.com/Hansan529/Blog/assets/115819770/74809469-7d61-47b8-9a89-d756bcab95d6" max-width="800" /> | <img src="https://github.com/Hansan529/Blog/assets/115819770/2de6d394-f40d-4d98-ad3b-8dbb6d0f3f43" max-width="800" /> |
 
 <br>
 
-## 아바타 이미지 [#15](https://github.com/Hansan529/Blog/pull/15) (23.06.29 ~ 07.04)
+## 주요 기능
 
-**클라이언트**
+### 프로젝트 정보
 
-- 로그아웃시 Compoennts 이동에서 dispatch State 변경으로 수정
-- 프로젝트에 날짜 정보 추가하고 이를 포함해 서버에 요청하도록 변경
-- `Header 컴포넌트`에 logged props을 제거
-- 소셜 로그인 (Github) 토큰 생성 및 관리자가 아닐 경우에 관리자 비밀번호 입력 후 추가하도록 구현
-- 소셜 로그인 콜백 컴포넌트 생성, 대기 중에는 `Loading 컴포넌트`가 나타남
-- 소셜 로그인 정보를 담아둘 State 생성 (info)
+- 업로드한 프로젝트에 대한 정보 확인 및 소스 코드 제공
 
-**서버**
+## 디렉토리 구조
 
-- 프로젝트 모델에 날짜 정보 추가, 값이 없을 경우 기본 값인 현재 시각으로 지정
-- 관리자 모델에 개발자 이미지 (아바타 이미지) 추가
-- 소셜 로그인 콜백 라우터 설정
-- Github에 토큰을 갖고 계정에 대한 정보 요청 및 클라이언트에 반환
+```zsh
+├── CHANGELOG.md
+├── README.md
+├── client : 프론트엔드
+│   ├── Dockerfile : 서버 배포에 필요한 이미지
+│   ├── build : 정적 파일 서버 배포용 폴더
+│   │   ├── asset-manifest.json
+│   │   ├── favicon.ico
+│   │   ├── images : 이미지 폴더
+│   │   │   └── ico
+│   │   ├── index.html
+│   │   ├── logo192.png
+│   │   ├── logo512.png
+│   │   ├── manifest.json
+│   │   ├── robots.txt
+│   │   └── static : 스타일시트 및 스크립트 파일
+│   │       ├── css
+│   │       │   ├── main.b6f2c566.css
+│   │       │   └── main.b6f2c566.css.map
+│   │       ├── js
+│   │       │   ├── main.4c9bc931.js
+│   │       │   ├── main.4c9bc931.js.LICENSE.txt
+│   │       │   └── main.4c9bc931.js.map
+│   │       └── media
+│   │           ├── check.5ac8192ef87257dfacf0.svg
+│   │           └── github-icon.11a5bdb0320ba839542a.svg
+│   ├── nodemon.json : 개발용 CRA 자동 빌드 설정
+│   ├── package.json
+│   ├── public : 원본 파일
+│   │   ├── favicon.ico
+│   │   ├── images : 아이콘 이미지
+│   │   │   └── ico
+│   │   ├── index.html
+│   │   ├── logo192.png
+│   │   ├── logo512.png
+│   │   ├── manifest.json
+│   │   └── robots.txt
+│   ├── src
+│   │   ├── App.jsx
+│   │   ├── _redux : 상태 관리
+│   │   │   ├── _reducer
+│   │   │   │   ├── InfoSlice.jsx : 페이지 이동간에 필요한 정보
+│   │   │   │   ├── ProejctSlice.jsx
+│   │   │   │   └── fetchSlice.jsx : 개발자 이미지
+│   │   │   └── store.jsx
+│   │   ├── components : 실질적으로 유저에게 보여지는 컴포넌트 폴더
+│   │   │   ├── config
+│   │   │   │   ├── Loading.jsx
+│   │   │   │   └── LoginCallback.jsx
+│   │   │   ├── mixins
+│   │   │   │   └── Project.jsx
+│   │   │   ├── partials
+│   │   │   │   ├── Footer.jsx
+│   │   │   │   ├── Header.jsx
+│   │   │   │   ├── Homepage.jsx
+│   │   │   │   └── Projects.jsx
+│   │   │   └── screen
+│   │   │       ├── DetailProject.jsx
+│   │   │       ├── Home.jsx
+│   │   │       ├── Join.jsx
+│   │   │       ├── Login.jsx
+│   │   │       └── Upload.jsx
+│   │   ├── index.jsx
+│   │   ├── styles : 스타일 시트 및 모듈형 스타일 시트
+│   │   │   ├── config
+│   │   │   │   ├── css
+│   │   │   │   │   ├── Loading.module.css
+│   │   │   │   │   ├── reset.css
+│   │   │   │   │   └── statusStyle.module.css
+│   │   │   │   └── scss
+│   │   │   │       ├── Loading.module.scss
+│   │   │   │       ├── _variables.scss
+│   │   │   │       └── statusStyle.module.scss
+│   │   │   ├── global
+│   │   │   │   ├── css
+│   │   │   │   │   └── App.css
+│   │   │   │   └── scss
+│   │   │   │       └── App.scss
+│   │   │   ├── mixins
+│   │   │   │   ├── css
+│   │   │   │   │   └── Projects.module.css
+│   │   │   │   └── scss
+│   │   │   │       └── Projects.module.scss
+│   │   │   ├── partials
+│   │   │   │   ├── css
+│   │   │   │   │   ├── Footer.module.css
+│   │   │   │   │   ├── Header.module.css
+│   │   │   │   │   ├── Page.module.css
+│   │   │   │   │   └── Projects.module.css
+│   │   │   │   └── scss
+│   │   │   │       ├── Footer.module.scss
+│   │   │   │       ├── Header.module.scss
+│   │   │   │       ├── Page.module.scss
+│   │   │   │       └── Projects.module.scss
+│   │   │   └── screen
+│   │   │       ├── css
+│   │   │       │   ├── DetailProject.module.css
+│   │   │       │   ├── Home.module.css
+│   │   │       │   ├── Join.module.css
+│   │   │       │   ├── Login.module.css
+│   │   │       │   ├── Project.module.css
+│   │   │       │   └── Upload.module.css
+│   │   │       └── scss
+│   │   │           ├── DetailProject.module.scss
+│   │   │           ├── Home.module.scss
+│   │   │           ├── Join.module.scss
+│   │   │           ├── Login.module.scss
+│   │   │           └── Upload.module.scss
+│   │   └── view
+│   │       ├── components
+│   │       ├── css
+│   │       │   ├── Footer.module.css
+│   │       │   ├── Header.module.css
+│   │       │   ├── Join.module.css
+│   │       │   └── Login.module.css
+│   │       └── screen
+│   └── yarn.lock
+```
 
-![img](https://github.com/Hansan529/Blog/assets/115819770/e11a3e8a-ebd6-4d22-b219-1524388beda2)
-
-<br>
-
-## 레이아웃 [#16](https://github.com/Hansan529/Blog/pull/16) (23.07.05)
-
-- `Loading 컴포넌트`에 `Header`, `Footer 컴포넌트` 추가
-- 프로젝트 링크를 `이미지`에서 `_id 값`으로 수정
-- `Upload 컴포넌트`에 **개발자 이미지** 추가 및 `로딩 컴포넌트` 구현
-- 프로젝트 본문 구현
-- 상세 프로젝트 컴포넌트 구현
-- Footer 컴포넌트 높이 수정
-
-**서버**
-
-- 프로젝트 본문 구현
-- 개발자 이미지를 불러오는 API 및 라우터 생성
-- 특정 프로젝트를 불러오는 라우터 생성
-
-<br>
-
-## 프로젝트 본문 수정 및 관리자 이미지 할당 [#17](https://github.com/Hansan529/Blog/pull/17) (23.07.05 ~ 07)
-
-- 상세 프로젝트에서 본문 및 관리자 이미지 출력
-- 관리자 이미지 비동기 처리로 Redux State 설정
-- Loading 컴포넌트 안에 Header, Footer 컴포넌트 제거
-- 상세 프로젝트 페이지에서 수정하기 기능 구현, 그로 인해 별도의 `ProjectEdit 컴포넌트` 및 **라우터** 제거
-
-<br>
-
-## 언어 이미지 구현 CSS에서 REACT로 변경 [#18](https://github.com/Hansan529/Blog/pull/18) (23.07.07 ~ 09)
-
-**클라이언트**
-
-- 소셜 회원가입에 `username` 추가하도록 설정
-- 프로그래밍 언어 이미지 CSS → ReactJS img 태그로 변경
-- Admin 모델에 username 추가, 종속성을 가진 Join 컴포넌트도 업데이트
-- 선언되고 사용되지 않은 코드 삭제
-- `Loading 컴포넌트`에서 `Header`, `Footer 컴포넌트` 제거
-
-**서버**
-
-- 관리자 모델에 `username` 추가
-
-<br>
-
-## 이름 변경 및 프로젝트 상세 정보 추가 [#19](https://github.com/Hansan529/Blog/pull/19) (23.07.09)
-
-- img &rarr; thumbnail
-- select &rarr; developSelect
-- body &rarr; description
-
-<br>
-
-## 메인 페이지 생성 [#20](https://github.com/Hansan529/Blog/pull/20) (23.07.09 ~ 10)
-
-**클라이언트**
-
-- 프로젝트 홈페이지로 이동하는 Link 추가
-- 프로젝트 수정 후 프로젝트를 불러오지 않는 현상 수정
-- `Header 컴포넌트`에서 해당 영역에 스크롤이 이동하도록 `Link 태그`에서 `a 태그`로 **변경**
-- 프로젝트 수정 후 더보기 상태 제거
-- &lt;Login&gt;, &lt;Header&gt;, &lt;DetailProject&gt; 컴포넌트 스타일링
-- 파트를 나타내는 empty 객체 생성
-- 프로젝트 업로드 버튼을 &lt;Header&gt; 컴포넌트로 이동
-- 메인 배너로 나올 &lt;Page&gt; 컴포넌트 구현
-
-**서버**
-
-- 프로젝트 업로드 및 수정에서 Language 에 대한 정보를 Client가 아닌, 서버에서 변환하도록 수정
-- 프로젝트 목록을 날짜를 기준으로 내림차순으로 전송
-
-![img](https://github.com/Hansan529/Blog/assets/115819770/6b8448b5-a162-46a3-b8c5-038897eb3500)
-![img](https://github.com/Hansan529/Blog/assets/115819770/74a1d9e3-5299-4c93-b160-fba6da4decb3)
-
-<br>
-
-## 상세 프로젝트 페이지에서 새로고침 오류 수정 [#21](https://github.com/Hansan529/Blog/pull/21) (23.07.10)
-
-- `DetailProject 컴포넌트`에서 중복으로 개발자 이미지를 요청해 해당 요소 삭제
-- `상세 프로젝트 컴포넌트`에서 새로고침 할 경우 개발자 이미지 로드가 될 때 까지 로딩 컴포넌트가 보이도록 수정
-
-<br>
-
-## Project 구조 변경 및 컴포넌트 높이 지정 [#23](https://github.com/Hansan529/Blog/pull/23) (23.07.10 ~ 13)
-
-- 소셜 로그인 이미지 추가
-- SCSS mixin 추가
-- 컴포넌트 최소 높이 지정
-- `div.center` &rarr; `article` 변경
-- 컴포넌트 중앙 정렬
-
-<br>
-
-## 홈페이지 소개, 프로젝트 바로가기 버튼 구현 [#24](https://github.com/Hansan529/Blog/pull/24) (23.07.14)
-
-- Home 컴포넌트에서 해당 Dom을 저장할 State 생성, Homepage 컴포넌트에 setState 를 Props으로 전달
-- 해당 Props을 받아 컴포넌트에서 useRef로 변경시킨 뒤 부모 컴포넌트로 전달
-- Home 컴포넌트에서 각 Ref가 필요한 컴포넌트에게 Props 전달
-- 해당 컴포넌트에서 scrollIntoView 를 사용해 해당 객체 위치로 스크롤 이동
-
-![img](https://github.com/Hansan529/Blog/assets/115819770/43197844-a56e-4790-9c53-b23564ba1a13)
-
-<br>
-
-## 1차 배포 (릴리즈 1.0.0) [#28](https://github.com/Hansan529/Blog/pull/28)
-
-**클라이언트**
-
-- DetailProject 오류 수정
-- &lt;Upload&gt; 컴포넌트에서 &lt;Loading&gt; 컴포넌트에도 Header, Footer 컴포넌트가 적용되도록 수정
-- 상세 컴포넌트에서 이전 페이지로 이동하는 버튼 고정화
-- 포트 수정 3002 &rarr; 8000
-- 이미지 경로 소문자로 변경
-
-**서버**
-
-- 포트 수정 8000 &rarr; 8001
+```zsh
+└── server : 백엔드
+    ├── babel.config.json
+    ├── controllers
+    │   └── apiController.js : API 요청을 받고 실행하는 스크립트
+    ├── db.js : 데이터베이스 연결
+    ├── init.js : 포트 설정
+    ├── models : 데이터베이스에 저장될 스키마
+    │   ├── Admin.js
+    │   └── Project.js
+    ├── nodemon.json
+    ├── package.json
+    ├── router
+    │   └── apiRouter.js : API 엔드 포인트 설정하는 라우터
+    ├── server.js : 서버 배포 관련 설정
+    ├── uploads
+    │   └── projects : 업로드된 이미지
+    └── yarn.lock
+```
