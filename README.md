@@ -262,3 +262,5 @@ Backend
     │   └── projects : 업로드된 이미지
     └── yarn.lock
 ```
+
+## [업데이트 내역 (CHANGELOG)](https://github.com/Hansan529/Blog/blob/main/CHANGELOG.md)
