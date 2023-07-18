@@ -9,7 +9,6 @@ const projectSchema = new mongoose.Schema({
   thumbnail: { type: String, required: true },
   language: [{ type: String, required: true }],
   description: { type: String, required: true },
-  sourceCode: { type: String, required: true },
 });
 
 const Project = mongoose.model('Project', projectSchema);

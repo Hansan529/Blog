@@ -54,7 +54,6 @@ function Header({ homepage, project, info }) {
         homepageBtn.current.click();
         break;
       case 'project':
-        console.log(project);
         projectBtn.current.click();
         break;
       case 'info':
