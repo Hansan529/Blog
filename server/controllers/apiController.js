@@ -113,6 +113,7 @@ export const postProjectEdit = async (req, res) => {
   const updateData = {
     url,
     date,
+    dateSearch: date,
     title,
     developer,
     thumbnail: thumbnail ? thumbnail.filename : undefined,
