@@ -1,5 +1,11 @@
 # Hxan Develop Blog - CHANGELOG
 
+## Join 컴포넌트의 article 태그 누락 수정 및 DetailProject 컴포넌트 모듈화 수정 [#32](https://github.com/Hansan529/Blog/pull/32) (2023.07.18)
+
+- `<Join />` 컴포넌트 `article` 누락된 사항 수정
+- `<DetailProject />` 컴포넌트에서 `<Upload />` 컴포넌트의 module.css를 참조하는 사항을 제거함
+- `DetailProject.module.css` 에서 참조하도록 수정
+
 ## Readme 수정 및 배포 포트 통합 [#31](https://github.com/Hansan529/Blog/pull/31) (2023.07.17)
 
 - `README` 내용이 `CHANGELOG` 으로 변경
