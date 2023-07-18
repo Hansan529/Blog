@@ -4,7 +4,6 @@ import Footer from '../partials/Footer';
 import Loading from '../config/Loading';
 // Function
 import { downloadFiles, server, uploadFile } from './Home';
-import extendStyles from '../../styles/screen/css/Upload.module.css';
 import styles from '../../styles/screen/css/DetailProject.module.css';
 import { initial } from '../../_redux/_reducer/InfoSlice';
 
@@ -167,6 +166,10 @@ function DetailProject() {
     }
   };
 
+  const editCancel = () => {
+    edit ? setEdit(false) : setEdit(true);
+  };
+
   // ^ 수정 업데이트
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -226,8 +229,12 @@ function DetailProject() {
                     <form
                       method="POST"
                       onSubmit={onSubmit}
-                      className={extendStyles.form}
+                      className={styles.form}
                     >
+                      <button
+                        className={styles.editCancel}
+                        onClick={editCancel}
+                      ></button>
                       <label>
                         <p className={styles.url}>프로젝트 주소</p>
                         <input
@@ -238,7 +245,7 @@ function DetailProject() {
                         />
                       </label>
                       <label>
-                        <p className={extendStyles.name}>날짜</p>
+                        <p className={styles.name}>날짜</p>
                         <input
                           name="date"
                           type="date"
@@ -247,7 +254,7 @@ function DetailProject() {
                         />
                       </label>
                       <label>
-                        <p className={extendStyles.name}>제목</p>
+                        <p className={styles.name}>제목</p>
                         <input
                           name="title"
                           type="text"
@@ -257,9 +264,9 @@ function DetailProject() {
                         />
                       </label>
                       <label>
-                        <p className={extendStyles.name}>개발자</p>
-                        <div className={extendStyles.select}>
-                          <ul className={extendStyles.select}>
+                        <p className={styles.name}>개발자</p>
+                        <div className={styles.select}>
+                          <ul className={styles.select}>
                             {devAvatar.map((value, index) => (
                               <li
                                 key={index}
@@ -268,10 +275,7 @@ function DetailProject() {
                               >
                                 {developerSelect.map((data, index) =>
                                   data === value.username ? (
-                                    <i
-                                      key={index}
-                                      className={extendStyles.check}
-                                    ></i>
+                                    <i key={index} className={styles.check}></i>
                                   ) : null
                                 )}
                                 <img
@@ -286,7 +290,7 @@ function DetailProject() {
                         </div>
                       </label>
                       <label>
-                        <p className={extendStyles.name}>이미지</p>
+                        <p className={styles.name}>이미지</p>
                         <input
                           name="thumbnail"
                           type="file"
@@ -299,7 +303,7 @@ function DetailProject() {
                         <img src={thumbnailPreview} alt="" />
                       ) : null}
                       <label>
-                        <p className={extendStyles.name}>언어</p>
+                        <p className={styles.name}>언어</p>
                         <input
                           name="language"
                           type="text"

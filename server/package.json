@@ -4,8 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "concurrently \"yarn server\" \"yarn client\"",
-    "server": "nodemon",
+    "start": "babel-node init.js",
+    "server": "concurrently \"yarn dev\" \"yarn client\"",
+    "dev": "nodemon",
     "client": "cd ../client && yarn start"
   },
   "dependencies": {

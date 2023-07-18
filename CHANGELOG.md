@@ -1,5 +1,32 @@
 # Hxan Develop Blog - CHANGELOG
 
+## Readme 수정 및 배포 포트 통합 [#31](https://github.com/Hansan529/Blog/pull/31) (2023.07.17)
+
+- `README` 내용이 `CHANGELOG` 으로 변경
+- 업데이트 내역을 내림차순으로 정렬하도록 수정
+
+### 클라이언트
+
+- 클라이언트에서는 불필요한 패키지인 `express-session`, `mongoose` 및 현재는 미사용중인 `redux-saga` 삭제
+- ~~개발 서버 포트를 8000 &rarr; 5000 수정~~
+- ~~AirPlay 수신 모드가 5000 포트를 사용중에 있어 5000 &rarr; 6000 포트 수정~~
+- Chrome 브라우저에서 보안상 접근이 불가능한 포트라 6000 &rarr; 6001 수정
+
+### 서버
+
+- 정적 파일 렌더링 (Client/build/index.html)
+- 배포 포트를 8001 &rarr; 8000 수정
+
+## SourceCode &rarr; URL 변경 및 REST API 규칙화 [#28](https://github.com/Hansan529/Blog/pull/30) (2023.07.17)
+
+- CSS 모듈 파일 업로드하기로 변경 (Local, SSH 상의 pull 단계에서 누락되는 일 발생)
+- `<DetailProject />` 컴포넌트에서 수정 폼의 `sourceCode` 제거, 기존의 소스 코드는 url로 대체
+- 상세 프로젝트에서 소스코드가 URL로 이동함에 따라서 해당 위치를 미리보기 이미지 위치로 수정
+- 홈 컴포넌트 프로젝트 수정 시 이미지 크기 500x200 지정
+- 이전 페이지 이동에서 홈 컴포넌트 페이지로 이동으로 변경 naviagte(-2) → navigate('/')
+- REST API 규칙에 맞게 axios 요청 수정
+- 중복 호출 코드 제거
+
 ## 1차 배포 (릴리즈 1.0.0) [#28](https://github.com/Hansan529/Blog/pull/28) (2023.07.14)
 
 ### 클라이언트
