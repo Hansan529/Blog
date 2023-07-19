@@ -13,6 +13,7 @@ import { projectData } from '../../_redux/_reducer/ProejctSlice';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import Info from '../partials/Info';
 
 // * axios 인스턴스
 const baseURL = process.env.REACT_APP_API_ENDPOINT;
@@ -45,7 +46,7 @@ function Home() {
   const initPage = useSelector((state) => state.info.initial);
   const [homepage, setHomepage] = useState('');
   const [project, setProject] = useState('');
-  // const [info, setInfo] = useState('');
+  const [info, setInfo] = useState('');
 
   const onHomepage = (value) => {
     setHomepage(value);
@@ -53,6 +54,10 @@ function Home() {
 
   const onProject = (value) => {
     setProject(value);
+  };
+
+  const onInfo = (value) => {
+    setInfo(value);
   };
 
   // *
@@ -84,13 +89,14 @@ function Home() {
   // React 설정
   return (
     <>
-      <Header homepage={homepage} project={project} /* info={info} */ />
+      <Header homepage={homepage} project={project} info={info} />
       {loading ? (
         <Loading />
       ) : (
         <main>
           <Homepage LinkHomepage={onHomepage} project={project} />
           <Projects LinkProject={onProject} />
+          <Info LinkInfo={onInfo} />
         </main>
       )}
       <Footer />
