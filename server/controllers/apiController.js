@@ -4,12 +4,14 @@ import fs, { access } from 'fs';
 import path from 'path';
 import Project from '../models/Project';
 import axios from 'axios';
+import Info from '../models/Info';
 
 // *
 export const getHome = async (req, res) => {
   // 프로젝트 불러오고, 반환
   const project = await Project.find({}).sort({ dateSearch: 'desc' });
-  return res.json(project);
+  const info = await Info.find({}).sort({ date: 'desc' });
+  return res.json({ project, info });
 };
 
 // ^ 관리
@@ -63,9 +65,9 @@ export const postJoin = async (req, res) => {
 
 // * 프로젝트 관련
 // 프로젝트 추가
-export const postUpload = async (req, res) => {
+export const postProjectUpload = async (req, res) => {
   const {
-    body: { url, date, title, developer, language, description, sourceCode },
+    body: { url, date, title, developer, language, description },
     file: thumbnail,
   } = req;
   // TODO
@@ -83,7 +85,6 @@ export const postUpload = async (req, res) => {
       thumbnail: thumbnail.filename,
       language: language.split(',').map((value) => value.trim().toUpperCase()),
       description,
-      sourceCode,
     });
     // 생성 완료
     return res.status(201).json(project._id);
@@ -92,6 +93,22 @@ export const postUpload = async (req, res) => {
     fs.unlinkSync(thumbnail.path);
     return res.sendStatus(400);
   }
+};
+
+export const postInfoUpload = async (req, res) => {
+  const { prefix, date, title, description } = req.body;
+  try {
+    await Info.create({
+      prefix,
+      title,
+      date,
+      description,
+    });
+  } catch (e) {
+    console.log(e);
+    res.end();
+  }
+  res.sendStatus(201);
 };
 
 // 프로젝트 수정
@@ -106,7 +123,6 @@ export const postProjectEdit = async (req, res) => {
       developer,
       language,
       description,
-      sourceCode,
     },
     file: thumbnail,
   } = req;
@@ -119,7 +135,6 @@ export const postProjectEdit = async (req, res) => {
     thumbnail: thumbnail ? thumbnail.filename : undefined,
     language: language.split(',').map((value) => value.trim().toUpperCase()),
     description,
-    sourceCode,
   };
   // 객체의 value 값이 undefined가 아닌 것들만 반환하고 하나의 객체로 합침
   const undefinedFilter = Object.entries(updateData)
