@@ -1,5 +1,5 @@
 // Function
-import styles from '../../styles/mixins/css/Projects.module.css';
+import styles from '../../styles/mixins/css/Project.module.css';
 import { server, uploadFile } from '../screen/Home';
 import { initial } from '../../_redux/_reducer/InfoSlice';
 
@@ -24,7 +24,6 @@ function Project({ id, logged, date, title, developer, thumbnail, language }) {
   const [edit, setEdit] = useState(false);
   // 개발자 이미지 정보
   const devAvatar = useSelector((state) => state.fetchData.devAvatar); // img, username
-
   // 프로젝트 삭제
   const onClick = async () => {
     // 서버에 삭제 요청
