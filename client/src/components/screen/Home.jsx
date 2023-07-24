@@ -7,7 +7,7 @@ import Footer from '../partials/Footer';
 
 // Function
 import { initial } from '../../_redux/_reducer/InfoSlice';
-import { projectData } from '../../_redux/_reducer/ProejctSlice';
+import { projectData, infoData } from '../../_redux/_reducer/DBSlice';
 
 // Package
 import axios from 'axios';
@@ -68,7 +68,8 @@ function Home() {
     // 1회 접속 저장
     dispatch(initial(true));
     // API 결과 값 저장
-    dispatch(projectData(data));
+    dispatch(projectData(data.project));
+    dispatch(infoData(data.info));
     // 로딩 완료
     setLoading(false);
   };
