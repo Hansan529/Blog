@@ -11,7 +11,7 @@ import { useEffect, useRef, useState } from 'react';
 
 function Projects({ LinkProject }) {
   const logged = useSelector((state) => state.info.logged);
-  const project = useSelector((state) => state.project.value);
+  const project = useSelector((state) => state.db.project);
   const devAvatar = useSelector((state) => state.fetchData.devAvatar);
   const [loading, setLoading] = useState(true);
   const projectRef = useRef();

@@ -39,8 +39,8 @@ function Header({ homepage, project, info }) {
         }
         return;
       case 'info':
-        // info.current.scrollIntoView({ behavior: 'smooth' });
-        // dispatch(linkPart('info'))
+        info.current.scrollIntoView({ behavior: 'smooth' });
+        // dispatch(linkPart('info'));
         return;
       default:
         return;

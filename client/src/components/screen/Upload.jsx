@@ -59,7 +59,7 @@ function Upload() {
   };
 
   // * 업로드 시도
-  const onSubmit = async (e) => {
+  const projectUpload = async (e) => {
     e.preventDefault();
     // multipart/form-data 생성
     const formData = new FormData();
@@ -72,13 +72,26 @@ function Upload() {
     formData.append('language', inputLanguage);
     formData.append('description', inputDescription);
     // Project 생성 요청
-    const { status, data } = await uploadFile.post('/upload', formData);
+    const { status, data } = await uploadFile.post('/project', formData);
     if (status === 201) {
       // 프로젝트 생성 성공, 홈 루트의 프로젝트 갱신처리
       dispatch(initial(false));
       // 해당 프로젝트 상세 페이지로 이동
       navigate(`/projects/${data}`);
     }
+  };
+
+  // & 업로드 시도
+  const infoUpload = async (e) => {
+    e.preventDefault();
+    // Project 생성 요청
+    await server.post('/info', {
+      date: inputDate,
+      title: inputTitle,
+      description: inputDescription,
+    });
+    dispatch(initial(false));
+    navigate('/');
   };
 
   // * 데이터 기입
@@ -147,91 +160,142 @@ function Upload() {
       ) : (
         <main>
           <article className={styles.article}>
-            <form onSubmit={onSubmit} method="POST" className={styles.form}>
-              <label>
-                <p className={styles.url}>프로젝트 주소</p>
-                <input
-                  name="url"
-                  type="url"
-                  onChange={onChange}
-                  value={inputUrl}
-                />
-              </label>
-              <label>
-                <p className={styles.name}>날짜</p>
-                <input
-                  name="date"
-                  type="date"
-                  onChange={onChange}
-                  value={inputDate}
-                />
-              </label>
-              <label>
-                <p className={styles.name}>제목</p>
-                <input
-                  name="title"
-                  type="text"
-                  value={inputTitle}
-                  onChange={onChange}
-                  placeholder="제목"
-                />
-              </label>
-              <label>
-                <p className={styles.name}>개발자</p>
-                <div className={styles.select}>
-                  <ul>
-                    {admin.map((value, index) => (
-                      <li
-                        key={index}
-                        data-id={value.username}
-                        onClick={devSelect}
-                      >
-                        {developerSelect.map((data, index) =>
-                          data === value.username ? (
-                            <i key={index} className={styles.check}></i>
-                          ) : null
-                        )}
-                        <img src={value.img} alt="" crossOrigin="anonymous" />{' '}
-                        <span className={styles.developerName}>
-                          {value.username}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </label>
-              <label>
-                <p className={styles.name}>이미지</p>
-                <input
-                  name="thumbnail"
-                  type="file"
-                  onChange={onChange}
-                  placeholder="이미지"
-                  accept="image/*"
-                />
-              </label>
-              {thumbnailPreview ? <img src={thumbnailPreview} alt="" /> : null}
-              <label>
-                <p className={styles.name}>언어</p>
-                <input
-                  name="language"
-                  type="text"
-                  value={inputLanguage}
-                  onChange={onChange}
-                  placeholder="언어"
-                />
-              </label>
-              <label>
-                <textarea
-                  name="description"
-                  type="text"
-                  value={inputDescription}
-                  onChange={onChange}
-                  placeholder="본문"
-                />
-              </label>
-              <button type="submit">업로드</button>
-            </form>
+            {/* 프로젝트 업로드 */}
+            <div>
+              <h3 className={styles.title}>프로젝트 업로드</h3>
+              <form
+                onSubmit={projectUpload}
+                method="POST"
+                className={styles.form}
+              >
+                <label>
+                  <p className={styles.url}>프로젝트 주소</p>
+                  <input
+                    name="url"
+                    type="url"
+                    onChange={onChange}
+                    value={inputUrl}
+                  />
+                </label>
+                <label>
+                  <p className={styles.name}>날짜</p>
+                  <input
+                    name="date"
+                    type="date"
+                    onChange={onChange}
+                    value={inputDate}
+                  />
+                </label>
+                <label>
+                  <p className={styles.name}>제목</p>
+                  <input
+                    name="title"
+                    type="text"
+                    value={inputTitle}
+                    onChange={onChange}
+                    placeholder="제목"
+                  />
+                </label>
+                <label>
+                  <p className={styles.name}>개발자</p>
+                  <div className={styles.select}>
+                    <ul>
+                      {admin.map((value, index) => (
+                        <li
+                          key={index}
+                          data-id={value.username}
+                          onClick={devSelect}
+                        >
+                          {developerSelect.map((data, index) =>
+                            data === value.username ? (
+                              <i key={index} className={styles.check}></i>
+                            ) : null
+                          )}
+                          <img src={value.img} alt="" crossOrigin="anonymous" />{' '}
+                          <span className={styles.developerName}>
+                            {value.username}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </label>
+                <label>
+                  <p className={styles.name}>이미지</p>
+                  <input
+                    name="thumbnail"
+                    type="file"
+                    onChange={onChange}
+                    placeholder="이미지"
+                    accept="image/*"
+                  />
+                </label>
+                {thumbnailPreview ? (
+                  <img src={thumbnailPreview} alt="" />
+                ) : null}
+                <label>
+                  <p className={styles.name}>언어</p>
+                  <input
+                    name="language"
+                    type="text"
+                    value={inputLanguage}
+                    onChange={onChange}
+                    placeholder="언어"
+                  />
+                </label>
+                <label>
+                  <textarea
+                    name="description"
+                    type="text"
+                    value={inputDescription}
+                    onChange={onChange}
+                    placeholder="본문"
+                  />
+                </label>
+                <button type="submit">업로드</button>
+              </form>
+            </div>
+            {/*
+             *
+             *
+             * 정보 게시글 업로드
+             *
+             *
+             * */}
+            <div>
+              <h3 className={styles.title}>정보 게시글 업로드</h3>
+              <form onSubmit={infoUpload} method="POST" className={styles.form}>
+                <label>
+                  <p className={styles.name}>날짜</p>
+                  <input
+                    name="date"
+                    type="date"
+                    onChange={onChange}
+                    value={inputDate}
+                  />
+                </label>
+                <label>
+                  <p className={styles.name}>제목</p>
+                  <input
+                    name="title"
+                    type="text"
+                    value={inputTitle}
+                    onChange={onChange}
+                    placeholder="제목"
+                  />
+                </label>
+                <label>
+                  <textarea
+                    name="description"
+                    type="text"
+                    value={inputDescription}
+                    onChange={onChange}
+                    placeholder="본문"
+                  />
+                </label>
+                <button type="submit">업로드</button>
+              </form>
+            </div>
           </article>
         </main>
       )}
