@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 
-const infoSchema = new mongoose.Model({
+const infoSchema = new mongoose.Schema({
+  prefix: { type: String, default: null },
   title: { type: String, required: true },
   date: { type: Date, required: true, default: Date.now() },
   description: { type: String },
