@@ -5,6 +5,13 @@
 main {
   padding: 0 30px;
 }
+@media screen and (max-width: 743px) {
+  main {
+    padding: 0;
+    width: 95%;
+    margin: 0 auto;
+  }
+}
 main > article {
   min-height: calc(100vh - 160px);
   position: relative;
