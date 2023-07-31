@@ -23,10 +23,21 @@
     padding: 0 30px;
   }
 }
+.header .center .moreEmpty {
+  position: absolute;
+  left: 30px;
+  width: 30px;
+  height: 30px;
+}
 .header .center .picture {
   display: flex;
   align-items: center;
   height: 80px;
+}
+@media screen and (max-width: 743px) {
+  .header .center .picture {
+    margin-left: 50px;
+  }
 }
 .header .center .ul {
   display: flex;
