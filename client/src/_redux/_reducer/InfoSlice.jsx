@@ -5,6 +5,7 @@ const initialState = {
   logged: false,
   socialLogin: false,
   part: null,
+  response: false,
 };
 
 const infoSlice = createSlice({
@@ -27,9 +28,13 @@ const infoSlice = createSlice({
     linkPart: (state, action) => {
       state.part = action.payload;
     },
+    responsive: (state, action) => {
+      state.response = action.payload;
+    },
   },
 });
 
-export const { initial, login, socialLogin, linkPart } = infoSlice.actions;
+export const { initial, login, socialLogin, linkPart, responsive } =
+  infoSlice.actions;
 
 export default infoSlice.reducer;
