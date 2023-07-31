@@ -4,6 +4,11 @@
   text-align: center;
   font-size: 24px;
 }
+@media screen and (max-width: 743px) {
+  .article {
+    word-break: keep-all;
+  }
+}
 
 .title {
   position: relative;
@@ -12,11 +17,20 @@
   text-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
   margin-bottom: 20px;
 }
+@media screen and (max-width: 743px) {
+  .title {
+    font-size: 42px;
+  }
+  .title ~ p {
+    font-size: 16px;
+  }
+}
 
 .language {
   display: flex;
   justify-content: center;
   gap: 10px;
+  flex-wrap: wrap;
   margin: 20px;
 }
 .language img {
