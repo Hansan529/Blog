@@ -16,6 +16,11 @@ footer {
   height: 100%;
   gap: 20px;
 }
+@media screen and (max-width: 743px) {
+  .center {
+    padding: 0 30px;
+  }
+}
 .center > h2.flex {
   display: flex;
   align-items: center;

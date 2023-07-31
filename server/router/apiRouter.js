@@ -7,9 +7,10 @@ import {
   tokenLoginGithub,
   postProjectDelete,
   postProjectEdit,
-  postUpload,
+  postProjectUpload,
   getAvatarImg,
   getProject,
+  postInfoUpload,
 } from '../controllers/apiController';
 import multer from 'multer';
 
@@ -26,7 +27,7 @@ apiRouter.post('/login', postLogin);
 apiRouter.get('/login/github/token', tokenLoginGithub);
 apiRouter.post('/login/github/access', postLoginGithub);
 apiRouter.route('/join').post(postJoin);
-apiRouter.post('/upload', projectImg.single('thumbnail'), postUpload);
+apiRouter.post('/project', projectImg.single('thumbnail'), postProjectUpload); // 업로드
 apiRouter.get('/projects/:id', getProject);
 apiRouter.put(
   '/projects/:id/edit',
@@ -35,6 +36,6 @@ apiRouter.put(
 );
 apiRouter.delete('/projects/:id/:thumbnail', postProjectDelete);
 apiRouter.get('/avatarimg', getAvatarImg);
-// apiRouter.get('/image/:id', getImage);
+apiRouter.post('/info', postInfoUpload); // 업로드
 
 export default apiRouter;

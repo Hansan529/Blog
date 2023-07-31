@@ -7,6 +7,12 @@
 main {
   padding: 0 30px;
 
+  @include res_Mobile {
+    padding: 0;
+    width: 95%;
+    margin: 0 auto;
+  }
+
   // 컴포넌트
   > article {
     min-height: calc(100vh - $headerHeight * 2);

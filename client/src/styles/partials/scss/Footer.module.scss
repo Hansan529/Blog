@@ -1,3 +1,5 @@
+@import '../../config/scss/variables';
+
 footer {
   background-color: #000;
   position: relative;
@@ -15,6 +17,11 @@ footer {
   align-items: center;
   height: 100%;
   gap: 20px;
+
+  @include res_Mobile {
+    padding: 0 30px;
+  }
+
   > h2.flex {
     display: flex;
     align-items: center;

@@ -2,12 +2,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 100px;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 50px;
 }
 
 .form {
   display: grid;
   justify-content: center;
   gap: 15px;
+  width: 400px;
 }
 .form label {
   overflow: hidden;

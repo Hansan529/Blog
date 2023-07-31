@@ -1,5 +1,5 @@
 // Function
-import styles from '../../styles/mixins/css/Projects.module.css';
+import styles from '../../styles/mixins/css/Project.module.css';
 import { server, uploadFile } from '../screen/Home';
 import { initial } from '../../_redux/_reducer/InfoSlice';
 
@@ -8,7 +8,14 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 
-function Project({ id, logged, date, title, developer, thumbnail, language }) {
+function Project({
+  id,
+  logged,
+  date,
+  title,
+  developer,
+  thumbnail /* language */,
+}) {
   // React 세팅
   const dispatch = useDispatch();
   const [inputDate, setInputDate] = useState(date);
@@ -18,13 +25,12 @@ function Project({ id, logged, date, title, developer, thumbnail, language }) {
   const [thumbnailPreview, setThumbnailPreview] = useState(
     `${process.env.REACT_APP_SERVER}/image/${thumbnail}`
   );
-  const [inputLanguage, setInputLanguage] = useState(language);
+  // const [inputLanguage, setInputLanguage] = useState(language);
   // 프로젝트 수정 관련 State
   const [more, setMore] = useState(false);
   const [edit, setEdit] = useState(false);
   // 개발자 이미지 정보
   const devAvatar = useSelector((state) => state.fetchData.devAvatar); // img, username
-
   // 프로젝트 삭제
   const onClick = async () => {
     // 서버에 삭제 요청
@@ -43,7 +49,7 @@ function Project({ id, logged, date, title, developer, thumbnail, language }) {
     formData.append('title', inputTitle);
     formData.append('developer', inputDeveloper);
     formData.append('thumbnail', inputThumbnail);
-    formData.append('language', inputLanguage);
+    // formData.append('language', inputLanguage);
     formData.append('beforeId', id);
     formData.append('beforeImg', thumbnail);
     // 프로젝트 업데이트 요청
@@ -84,9 +90,9 @@ function Project({ id, logged, date, title, developer, thumbnail, language }) {
             resolve();
           };
         });
-      case 'language':
-        setInputLanguage(value);
-        break;
+      // case 'language':
+      //   setInputLanguage(value);
+      //   break;
       default:
         break;
     }
@@ -178,14 +184,14 @@ function Project({ id, logged, date, title, developer, thumbnail, language }) {
                   />
                 </label>
               </div>
-              <input
+              {/* <input
                 name="language"
                 type="text"
                 placeholder="언어"
                 value={inputLanguage}
                 onChange={onChange}
                 className={styles.language}
-              />
+              /> */}
               <button type="submit" className={styles.submit}>
                 <img
                   src={`${process.env.PUBLIC_URL}/images/ico/check.svg`}
@@ -196,9 +202,7 @@ function Project({ id, logged, date, title, developer, thumbnail, language }) {
           </>
         ) : null}
         {/* 수정하기를 한 경우, 기존 div는 숨김 처리함 */}
-        <div className={edit ? styles.hidden : null}>
-          {/* 업로드한 날짜 */}
-          <small className={styles.date}>{date.substring(0, 10)}</small>
+        <div className={edit ? styles.hidden : styles.projectInfo}>
           {/* 개발자 이미지 배열 */}
           <small className={styles.developer}>
             {devAvatar.map((value, index) => {
@@ -215,19 +219,23 @@ function Project({ id, logged, date, title, developer, thumbnail, language }) {
               );
             })}
           </small>
-          {/* 프로젝트 제목, 이미지 */}
-          <Link to={`/projects/${id}`}>
-            <h3 className={styles.title}>{title}</h3>
-            <div className={styles.imgWrap}>
-              <img
-                className={styles.img}
-                src={`${process.env.REACT_APP_SERVER}/image/${thumbnail}`}
-                alt="preview"
-              />
-            </div>
-          </Link>
-          {/* 프로젝트 사용 언어 */}
-          <div className={styles.language}>
+          {/* 제목 */}
+          <h3 className={styles.title}>
+            <Link to={`/projects/${id}`}>{title}</Link>
+          </h3>
+          {/* 업로드한 날짜 */}
+          <small className={styles.date}>{date.substring(0, 10)}</small>
+        </div>
+        {/* 프로젝트 이미지 */}
+        <Link to={`/projects/${id}`} className={styles.imgWrap}>
+          <img
+            className={styles.img}
+            src={`${process.env.REACT_APP_SERVER}/image/${thumbnail}`}
+            alt="preview"
+          />
+        </Link>
+        {/* 프로젝트 사용 언어 */}
+        {/* <div className={styles.language}>
             {!language
               ? null
               : language.map((item, index) => {
@@ -241,8 +249,7 @@ function Project({ id, logged, date, title, developer, thumbnail, language }) {
                     />
                   );
                 })}
-          </div>
-        </div>
+          </div> */}
       </div>
     </>
   );
