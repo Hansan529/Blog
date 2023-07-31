@@ -21,7 +21,7 @@
     padding: 0 10px;
 
     @include res_Mobile {
-      padding: 0 20px;
+      padding: 0 30px;
     }
 
     .picture {
@@ -35,6 +35,10 @@
       display: flex;
       justify-content: space-between;
       gap: 20px;
+
+      @include res_Mobile {
+        display: none;
+      }
 
       li {
         position: relative;

@@ -20,7 +20,7 @@
 }
 @media screen and (max-width: 743px) {
   .header .center {
-    padding: 0 20px;
+    padding: 0 30px;
   }
 }
 .header .center .picture {
@@ -32,6 +32,11 @@
   display: flex;
   justify-content: space-between;
   gap: 20px;
+}
+@media screen and (max-width: 743px) {
+  .header .center .ul {
+    display: none;
+  }
 }
 .header .center .ul li {
   position: relative;
