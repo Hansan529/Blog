@@ -11,6 +11,7 @@ import { useEffect, useRef } from 'react';
 
 function Header({ homepage, project, info }) {
   const logged = useSelector((state) => state.info.logged);
+  const responsive = useSelector((state) => state.info.response);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const homepageBtn = useRef();
@@ -70,6 +71,7 @@ function Header({ homepage, project, info }) {
     <>
       <header className={styles.header}>
         <div className={styles.center}>
+          {responsive ? <div className={styles.moreEmpty}></div> : null}
           <h1 className="logo">
             <Link to="/">
               <picture className={styles.picture}>

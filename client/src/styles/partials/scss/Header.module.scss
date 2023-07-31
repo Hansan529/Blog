@@ -21,13 +21,24 @@
     padding: 0 10px;
 
     @include res_Mobile {
-      padding: 0 20px;
+      padding: 0 30px;
+    }
+
+    .moreEmpty {
+      position: absolute;
+      left: 30px;
+      width: 30px;
+      height: 30px;
     }
 
     .picture {
       display: flex;
       align-items: center;
       height: $headerHeight;
+
+      @include res_Mobile {
+        margin-left: 50px;
+      }
     }
 
     // link Ul
@@ -35,6 +46,10 @@
       display: flex;
       justify-content: space-between;
       gap: 20px;
+
+      @include res_Mobile {
+        display: none;
+      }
 
       li {
         position: relative;

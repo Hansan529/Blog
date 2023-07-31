@@ -18,6 +18,7 @@ function DetailProject() {
   // 상태 정보
   const logged = useSelector((state) => state.info.logged);
   const initPage = useSelector((state) => state.info.initial);
+  const responsive = useSelector((state) => state.info.response);
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
   const [project, setProject] = useState('');
@@ -53,12 +54,12 @@ function DetailProject() {
 
   // * 프로젝트 내용 불러오기 #2
   const info = async () => {
-    const data = await (await downloadFiles('/')).data;
+    const { project } = await (await downloadFiles('/')).data;
     // 현재 접근한 프로젝트 필터링
-    const filterData = data.filter((value) => value._id === id)[0];
+    const filterData = project.filter((value) => value._id === id)[0];
     setProject(filterData);
     // 나머지 전체 프로젝트
-    setAllProject(data);
+    setAllProject(project);
     // 기존값 설정
     const { url, date, title, developer, thumbnail, language, description } =
       filterData;
@@ -208,21 +209,23 @@ function DetailProject() {
         <>
           <main>
             <article className={styles.article}>
-              <aside className={styles.aside}>
-                <ul>
-                  {asideProject.map((value, index) => (
-                    <li key={index}>
-                      <Link
-                        className={value._id === id ? styles.active : null}
-                        onClick={() => setLoading(true)}
-                        to={`/projects/${value._id}`}
-                      >
-                        {value.title}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </aside>
+              {responsive ? null : (
+                <aside className={styles.aside}>
+                  <ul>
+                    {asideProject.map((value, index) => (
+                      <li key={index}>
+                        <Link
+                          className={value._id === id ? styles.active : null}
+                          onClick={() => setLoading(true)}
+                          to={`/projects/${value._id}`}
+                        >
+                          {value.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </aside>
+              )}
               {edit ? (
                 importLoading ? null : (
                   <>

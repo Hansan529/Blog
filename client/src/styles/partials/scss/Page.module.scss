@@ -6,6 +6,10 @@
   place-content: center;
   text-align: center;
   font-size: 24px;
+
+  @include res_Mobile {
+    word-break: keep-all;
+  }
 }
 
 // ^ 제목
@@ -15,11 +19,20 @@
   font-size: 36px;
   text-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
   margin-bottom: 20px;
+
+  @include res_Mobile {
+    font-size: 42px;
+
+    ~ p {
+      font-size: 16px;
+    }
+  }
 }
 
 // ^ 언어 목록
 .language {
   @include layout(flex, center, $g: 10px);
+  flex-wrap: wrap;
   margin: 20px;
 
   img {

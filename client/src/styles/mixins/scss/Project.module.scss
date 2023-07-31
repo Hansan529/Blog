@@ -1,3 +1,5 @@
+@import '../../config/scss/variables';
+
 $padding: 30px;
 
 .hidden {
@@ -6,16 +8,25 @@ $padding: 30px;
 
 .project {
   background-color: #eee;
-  border-radius: 30px;
+  border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  padding: $padding;
+  padding-top: $padding;
   position: relative;
+  max-height: 400px;
+  display: flex;
+  flex-direction: column;
+
+  @include res_Mobile {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
   button > img {
     width: 30px;
     height: 30px;
   }
 
-  // * 프로젝트 간단 수정
+  // ^ 프로젝트 간단 수정
   .edit {
     position: absolute;
     right: $padding;
@@ -25,32 +36,18 @@ $padding: 30px;
     gap: 20px;
   }
 
-  // * 날짜
-  .date {
-    top: 0;
-    font-size: 14px;
-    position: absolute;
-    transform: translateY(50%);
+  // * 날짜, 타이틀, 개발자 목록 wrap
+  .projectInfo {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 $padding;
+    margin-bottom: 20px;
+    gap: 10px;
   }
 
-  // * 타이틀(제목)
-  .title {
-    font-size: 24px;
-    text-align: center;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  // * 개발자 목록
+  // 개발자 목록
   .developer {
     display: flex;
-    float: left;
-    position: absolute;
-    left: $padding;
     // 개발자 이미지
     .devImg {
       width: 40px;
@@ -59,17 +56,35 @@ $padding: 30px;
     }
   }
 
+  // 타이틀(제목)
+  .title {
+    flex: 1;
+    max-width: 230px;
+    font-size: 24px;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  // 날짜
+  .date {
+    font-size: 14px;
+  }
+
   // * 프로젝트 이미지
   .imgWrap {
-    margin: 10px 0;
+    flex: 1;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: grid;
+    place-content: center;
     // 이미지
     .img {
-      width: 500px;
-      height: 200px;
-      margin: 0 auto;
-      border-radius: 10px;
-      object-fit: contain;
-      background-color: rgba(0, 0, 0, 0.3);
+      object-fit: cover;
     }
   }
 

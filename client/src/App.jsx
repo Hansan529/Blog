@@ -17,6 +17,7 @@ import './styles/global/css/App.css';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getAdminAvatar } from './_redux/_reducer/fetchSlice';
+import { responsive } from './_redux/_reducer/InfoSlice';
 // import "./App.css";
 
 const router = createBrowserRouter([
@@ -53,6 +54,30 @@ function App() {
   useEffect(() => {
     dispatch(getAdminAvatar());
   }, [dispatch]);
+
+  // * 반응형 설정
+  useEffect(() => {
+    const user = navigator.userAgent;
+    let isResponsive;
+    switch (true) {
+      case /Macintosh/i.test(user):
+        if (navigator.maxTouchPoints > 1) {
+          isResponsive = true;
+        }
+        break;
+      case /iPhone/i.test(user):
+        isResponsive = true;
+        break;
+      case /Android/i.test(user):
+        isResponsive = true;
+        break;
+      default:
+        return;
+    }
+    if (isResponsive) {
+      dispatch(responsive(true));
+    }
+  }, []);
 
   return <RouterProvider router={router} />;
 }

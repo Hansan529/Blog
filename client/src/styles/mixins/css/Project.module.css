@@ -4,10 +4,19 @@
 
 .project {
   background-color: #eee;
-  border-radius: 30px;
+  border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 30px;
+  padding-top: 30px;
   position: relative;
+  max-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+@media screen and (max-width: 743px) {
+  .project {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 }
 .project button > img {
   width: 30px;
@@ -21,14 +30,26 @@
   flex-direction: column-reverse;
   gap: 20px;
 }
-.project .date {
-  top: 0;
-  font-size: 14px;
-  position: absolute;
-  transform: translateY(50%);
+.project .projectInfo {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+.project .developer {
+  display: flex;
+}
+.project .developer .devImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }
 .project .title {
+  flex: 1;
+  max-width: 230px;
   font-size: 24px;
+  overflow: hidden;
   text-align: center;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -36,28 +57,19 @@
 .project .title:hover {
   text-decoration: underline;
 }
-.project .developer {
-  display: flex;
-  float: left;
-  position: absolute;
-  left: 30px;
-}
-.project .developer .devImg {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+.project .date {
+  font-size: 14px;
 }
 .project .imgWrap {
-  margin: 10px 0;
+  flex: 1;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: grid;
+  place-content: center;
 }
 .project .imgWrap .img {
-  width: 500px;
-  height: 200px;
-  margin: 0 auto;
-  border-radius: 10px;
-  -o-object-fit: contain;
-     object-fit: contain;
-  background-color: rgba(0, 0, 0, 0.3);
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .project .form {
   display: flex;
