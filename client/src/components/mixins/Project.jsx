@@ -220,7 +220,9 @@ function Project({
             })}
           </small>
           {/* 제목 */}
-          <h3 className={styles.title}>{title}</h3>
+          <h3 className={styles.title}>
+            <Link to={`/projects/${id}`}>{title}</Link>
+          </h3>
           {/* 업로드한 날짜 */}
           <small className={styles.date}>{date.substring(0, 10)}</small>
         </div>
