@@ -18,6 +18,7 @@ function DetailProject() {
   // 상태 정보
   const logged = useSelector((state) => state.info.logged);
   const initPage = useSelector((state) => state.info.initial);
+  const responsive = useSelector((state) => state.info.response);
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
   const [project, setProject] = useState('');
@@ -208,21 +209,23 @@ function DetailProject() {
         <>
           <main>
             <article className={styles.article}>
-              <aside className={styles.aside}>
-                <ul>
-                  {asideProject.map((value, index) => (
-                    <li key={index}>
-                      <Link
-                        className={value._id === id ? styles.active : null}
-                        onClick={() => setLoading(true)}
-                        to={`/projects/${value._id}`}
-                      >
-                        {value.title}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </aside>
+              {responsive ? null : (
+                <aside className={styles.aside}>
+                  <ul>
+                    {asideProject.map((value, index) => (
+                      <li key={index}>
+                        <Link
+                          className={value._id === id ? styles.active : null}
+                          onClick={() => setLoading(true)}
+                          to={`/projects/${value._id}`}
+                        >
+                          {value.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </aside>
+              )}
               {edit ? (
                 importLoading ? null : (
                   <>
