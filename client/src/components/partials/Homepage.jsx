@@ -1,10 +1,10 @@
 // Components
 
 // Functions
-import styles from "../../styles/partials/css/Page.module.css";
+import styles from '../../styles/partials/css/Page.module.css';
 
 // Packages
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react';
 
 function Homepage({ LinkHomepage, project }) {
   const homepageRef = useRef();
@@ -21,8 +21,8 @@ function Homepage({ LinkHomepage, project }) {
   // * 프로젝트 바로가기 버튼 이동하기
   const onClick = (e) => {
     const { name } = e.target;
-    if (name === "project") {
-      project.current.scrollIntoView({ behavior: "smooth" });
+    if (name === 'project') {
+      project.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
   return (
@@ -30,9 +30,6 @@ function Homepage({ LinkHomepage, project }) {
       <article className={styles.article}>
         <div ref={homepageRef} id="homepage" className="part"></div>
         <h2 className={styles.title}>Hxan Portfolio</h2>
-        <strong>
-          해당 웹 페이지는 FHD(1920x1080) 기준으로 제작되었습니다.
-        </strong>
         <p>프론트엔드 개발자가 되기 위해서 다양한 언어를 공부중입니다</p>
         <p>현재 사용 가능한 언어 및 라이브러리, 툴은 다음과 같습니다</p>
         <div className={styles.language}>
