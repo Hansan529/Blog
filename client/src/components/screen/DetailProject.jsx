@@ -53,12 +53,12 @@ function DetailProject() {
 
   // * 프로젝트 내용 불러오기 #2
   const info = async () => {
-    const data = await (await downloadFiles('/')).data;
+    const { project } = await (await downloadFiles('/')).data;
     // 현재 접근한 프로젝트 필터링
-    const filterData = data.filter((value) => value._id === id)[0];
+    const filterData = project.filter((value) => value._id === id)[0];
     setProject(filterData);
     // 나머지 전체 프로젝트
-    setAllProject(data);
+    setAllProject(project);
     // 기존값 설정
     const { url, date, title, developer, thumbnail, language, description } =
       filterData;
