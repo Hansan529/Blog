@@ -17,20 +17,3 @@
     margin-bottom: 20px;
   }
 }
-
-/* LoginClient */
-
-.githubLogin {
-  display: block;
-  width: 100%;
-  height: 50px;
-  background: no-repeat 30px / 30px;
-  background-image: url('/public/images/ico/github-icon.svg');
-  border: 2px solid #eee;
-  border-radius: 20px;
-  text-align: center;
-
-  &:hover {
-    text-decoration: underline;
-  }
-}
