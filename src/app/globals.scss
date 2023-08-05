@@ -1,0 +1,116 @@
+@import './variables';
+
+// reset
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  font-family: 'Noto Sans-KR', sans-serif;
+}
+*,
+:after,
+:before {
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+:root {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  cursor: default;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+  -moz-tab-size: 4;
+  tab-size: 4;
+}
+html,
+body {
+  height: 100%;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+button {
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+a {
+  text-decoration: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+ul,
+li {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table,
+th,
+td {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+img,
+input {
+  vertical-align: middle;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
+  font-weight: bold;
+}
+/* 버튼 링크 */
+h1 > a,
+li > a {
+  display: block;
+}
+
+//
+
+main {
+  padding: 0 30px;
+
+  @include res_Mobile {
+    padding: 0;
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  // 컴포넌트
+  > article {
+    min-height: calc(100vh - $headerHeight * 2);
+    position: relative;
+    padding: 30px 0;
+  }
+
+  // 섹션 구분용 빈 영역
+  .part {
+    position: absolute;
+    transform: translateY(-$headerHeight);
+  }
+}
