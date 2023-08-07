@@ -2,10 +2,10 @@ import bcrypt from 'bcrypt';
 import mongoose, { Schema } from 'mongoose';
 
 export const adminSchema = new Schema({
-  socialLogin: { type: Boolean },
-  avatarImg: { type: String },
+  socialLogin: { type: Boolean, default: false },
+  avatarImg: { type: String, default: null },
   username: { type: String, match: /[0-9가-힣a-zA-Z]{2,18}/ },
-  id: { type: String },
+  id: { type: String, required: true },
   pw: { type: String },
   email: { type: String, required: true },
 });
