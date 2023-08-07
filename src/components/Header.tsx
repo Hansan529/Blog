@@ -6,9 +6,9 @@
 import styles from './Header.module.scss';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { logOut } from './redux/feature/auth-slice';
+import { logOut } from '../app/redux/feature/auth-slice';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from './redux/store';
+import { RootState } from '../app/redux/store';
 
 // Package
 function Header() {
