@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import { logIn } from '../redux/feature/auth-slice';
-import api from '../../axios';
+import { api } from '../../axios';
 
 type ChangInput = React.ChangeEvent<HTMLInputElement>;
 

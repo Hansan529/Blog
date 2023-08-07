@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import api from '../../../axios';
+import { api } from '../../../axios';
 import { useEffect } from 'react';
 
 export default async function Callback() {
