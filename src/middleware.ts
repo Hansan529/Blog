@@ -20,8 +20,8 @@ export async function middleware(req: NextRequest) {
     },
   });
   const cookieChk = req.cookies.get('x-connectDB');
+  const db = await (await fetch(`${process.env.SERVER_ENDPOINT}/db`)).json();
   if (!cookieChk) {
-    const db = await fetch(`${process.env.SERVER_ENDPOINT}/db`);
     response.cookies.set('x-connectDB', 'true', { maxAge: 3600 });
   }
   // 헤더 요소 확인
@@ -35,6 +35,6 @@ export async function middleware(req: NextRequest) {
 }
 
 // 특정 경로에서 실행되도록 설정
-export const config = {
-  matcher: '/',
-};
+// export const config = {
+//   matcher: '/',
+// };
