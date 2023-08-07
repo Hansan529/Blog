@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { NextResponse } from 'next/server';
+import Admin from '../../../../models/Admin';
+import { api } from '../../../../axios';
 
 interface Config {
   client_id: string;
@@ -55,11 +57,27 @@ export async function POST(req: Request) {
     const { data: userData } = await getData.get('/user');
     // console.log('userData: ', userData);
     const { data: emailData } = await getData.get('/user/emails');
-    console.log('emailData: ', emailData);
     // userData.avatar_url, userData.name, emailData.email;
     let email: string;
     if (emailData[0].primary && emailData[0].verified) {
       email = emailData[0].email;
+    }
+    const formData = new FormData();
+    formData.append('username', userData.name);
+    formData.append('id', userData.login);
+    formData.append('avatar_url', userData.avatar_url);
+    formData.append('email', email);
+    const { data } = await api.post('/user/login', formData, {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    });
+
+    // 로그인에 실패했을 경우 관리자 추가 시도
+    if (!data) {
+      api.post('/user/join', formData, {
+        headers: {},
+      });
     }
   }
   return NextResponse.json('test');
