@@ -1,11 +1,17 @@
 'use client';
 
-import { useState } from 'react';
 import styles from './LoginClient.module.scss';
+import axios from 'axios';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useDispatch, useSelector } from 'react-redux';
+import { logIn } from '../redux/feature/auth-slice';
 
 type ChangInput = React.ChangeEvent<HTMLInputElement>;
 
 export default function LoginClient() {
+  const router = useRouter();
+  const dispatch = useDispatch();
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
   const onChange = (e: ChangInput) => {
@@ -20,14 +26,32 @@ export default function LoginClient() {
         break;
     }
   };
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append('id', id);
+    formData.append('pw', pw);
+    const { data } = await axios.post(
+      `${process.env.NEXT_PUBLIC_API}/user/login`,
+      formData,
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      }
+    );
+    if (!data) {
+      return;
+    }
+    dispatch(logIn(id));
+    router.push('/');
+    // router.push('/');
   };
 
   const authGithub = () => {};
   return (
     <>
-      <form method="POST" className={styles.form} onSubmit={onSubmit}>
+      <form method="POST" onSubmit={onSubmit} className={styles.form}>
         <input
           type="text"
           name="id"
