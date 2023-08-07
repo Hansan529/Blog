@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { NextResponse } from 'next/server';
 import Admin from '../../../../models/Admin';
-import { api } from '../../../../axios';
+import { api, formApi } from '../../../../axios';
 
 interface Config {
   client_id: string;
@@ -9,9 +9,9 @@ interface Config {
   scope: string;
 }
 
+// 깃허브 측 정보 요청 홈페이지 반환
 export async function GET() {
   const baseURL = 'https://github.com/login/oauth/authorize';
-  console.log('baseURL: ', baseURL);
   const config: Config = {
     client_id: process.env.CLIENT_ID,
     allow_signup: false,
@@ -25,6 +25,7 @@ export async function GET() {
   return NextResponse.json(url);
 }
 
+// 토큰을 통해 유효성 체크 후 사용자의 데이터 반환
 export async function POST(req: Request) {
   const { code } = await req.json();
   const baseURL = 'https://github.com/login/oauth/access_token';
@@ -55,30 +56,33 @@ export async function POST(req: Request) {
       },
     });
     const { data: userData } = await getData.get('/user');
-    // console.log('userData: ', userData);
     const { data: emailData } = await getData.get('/user/emails');
-    // userData.avatar_url, userData.name, emailData.email;
     let email: string;
     if (emailData[0].primary && emailData[0].verified) {
       email = emailData[0].email;
     }
     const formData = new FormData();
-    formData.append('username', userData.name);
     formData.append('id', userData.login);
-    formData.append('avatar_url', userData.avatar_url);
     formData.append('email', email);
-    const { data } = await api.post('/user/login', formData, {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-    });
 
-    // 로그인에 실패했을 경우 관리자 추가 시도
-    if (!data) {
-      api.post('/user/join', formData, {
-        headers: {},
-      });
+    // 로그인 시도
+    const {
+      data: { login },
+    } = await formApi.post('/user/login', formData);
+    if (login) {
+      return NextResponse.json({ login: true });
     }
+    // 로그인에 실패했을 경우 관리자 추가 시도
+    formData.append('username', userData.name);
+    formData.append('avatarImg', userData.avatar_url);
+    formData.append('socialLogin', 'true');
+    const {
+      data: { join },
+    } = await formApi.post('/user/join', formData);
+    if (join) {
+      return NextResponse.json({ join: true, login: true });
+    }
+    // console.log('data: ', data);
   }
-  return NextResponse.json('test');
+  return NextResponse.json({ login: false });
 }
