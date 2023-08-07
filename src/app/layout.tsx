@@ -1,5 +1,5 @@
 import { ReduxProvider } from './redux/provider';
-import Header from './Header';
+import Header from '../components/Header';
 import './globals.scss';
 import { Metadata } from 'next';
 
