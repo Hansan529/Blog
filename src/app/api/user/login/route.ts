@@ -6,9 +6,7 @@ export async function POST(req: Request) {
   const formData = await req.formData();
   const id = formData.get('id');
   const pw = formData.get('pw') || '';
-  const avatarUrl = formData.get('avatar_url') || '';
   const email = formData.get('email') || '';
-  const username = formData.get('username') || '';
 
   //   비밀번호 해싱
   if (pw) {
@@ -24,8 +22,9 @@ export async function POST(req: Request) {
     }
     //   비밀번호가 일치하는지 계산
     const exec = await bcrypt.compare(pw, list.pw);
-    return NextResponse.json({ exec });
+    return NextResponse.json({ login: exec });
   }
+  //   아이디 체크
   const exec = (await Admin.findOne({ id, email }).exec()) || false;
-  return NextResponse.json({ exec });
+  return NextResponse.json({ login: exec });
 }
