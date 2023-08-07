@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import { logIn } from '../redux/feature/auth-slice';
-import { api } from '../../axios';
+import { api, formApi } from '../../axios';
 
 type ChangInput = React.ChangeEvent<HTMLInputElement>;
 
@@ -32,18 +32,17 @@ export default function LoginClient() {
     const formData = new FormData();
     formData.append('id', id);
     formData.append('pw', pw);
-    const { data } = await api.post(`/user/login`, formData, {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-    });
-    if (!data) {
+    const {
+      data: { login },
+    } = await formApi.post(`/user/login`, formData);
+    if (!login) {
       return;
     }
     dispatch(logIn(id));
     router.push('/');
   };
 
+  // 토큰을 얻기 위해 홈페이지 이동
   const authGithub = async () => {
     const { data } = await api.get('/user/oauth');
     router.push(data);
