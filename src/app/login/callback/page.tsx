@@ -5,6 +5,7 @@ import { api } from '../../../axios';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../../redux/feature/auth-slice';
+import Loading from '../../../components/Loading';
 
 // Github Callback 주소로 GET 이동됨
 export default async function Callback() {
@@ -35,6 +36,5 @@ export default async function Callback() {
   useEffect(() => {
     post();
   }, []);
-  //   router.push('/');
-  return <div>로딩 페이지</div>;
+  return <Loading />;
 }
