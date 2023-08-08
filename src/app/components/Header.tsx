@@ -97,7 +97,7 @@ const Header = () => {
           <div className={styles.btn}>
             {loginChk ? (
               <>
-                <Link href="/project">업로드</Link>
+                <Link href="/portfolio-setting">업로드</Link>
                 <button onClick={() => dispatch(logOut())}>로그아웃</button>
               </>
             ) : (
