@@ -20,7 +20,6 @@ export async function POST(request: NextRequest) {
   const buffer = Buffer.from(await file.arrayBuffer());
   const relativeUploadDir = `/uploads/${dateFn.format(Date.now(), 'dd-MM-Y')}`;
   const uploadDir = join(process.cwd(), 'public', relativeUploadDir);
-  console.log('uploadDir: ', uploadDir);
 
   try {
     await stat(uploadDir);
@@ -48,7 +47,7 @@ export async function POST(request: NextRequest) {
       ''
     )}-${uniqueSuffix}.${mime.getExtension(file.type)}`;
     // 이미지 업로드
-    // await writeFile(`${uploadDir}/${filename}`, buffer);
+    await writeFile(`${uploadDir}/${filename}`, buffer);
 
     const url = formData.get('url') as string;
     const date = formData.get('date') as string;
@@ -63,9 +62,9 @@ export async function POST(request: NextRequest) {
       date,
       dateSearch,
       title,
-      developer: Array.from(developer, (e1) => e1 + ','),
+      developer: developer.split(','),
       imageUrl,
-      language: Array.from(language, (e1) => e1 + ','),
+      language: language.split(','),
       description,
     };
     const portfolio = await Portfolio.create(portfolioData);
