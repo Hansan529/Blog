@@ -10,7 +10,7 @@ import { api, formApi } from '../../axios';
 
 type ChangInput = React.ChangeEvent<HTMLInputElement>;
 
-export default function LoginClient() {
+const LoginClient = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const [id, setId] = useState<string>('');
@@ -73,4 +73,6 @@ export default function LoginClient() {
       </button>
     </>
   );
-}
+};
+
+export default LoginClient;

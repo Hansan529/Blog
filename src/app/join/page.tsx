@@ -10,7 +10,7 @@ import { logIn } from '../redux/feature/auth-slice';
 type ChangeType = React.ChangeEvent<HTMLInputElement | HTMLSelectElement>;
 type SubmitForm = React.FormEvent<HTMLFormElement>;
 
-export default function Join() {
+const Join = () => {
   const [auth, setAuth] = useState<boolean>(false);
   const [authPassword, setAuthPasswrod] = useState<string>('');
   const [id, setId] = useState<string>('');
@@ -189,4 +189,6 @@ export default function Join() {
       )}
     </>
   );
-}
+};
+
+export default Join;

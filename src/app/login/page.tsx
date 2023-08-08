@@ -5,7 +5,7 @@ import './page.modules.scss';
 import LoginClient from './LoginClient';
 
 // Component
-export default function Login() {
+const Login = () => {
   return (
     <article className="screen">
       <div className="formWrap">
@@ -19,4 +19,6 @@ export default function Login() {
       ) : null} */}
     </article>
   );
-}
+};
+
+export default Login;

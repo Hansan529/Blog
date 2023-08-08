@@ -5,10 +5,10 @@ import { api } from '../../../axios';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../../redux/feature/auth-slice';
-import Loading from '../../../components/Loading';
+import Loading from '../../components/Loading';
 
 // Github Callback 주소로 GET 이동됨
-export default async function Callback() {
+const Callback = async () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const code = searchParams.get('code');
@@ -37,4 +37,6 @@ export default async function Callback() {
     post();
   }, []);
   return <Loading />;
-}
+};
+
+export default Callback;
