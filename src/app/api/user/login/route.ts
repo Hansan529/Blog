@@ -1,8 +1,8 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import Admin from '../../../../models/Admin';
 import bcrypt from 'bcrypt';
 
-export async function POST(req: Request) {
+export const POST = async (req: NextRequest) => {
   const formData = await req.formData();
   const id = formData.get('id');
   const pw = formData.get('pw') || '';
@@ -27,4 +27,4 @@ export async function POST(req: Request) {
   //   아이디 체크
   const exec = (await Admin.findOne({ id, email }).exec()) || false;
   return NextResponse.json({ login: exec });
-}
+};

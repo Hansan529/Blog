@@ -1,7 +1,7 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import Admin from '../../../../models/Admin';
 
-export async function POST(req: Response) {
+export const POST = async (req: Request | NextRequest) => {
   const formData = await req.formData();
   const id = formData.get('id');
   const pw = formData.get('pw');
@@ -48,4 +48,4 @@ export async function POST(req: Response) {
     console.error(err);
     return NextResponse.json({ join: false });
   }
-}
+};

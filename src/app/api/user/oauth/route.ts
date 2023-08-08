@@ -10,7 +10,7 @@ interface Config {
 }
 
 // 깃허브 측 정보 요청 홈페이지 반환
-export async function GET() {
+export const GET = async () => {
   const baseURL = 'https://github.com/login/oauth/authorize';
   const config: Config = {
     client_id: process.env.CLIENT_ID,
@@ -23,10 +23,10 @@ export async function GET() {
   params.append('scope', config.scope);
   const url = `${baseURL}?${params}`;
   return NextResponse.json(url);
-}
+};
 
 // 토큰을 통해 유효성 체크 후 사용자의 데이터 반환
-export async function POST(req: Request) {
+export const POST = async (req: Request) => {
   const { code } = await req.json();
   const baseURL = 'https://github.com/login/oauth/access_token';
   const config = {
@@ -85,4 +85,4 @@ export async function POST(req: Request) {
     // console.log('data: ', data);
   }
   return NextResponse.json({ login: false });
-}
+};

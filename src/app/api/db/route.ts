@@ -2,7 +2,7 @@
 import { NextResponse } from 'next/server';
 import mongoose from 'mongoose';
 
-export async function GET(req: Request) {
+export const GET = async (req: Request) => {
   const db = mongoose.connection;
   let result: string = 'disconnected';
   if (db.readyState >= 1) {
@@ -11,4 +11,4 @@ export async function GET(req: Request) {
     mongoose.connect(process.env.DB_URL);
   }
   return NextResponse.json(result);
-}
+};
