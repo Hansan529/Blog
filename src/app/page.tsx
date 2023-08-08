@@ -1,4 +1,3 @@
-import { api } from '../axios';
 import Portfolio from './components/Portfolio';
 import styles from './page.module.scss';
 import Image from 'next/image';
