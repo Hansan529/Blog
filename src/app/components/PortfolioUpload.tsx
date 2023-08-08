@@ -71,21 +71,16 @@ export default function FileUploader() {
     formData.append('language', String(language));
     formData.append('description', description);
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API}/upload`, {
-        method: 'POST',
-        body: formData,
-      });
+      const res = await formApi.post(`/upload`, formData);
       console.log('res: ', res);
 
-      if (!res.ok) {
+      if (res.status !== 200) {
         console.error('something went wrong, check your console.');
         return;
       }
 
-      const data: { portfolio: string } = await res.json();
-      router.push(`/portfolio/${data}`);
-
-      // setImageUrl(data.fileUrl);
+      const data: { portfolio: string } = await res.data;
+      router.push(`/portfolio/${data.portfolio}`);
     } catch (error) {
       console.error('something went wrong, check your console.');
     }
@@ -133,7 +128,7 @@ export default function FileUploader() {
           alt="uploaded image"
           width={720}
           height={446}
-          priority={true}
+          // priority={true}
         />
         <input
           style={{ display: 'none' }}
