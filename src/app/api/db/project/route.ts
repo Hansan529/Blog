@@ -1,17 +1,17 @@
-import { NextResponse } from 'next/server';
-import Project from '../../../../models/Project';
+import { NextRequest, NextResponse } from 'next/server';
+import Portfolio from '../../../../models/Portfolio';
 import Info from '../../../../models/Info';
 import Admin from '../../../../models/Admin';
 
-export async function GET() {
-  const project = await Project.find({})
+export const GET = async () => {
+  const portfolio = await Portfolio.find({})
     .sort({ dateSearch: 'desc' })
     .populate('developer');
   const info = await Info.find({}).sort({ date: 'desc' });
-  // const admin = await Admin.find({});
-  return NextResponse.json({ project, info });
-}
+  const admin = await Admin.find({});
+  return NextResponse.json({ portfolio, admin, info });
+};
 
-export async function POST(req: Request) {
-  return NextResponse.json('');
+export async function POST(req: NextRequest) {
+  return NextResponse.json({ done: 'ok' });
 }
