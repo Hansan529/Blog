@@ -1,7 +1,10 @@
+import { api } from '../axios';
+import Portfolio from './components/Portfolio';
 import styles from './page.module.scss';
 import Image from 'next/image';
+import Link from 'next/link';
 
-export default function Home() {
+export default async function Home() {
   const data = [
     'html',
     'css',
@@ -19,6 +22,7 @@ export default function Home() {
     'nextjs',
     'mysql',
   ];
+
   return (
     <>
       <article className={styles.article}>
@@ -40,6 +44,7 @@ export default function Home() {
           ))}
         </div>
       </article>
+      <Portfolio />
     </>
   );
 }
