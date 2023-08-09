@@ -2,7 +2,7 @@ import axios from 'axios';
 import { NextResponse } from 'next/server';
 import Admin from '../../../../models/Admin';
 import { api, formApi } from '../../../../axios';
-import connectMongoDB from '../../../../libs/mongodb';
+// import connectMongoDB from '../../../../libs/mongodb';
 
 interface Config {
   client_id: string;
@@ -29,7 +29,7 @@ export const GET = async () => {
 // 토큰을 통해 유효성 체크 후 사용자의 데이터 반환
 export const POST = async (req: Request) => {
   const { code } = await req.json();
-  await connectMongoDB();
+  // await connectMongoDB();
   const baseURL = 'https://github.com/login/oauth/access_token';
   const config = {
     client_id: process.env.CLIENT_ID,

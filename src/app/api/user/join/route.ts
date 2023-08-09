@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Admin from '../../../../models/Admin';
-import connectMongoDB from '../../../../libs/mongodb';
+// import connectMongoDB from '../../../../libs/mongodb';
 
 export const POST = async (req: Request | NextRequest) => {
   const formData = await req.formData();
@@ -10,7 +10,7 @@ export const POST = async (req: Request | NextRequest) => {
   const email = formData.get('email') || '';
   const socialLogin = formData.get('socialLogin') || '';
 
-  await connectMongoDB();
+  // await connectMongoDB();
   try {
     // 중복 아이디, 이메일이 있거나 비밀번호가 같지 않다면 생성 취소
     const already = await Admin.exists({ id, email });
