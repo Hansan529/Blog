@@ -1,20 +1,12 @@
-'use client';
-
 // Components
 
 // Function
 import styles from './Header.module.scss';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { logOut } from '../redux/feature/auth-slice';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
+import HeaderLogin from './HedaerLogin';
 
 // Package
 const Header = () => {
-  const dispatch = useDispatch();
-  const router = useRouter();
-  const loginChk = useSelector((state: RootState) => state.auth.value.isAuth);
   return (
     <>
       <header className={styles.header}>
@@ -46,16 +38,7 @@ const Header = () => {
               </picture>
             </Link>
           </h1>
-          <div className={styles.btn}>
-            {loginChk ? (
-              <>
-                <Link href="/portfolio-setting">업로드</Link>
-                <button onClick={() => dispatch(logOut())}>로그아웃</button>
-              </>
-            ) : (
-              <Link href="/login">로그인</Link>
-            )}
-          </div>
+          <HeaderLogin />
         </div>
       </header>
     </>
