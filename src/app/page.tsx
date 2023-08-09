@@ -8,7 +8,7 @@ export default async function Home() {
   return (
     <>
       <Introduce />
-      <Portfolio />
+      <Portfolio edit={false} />
     </>
   );
 }
