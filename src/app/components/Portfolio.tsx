@@ -4,7 +4,7 @@ import { api } from '../../axios';
 const Portfolio = async () => {
   const {
     data: { portfolio },
-  } = await api.get('/db/portfolio');
+  } = await api.get('/portfolio');
   return (
     <article>
       {portfolio.map((item) => (

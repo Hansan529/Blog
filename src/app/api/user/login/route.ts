@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Admin from '../../../../models/Admin';
 import bcrypt from 'bcrypt';
+import connectMongoDB from '../../../../libs/mongodb';
 
 export const POST = async (req: NextRequest) => {
   const formData = await req.formData();
@@ -8,6 +9,7 @@ export const POST = async (req: NextRequest) => {
   const pw = formData.get('pw') || '';
   const email = formData.get('email') || '';
 
+  await connectMongoDB();
   //   비밀번호 해싱
   if (pw) {
     const salt = await bcrypt.genSalt(10);

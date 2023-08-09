@@ -4,12 +4,12 @@ import { stat, mkdir, writeFile } from 'fs/promises';
 import * as dateFn from 'date-fns';
 import { NextRequest, NextResponse } from 'next/server';
 import Portfolio from '../../../models/Portfolio';
+import connectMongoDB from '../../../libs/mongodb';
 
 export async function POST(request: NextRequest) {
   const formData = await request.formData();
 
   const file = formData.get('file') as Blob | null;
-  console.log('file: ', file);
   if (!file) {
     return NextResponse.json(
       { error: 'File blob is required.' },
@@ -67,6 +67,7 @@ export async function POST(request: NextRequest) {
       language: language.split(','),
       description,
     };
+    await connectMongoDB();
     const portfolio = await Portfolio.create(portfolioData);
     return NextResponse.json({ portfolio: portfolio._id });
   } catch (e) {
