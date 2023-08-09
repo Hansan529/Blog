@@ -1,18 +1,21 @@
 'use client';
 
 // Function
-import styles from './PortfolioUpload.module.scss';
+import styles from './FileUploader.module.scss';
 
 // Package
 import Image from 'next/image';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { formApi } from '../../axios';
 import { useRouter } from 'next/navigation';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
 
 type Input = ChangeEvent<HTMLInputElement>;
 type TextArea = ChangeEvent<HTMLTextAreaElement>;
 
 export default function FileUploader() {
+  const login = useSelector((state: RootState) => state.auth.value.isAuth);
   const dateVal = new Date();
   // 이미지
   const [url, setUrl] = useState<string>('');
@@ -84,6 +87,12 @@ export default function FileUploader() {
       console.error('something went wrong, check your console.');
     }
   };
+
+  // 로그인하지 않았다면 접근 불가능
+  useEffect(() => {
+    if (login) return;
+    router.push('/login');
+  }, [login]);
 
   return (
     <form className={styles.uploadForm} onSubmit={uploadForm}>
