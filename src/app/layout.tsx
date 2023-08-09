@@ -2,6 +2,7 @@ import { ReduxProvider } from './redux/provider';
 import Header from './components/Header';
 import './globals.scss';
 import { Metadata } from 'next';
+import { connectMongoDB } from '../utils/database';
 
 interface Props {
   children: React.ReactNode;
@@ -19,7 +20,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: Props) {
+export default async function RootLayout({ children }: Props) {
+  await connectMongoDB();
   return (
     <html>
       <head>
