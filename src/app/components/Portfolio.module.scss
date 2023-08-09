@@ -1,0 +1,18 @@
+.portfolios {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, auto));
+  gap: 20px;
+}
+
+.portfolio_wrap {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.portfolioImg {
+  object-fit: contain;
+  margin: 0 auto;
+  border: 0.5px solid rgba(255, 255, 255, 0.5);
+}
