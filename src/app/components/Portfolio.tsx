@@ -17,7 +17,7 @@ const Portfolio = async () => {
         >
           <Link href={`/portfolio/${item._id}`}>
             <h3>{item.title}</h3>
-            <small>{item.date}</small>
+            <small className={styles.date}>{item.date}</small>
             <Image
               className={styles.portfolioImg}
               src={item.imageUrl}
