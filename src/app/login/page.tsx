@@ -12,11 +12,6 @@ const Login = () => {
         <h2>관리자 로그인</h2>
         <LoginClient />
       </div>
-      {/* {error ? (
-        <div className={errorStyles.error}>
-          <h2>{error}</h2>
-        </div>
-      ) : null} */}
     </article>
   );
 };

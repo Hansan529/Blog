@@ -72,7 +72,6 @@ export default function FileUploader() {
     formData.append('description', description);
     try {
       const res = await formApi.post(`/upload`, formData);
-      console.log('res: ', res);
 
       if (res.status !== 200) {
         console.error('something went wrong, check your console.');
