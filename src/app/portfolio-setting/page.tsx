@@ -4,20 +4,22 @@ import Portfolio from '../components/Portfolio';
 
 const PortfolioSetting = () => {
   return (
-    <article className={styles.center}>
-      <FileUploader
-        ogId={null}
-        ogEdit={false}
-        ogUrl={null}
-        ogDate={null}
-        ogTitle={null}
-        ogDev={null}
-        ogImageUrl={null}
-        ogLanguage={null}
-        ogDescription={null}
-      />
+    <>
+      <article className={styles.center}>
+        <FileUploader
+          ogId={null}
+          ogEdit={false}
+          ogUrl={null}
+          ogDate={null}
+          ogTitle={null}
+          ogDev={null}
+          ogImageUrl={null}
+          ogLanguage={null}
+          ogDescription={null}
+        />
+      </article>
       <Portfolio edit={true} />
-    </article>
+    </>
   );
 };
 

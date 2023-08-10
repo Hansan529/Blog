@@ -48,8 +48,6 @@ export default function FileUploader({
         .padStart(2, '0')}-${dateVal.getDate().toString().padStart(2, '0')}`
   );
   const [title, setTitle] = useState<string>(ogTitle || '');
-  console.log('title: ', title);
-  console.log('ogTitle: ', ogTitle);
   const [dev, setDev] = useState<string[]>(ogDev || []);
   const [imageUrl, setImageUrl] = useState(
     ogImageUrl || '/images/placeholder-image.png'
@@ -140,36 +138,28 @@ export default function FileUploader({
 
   return (
     <form className={styles.uploadForm} onSubmit={uploadAndPatchForm}>
-      <div>
-        <label className={styles.uploadPart}>
-          <p className={styles.name}>날짜</p>
-          <input
-            name="date"
-            type="date"
-            onChange={(e: Input) => setDate(e.target.value)}
-            value={date}
-          />
-        </label>
-        <label className={styles.uploadPart}>
-          <p className={styles.name}>제목</p>
-          <input
-            name="title"
-            type="text"
-            value={title}
-            onChange={(e: Input) => setTitle(e.target.value)}
-            placeholder="제목"
-          />
-        </label>
-        <label className={styles.uploadPart}>
-          <p className={styles.name}>개발자</p>
-          <input
-            type="text"
-            name="developer"
-            value={dev}
-            onChange={(e: Input) => setDev([e.target.value])}
-            placeholder="개발자"
-          />
-        </label>
+      <div className={styles.portfolio__info}>
+        <input
+          name="date"
+          type="date"
+          onChange={(e: Input) => setDate(e.target.value)}
+          value={date}
+        />
+        <input
+          className={styles.portfolio__infoTitle}
+          name="title"
+          type="text"
+          value={title}
+          onChange={(e: Input) => setTitle(e.target.value)}
+          placeholder="제목"
+        />
+        <input
+          type="text"
+          name="developer"
+          value={dev}
+          onChange={(e: Input) => setDev([e.target.value])}
+          placeholder="개발자"
+        />
       </div>
       <label
         className={styles['file-uploader']}
@@ -188,34 +178,32 @@ export default function FileUploader({
           onChange={onImageFileChange}
         />
       </label>
-      <label className={styles.uploadPart}>
-        <textarea
-          name="description"
-          value={description}
-          onChange={(e: TextArea) => setDescription(e.target.value)}
-          placeholder="본문"
-        />
-      </label>
-      <label className={styles.uploadPart}>
-        <p className={styles.name}>언어</p>
-        <input
-          name="language"
-          type="text"
-          value={language}
-          onChange={(e: Input) => setLanguage([e.target.value])}
-          placeholder="언어"
-        />
-      </label>
-      <label className={styles.uploadPart}>
-        <p className={styles.name}>프로젝트 주소</p>
-        <input
-          name="url"
-          type="url"
-          onChange={(e: Input) => setUrl(e.target.value)}
-          value={url}
-        />
-      </label>
-      <button type="submit">업로드</button>
+      <textarea
+        className={styles.description}
+        name="description"
+        value={description}
+        onChange={(e: TextArea) => setDescription(e.target.value)}
+        placeholder="본문"
+      />
+      <div className={styles.portfolio__etc}>
+          <input
+            className={styles.language}
+            name="language"
+            type="text"
+            value={language}
+            onChange={(e: Input) => setLanguage([e.target.value])}
+            placeholder="언어"
+          />
+          <input
+            className={styles.url}
+            name="url"
+            type="url"
+            onChange={(e: Input) => setUrl(e.target.value)}
+            value={url}
+            placeholder="프로젝트 주소"
+          />
+      </div>
+      <button className={styles.uploadBtn} type="submit">업로드</button>
     </form>
   );
 }
