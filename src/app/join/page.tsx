@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import './page.modules.scss';
+import styles from './page.module.scss';
 import { formApi } from '../../axios';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../redux/feature/auth-slice';
@@ -90,103 +90,100 @@ const Join = () => {
 
   return (
     <>
-      {auth ? (
-        <article>
-          <h2>관리자 추가</h2>
-          {error.match(/[비밀번호]/) ? <small>{error}</small> : null}
-          <form method="POST" onSubmit={signUp} className="form">
-            <label>
-              <span>아이디: </span>
-              <div>
-                <input
-                  type="text"
-                  name="id"
-                  placeholder="아이디"
-                  value={id}
-                  onChange={signUpChange}
-                  required
-                />
-              </div>
-            </label>
-            <label>
-              <span>비밀번호 / 재확인:</span>
-              <div>
-                <input
-                  type="password"
-                  name="pw"
-                  placeholder="패스워드"
-                  value={pw}
-                  onChange={signUpChange}
-                  required
-                />
-                <input
-                  type="password"
-                  name="pw2"
-                  placeholder="패스워드 재입력"
-                  value={pw2}
-                  onChange={signUpChange}
-                  required
-                />
-              </div>
-              {error.match(/^비밀번호$/) ? (
-                <div className="noMatch__pw">{error}</div>
-              ) : null}
-            </label>
-            <label>
-              <span>이메일: </span>
-              <div>
-                <input
-                  type="text"
-                  name="email_first"
-                  placeholder="이메일 주소"
-                  value={emailFirst}
-                  onChange={signUpChange}
-                  required
-                />
-                @
-                <select
-                  name="email_last"
-                  value={selected}
-                  onChange={signUpChange}
-                >
-                  <option value="placeholder" disabled>
-                    이메일을 고르세요
-                  </option>
-                  <option value="gmail.com">gmail.com</option>
-                  <option value="naver.com">naver.com</option>
-                  <option value="hanmail.net">hanmail.net</option>
-                  <option value="icloud.com">icloud.com</option>
-                </select>
-                {error.match(/^이메일$/) ? (
-                  <div className="noMatch_email">{error}</div>
+      <article className={styles.center}>
+        {auth ? (
+          <>
+            <h2>관리자 추가</h2>
+            {error.match(/[비밀번호]/) ? <small>{error}</small> : null}
+            <form method="POST" onSubmit={signUp} className={styles.form}>
+              <label>
+                <span>아이디: </span>
+                <div>
+                  <input
+                    type="text"
+                    name="id"
+                    placeholder="아이디"
+                    value={id}
+                    onChange={signUpChange}
+                    required
+                  />
+                </div>
+              </label>
+              <label>
+                <span>비밀번호 / 재확인:</span>
+                <div>
+                  <input
+                    type="password"
+                    name="pw"
+                    placeholder="패스워드"
+                    value={pw}
+                    onChange={signUpChange}
+                    required
+                  />
+                  <input
+                    type="password"
+                    name="pw2"
+                    placeholder="패스워드 재입력"
+                    value={pw2}
+                    onChange={signUpChange}
+                    required
+                  />
+                </div>
+                {error.match(/^비밀번호$/) ? (
+                  <div className="noMatch__pw">{error}</div>
                 ) : null}
-              </div>
-            </label>
-            <button className="submitBtn" type="submit">
-              관리자 추가
-            </button>
-          </form>
-          {/* {error ? (
-            <div className={errorStyles.error}>
-              <h2>중복된 아이디가 있습니다.</h2>
-            </div>
-          ) : null} */}
-        </article>
-      ) : (
-        <article>
-          <h2>관리자 페이지 접근</h2>
-          <form onSubmit={authLogin}>
-            <input
-              type="password"
-              name="authPassword"
-              value={authPassword}
-              onChange={authChange}
-              placeholder="비밀번호"
-            />
-            <button type="submit">전송</button>
-          </form>
-        </article>
-      )}
+              </label>
+              <label>
+                <span>이메일: </span>
+                <div>
+                  <input
+                    type="text"
+                    name="email_first"
+                    placeholder="이메일 주소"
+                    value={emailFirst}
+                    onChange={signUpChange}
+                    required
+                  />
+                  @
+                  <select
+                    name="email_last"
+                    value={selected}
+                    onChange={signUpChange}
+                  >
+                    <option value="placeholder" disabled>
+                      이메일을 고르세요
+                    </option>
+                    <option value="gmail.com">gmail.com</option>
+                    <option value="naver.com">naver.com</option>
+                    <option value="hanmail.net">hanmail.net</option>
+                    <option value="icloud.com">icloud.com</option>
+                  </select>
+                  {error.match(/^이메일$/) ? (
+                    <div className="noMatch_email">{error}</div>
+                  ) : null}
+                </div>
+              </label>
+              <button className="submitBtn" type="submit">
+                관리자 추가
+              </button>
+            </form>
+          </>
+        ) : (
+          <>
+            <h2>관리자 페이지 접근</h2>
+            <form onSubmit={authLogin}>
+              <input
+                type="password"
+                name="authPassword"
+                value={authPassword}
+                onChange={authChange}
+                placeholder="비밀번호"
+              />
+              <button type="submit">전송</button>
+            </form>
+          </>
+        )}
+      </article>
     </>
   );
 };

@@ -35,7 +35,6 @@ const Portfolio = async ({ edit }) => {
           </Link>
         </div>
       ))}
-      <small></small>
     </article>
   );
 };

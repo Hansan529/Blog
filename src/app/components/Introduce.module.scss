@@ -6,6 +6,7 @@
   place-content: center;
   text-align: center;
   font-size: 24px;
+  margin-bottom: 50px;
 
   @include res_Mobile {
     word-break: keep-all;
