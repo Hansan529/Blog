@@ -10,8 +10,14 @@ interface Props {
 }
 
 export const metadata: Metadata = {
-  title: 'Hxan FrontEnd Blog',
-  description: '프로젝트 및 개발 정보',
+  generator: 'Next.js',
+  applicationName: 'Next.js',
+  creator: 'Hansan',
+  colorScheme: 'dark',
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+  },
   openGraph: {
     title: 'Hxan Portfolio',
     description: '포트폴리오 랜딩페이지',

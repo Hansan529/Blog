@@ -3,14 +3,8 @@ import Introduce from './components/Introduce';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  generator: 'Next.js',
-  applicationName: 'Next.js',
-  creator: 'Hansan',
-  colorScheme: 'dark',
-  icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon.ico',
-  },
+  title: 'Hxan FrontEnd Blog',
+  description: '프로젝트 및 개발 정보',
 };
 
 export default async function Home() {
