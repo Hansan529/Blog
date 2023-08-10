@@ -13,6 +13,16 @@
   padding: 20px;
   border: 0.5px solid #fff;
   max-width: 500px;
+  // overflow: hidden;
+  max-height: 300px;
+
+  @include res_Mobile {
+    max-width: 80%;
+
+    > div > div {
+      all: unset !important;
+    }
+  }
 
   h2 {
     text-align: center;

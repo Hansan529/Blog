@@ -1,4 +1,4 @@
-@use 'sass:map';
+@import "../variables";
 
 %inputEl {
   padding: 10px;
@@ -13,12 +13,12 @@
   max-width: 1200px;
   width: 100%;
   gap: 30px;
+
+  @include res_Mobile{
+    max-width: initial;
+  }
 }
 
-.title {
-  text-align: center;
-  margin-bottom: 50px;
-}
 
 .portfolio__info {
   display: flex;
@@ -26,12 +26,26 @@
   align-items: center;
   width: 100%;
   gap: 20px;
+  
+@include res_Mobile{
+  flex-wrap: wrap;
+}
 
   input {
     flex-shrink: 1;
-    @extend %inputEl
+    @extend %inputEl;
+
+    @include res_Mobile{
+      width: 100%;
+      flex: initial
+    }
   }
 }
+
+  .title {
+    text-align: center;
+    margin-bottom: 50px;
+  }
 
 .portfolio__infoTitle {
   flex-grow: 1;
@@ -69,6 +83,10 @@
     justify-content: space-between;
     gap: 20px;
     
+@include res_Mobile{
+  flex-wrap: wrap;
+}
+
     > input {
       @extend %inputEl;
   }

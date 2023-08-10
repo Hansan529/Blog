@@ -31,6 +31,8 @@ const Portfolio = async ({ edit }) => {
               alt={item.title}
               width={400}
               height={225}
+              priority={true}
+              style={{ objectFit: 'contain' }}
             />
           </Link>
         </div>

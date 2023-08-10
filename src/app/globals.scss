@@ -98,7 +98,11 @@ main {
   padding: 0 30px;
 
   > *:first-child {
-    padding-top: 100px;
+    padding-top: 50px;
+  }
+
+  > *:last-child {
+    padding-bottom: 50px;
   }
 
   @include res_Mobile {

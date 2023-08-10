@@ -34,45 +34,6 @@
       display: flex;
       align-items: center;
       height: $headerHeight;
-
-      @include res_Mobile {
-        margin-left: 50px;
-      }
-    }
-
-    // link Ul
-    .ul {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-
-      @include res_Mobile {
-        display: none;
-      }
-
-      li {
-        position: relative;
-
-        &::after {
-          content: '';
-          display: block;
-          position: absolute;
-          width: 0;
-          height: 1px;
-          bottom: 0;
-          left: 50%;
-          margin: 0 auto;
-          transform: translate(-50%, 7px);
-          transform-origin: center;
-          background-color: #fff;
-          transition: 0.5s;
-        }
-        &:hover {
-          &::after {
-            width: 100%;
-          }
-        }
-      }
     }
   }
 }

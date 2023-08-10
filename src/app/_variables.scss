@@ -22,6 +22,12 @@
   }
 }
 
+@mixin res_Desktop($px: 1200px){
+  @media screen and (min-width: $px) {
+    @content;
+  }
+}
+
 @mixin pos($p: null, $t: null, $r: null, $b: null, $l: null, $d: null) {
   position: $p;
   top: $t;

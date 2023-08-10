@@ -7,7 +7,7 @@ const PortfolioDetail = async (req) => {
   const id = req.params.id;
   const { data } = await api.get(`/portfolio/${id}`);
   return (
-    <>
+    <section className={styles.portfolio__wrap}>
       <div className={styles.portfolio__body}>
         <div className={styles.date}>{data.date}</div>
         <h2 className={styles.title}>{data.title}</h2>
@@ -19,6 +19,8 @@ const PortfolioDetail = async (req) => {
             alt={data.title}
             width={1200}
             height={400}
+            priority={true}
+            style={{ objectFit: 'contain' }}
           />
         </Link>
         <div>{data.langauge}</div>
@@ -38,7 +40,7 @@ const PortfolioDetail = async (req) => {
           </div>
         ))}
       </aside>
-    </>
+    </section>
   );
 };
 
