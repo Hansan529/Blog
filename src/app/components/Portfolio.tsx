@@ -22,11 +22,7 @@ const Portfolio = async ({ edit }) => {
           title={item.title}
           key={item._id}
         >
-          <Link
-            href={
-              edit ? `/portfolio-setting/${item._id}` : `/portfolio/${item._id}`
-            }
-          >
+          <Link href={`portfolio${edit ? '-setting' : null}/${item._id}`}>
             <h3>{item.title}</h3>
             <small className={styles.date}>{item.date}</small>
             <Image

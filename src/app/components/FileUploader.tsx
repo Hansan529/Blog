@@ -14,24 +14,50 @@ import { RootState } from '../redux/store';
 type Input = ChangeEvent<HTMLInputElement>;
 type TextArea = ChangeEvent<HTMLTextAreaElement>;
 
-export default function FileUploader() {
+interface params {
+  ogId: string | null;
+  ogEdit: boolean;
+  ogUrl: string | null;
+  ogDate: string | null;
+  ogTitle: string | null;
+  ogDev: string[] | null;
+  ogImageUrl: string | null;
+  ogLanguage: string[] | null;
+  ogDescription: string | null;
+}
+
+export default function FileUploader({
+  ogId,
+  ogEdit,
+  ogUrl,
+  ogDate,
+  ogTitle,
+  ogDev,
+  ogImageUrl,
+  ogLanguage,
+  ogDescription,
+}: params) {
   const login = useSelector((state: RootState) => state.auth.value.isAuth);
   const dateVal = new Date();
   // 이미지
-  const [url, setUrl] = useState<string>('');
+  const [url, setUrl] = useState<string>(ogUrl || '');
   const [date, setDate] = useState<string>(
-    `${dateVal.getFullYear()}-${(dateVal.getMonth() + 1)
-      .toString()
-      .padStart(2, '0')}-${dateVal.getDate().toString().padStart(2, '0')}`
+    ogDate ||
+      `${dateVal.getFullYear()}-${(dateVal.getMonth() + 1)
+        .toString()
+        .padStart(2, '0')}-${dateVal.getDate().toString().padStart(2, '0')}`
   );
-  const [title, setTitle] = useState<string>('');
-  const [dev, setDev] = useState<string[]>([]);
-  const [imageUrl, setImageUrl] = useState('/images/placeholder-image.png');
+  const [title, setTitle] = useState<string>(ogTitle || '');
+  console.log('title: ', title);
+  console.log('ogTitle: ', ogTitle);
+  const [dev, setDev] = useState<string[]>(ogDev || []);
+  const [imageUrl, setImageUrl] = useState(
+    ogImageUrl || '/images/placeholder-image.png'
+  );
   const [imageFile, setImageFile] = useState<File>();
-  const [language, setLanguage] = useState<string[]>([]);
-  const [description, setDescription] = useState<string>();
+  const [language, setLanguage] = useState<string[]>(ogLanguage || []);
+  const [description, setDescription] = useState<string>(ogDescription || '');
   const router = useRouter();
-
   // 이미지 업로드
   const onImageFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const fileInput = e.target;
@@ -60,8 +86,8 @@ export default function FileUploader() {
     e.target.type = 'file';
   };
 
-  // 프로젝트 업로드
-  const uploadForm = async (e: React.FormEvent<HTMLFormElement>) => {
+  // 프로젝트 업로드 및 업데이트
+  const uploadAndPatchForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // 폼 데이터 입력
@@ -70,11 +96,29 @@ export default function FileUploader() {
     formData.append('date', date);
     formData.append('title', title);
     formData.append('developer', String(dev));
-    formData.append('file', imageFile);
     formData.append('language', String(language));
     formData.append('description', description);
+    if (ogEdit) {
+      formData.append('_id', ogId);
+      formData.append('imageUrl', ogImageUrl);
+      if (imageFile) formData.append('file', imageFile);
+    } else {
+      formData.append('file', imageFile);
+    }
+    // 포트폴리오 수정
+    if (ogEdit) {
+      try {
+        await formApi.patch('/portfolio', formData);
+        router.push('/portfolio-setting');
+        router.refresh();
+        return;
+      } catch (error) {
+        console.error('포트폴리오 업로드 중 문제가 생겼습니다.', error);
+        return;
+      }
+    }
     try {
-      const res = await formApi.post(`/upload`, formData);
+      const res = await formApi.post(`/portfolio`, formData);
 
       if (res.status !== 200) {
         console.error('something went wrong, check your console.');
@@ -95,7 +139,7 @@ export default function FileUploader() {
   }, [login]);
 
   return (
-    <form className={styles.uploadForm} onSubmit={uploadForm}>
+    <form className={styles.uploadForm} onSubmit={uploadAndPatchForm}>
       <div>
         <label className={styles.uploadPart}>
           <p className={styles.name}>날짜</p>
