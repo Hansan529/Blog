@@ -6,7 +6,7 @@ import styles from './FileUploader.module.scss';
 // Package
 import Image from 'next/image';
 import { ChangeEvent, useEffect, useState } from 'react';
-import { formApi } from '../../axios';
+import { formApi, api } from '../../axios';
 import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
@@ -37,9 +37,11 @@ export default function FileUploader({
   ogLanguage,
   ogDescription,
 }: params) {
+  // 로그인 체크
   const login = useSelector((state: RootState) => state.auth.value.isAuth);
+
+  // Input 값 State
   const dateVal = new Date();
-  // 이미지
   const [url, setUrl] = useState<string>(ogUrl || '');
   const [date, setDate] = useState<string>(
     ogDate ||
@@ -55,7 +57,12 @@ export default function FileUploader({
   const [imageFile, setImageFile] = useState<File>();
   const [language, setLanguage] = useState<string[]>(ogLanguage || []);
   const [description, setDescription] = useState<string>(ogDescription || '');
+
+  // 페이지 이동 라우터
   const router = useRouter();
+
+  // 포트폴리오 삭제 체크
+  const [removeChk, setRemoveChk] = useState<boolean>(false);
   // 이미지 업로드
   const onImageFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const fileInput = e.target;
@@ -130,6 +137,21 @@ export default function FileUploader({
     }
   };
 
+  // 포트폴리오 삭제 요청
+  const removePortfolio = async (e: React.MouseEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const { status } = await (
+      await api.delete(`/portfolio/${ogId}`, {
+        data: {
+          ogImageUrl,
+        },
+      })
+    ).data;
+
+    if (status === 200) router.push('/portfolio-setting');
+    router.refresh();
+  };
+
   // 로그인하지 않았다면 접근 불가능
   useEffect(() => {
     if (login) return;
@@ -137,61 +159,68 @@ export default function FileUploader({
   }, [login]);
 
   return (
-    <form className={styles.uploadForm} onSubmit={uploadAndPatchForm}>
-      <div className={styles.portfolio__info}>
-        <input
-          name="date"
-          type="date"
-          onChange={(e: Input) => setDate(e.target.value)}
-          value={date}
+    <>
+      <form className={styles.uploadForm} onSubmit={uploadAndPatchForm}>
+        <div className={styles.portfolio__info}>
+          <input
+            name="date"
+            type="date"
+            onChange={(e: Input) => setDate(e.target.value)}
+            value={date}
+            required
+          />
+          <input
+            className={styles.portfolio__infoTitle}
+            name="title"
+            type="text"
+            value={title}
+            onChange={(e: Input) => setTitle(e.target.value)}
+            placeholder="제목"
+            required
+          />
+          <input
+            type="text"
+            name="developer"
+            value={dev}
+            onChange={(e: Input) => setDev([e.target.value])}
+            placeholder="개발자"
+            required
+          />
+        </div>
+        <label
+          className={styles['file-uploader']}
+          style={{ paddingTop: `calc(100% * (${446} / ${720}))` }}
+        >
+          <Image
+            src={imageUrl}
+            alt="uploaded image"
+            width={720}
+            height={446}
+            // priority={true}
+          />
+          <input
+            style={{ display: 'none' }}
+            type="file"
+            accept="image/*"
+            onChange={onImageFileChange}
+          />
+        </label>
+        <textarea
+          className={styles.description}
+          name="description"
+          value={description}
+          onChange={(e: TextArea) => setDescription(e.target.value)}
+          required
+          placeholder="본문"
         />
-        <input
-          className={styles.portfolio__infoTitle}
-          name="title"
-          type="text"
-          value={title}
-          onChange={(e: Input) => setTitle(e.target.value)}
-          placeholder="제목"
-        />
-        <input
-          type="text"
-          name="developer"
-          value={dev}
-          onChange={(e: Input) => setDev([e.target.value])}
-          placeholder="개발자"
-        />
-      </div>
-      <label
-        className={styles['file-uploader']}
-        style={{ paddingTop: `calc(100% * (${446} / ${720}))` }}
-      >
-        <Image
-          src={imageUrl}
-          alt="uploaded image"
-          width={720}
-          height={446}
-          // priority={true}
-        />
-        <input
-          style={{ display: 'none' }}
-          type="file"
-          onChange={onImageFileChange}
-        />
-      </label>
-      <textarea
-        className={styles.description}
-        name="description"
-        value={description}
-        onChange={(e: TextArea) => setDescription(e.target.value)}
-        placeholder="본문"
-      />
-      <div className={styles.portfolio__etc}>
+        <div className={styles.portfolio__etc}>
           <input
             className={styles.language}
             name="language"
             type="text"
             value={language}
             onChange={(e: Input) => setLanguage([e.target.value])}
+            required
             placeholder="언어"
           />
           <input
@@ -200,10 +229,39 @@ export default function FileUploader({
             type="url"
             onChange={(e: Input) => setUrl(e.target.value)}
             value={url}
+            required
             placeholder="프로젝트 주소"
           />
-      </div>
-      <button className={styles.uploadBtn} type="submit">업로드</button>
-    </form>
+        </div>
+        <button className={styles.uploadBtn} type="submit">
+          {ogEdit ? '업데이트' : '업로드'}
+        </button>
+        {ogEdit ? (
+          <button
+            className={styles.removeBtn}
+            onClick={() => setRemoveChk(true)}
+            type="button"
+          >
+            삭제하기
+          </button>
+        ) : null}
+      </form>
+      {removeChk ? (
+        <article className={styles.removeBg}>
+          <div className={styles.removeEl}>
+            <h2>포트폴리오 삭제</h2>
+            <p>정말로 삭제하시려는게 맞습니까?</p>
+            <div>
+              <input type="button" value="예" onClick={removePortfolio} />
+              <input
+                type="button"
+                value="아니오"
+                onClick={() => setRemoveChk(false)}
+              />
+            </div>
+          </div>
+        </article>
+      ) : null}
+    </>
   );
 }
