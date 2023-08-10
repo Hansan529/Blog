@@ -14,11 +14,11 @@ export async function middleware(req: NextRequest) {
 
   // *
   // 쿠키 헤더 설정
-  // const response = NextResponse.next({
-  //   request: {
-  //     headers: new Headers(req.headers),
-  //   },
-  // });
+  const response = NextResponse.next({
+    request: {
+      headers: new Headers(req.headers),
+    },
+  });
   // const cookieChk = req.cookies.get('x-connectDB');
   // if (!cookieChk) {
   //   response.cookies.set('x-connectDB', 'true', { maxAge: 3600 });
@@ -30,7 +30,7 @@ export async function middleware(req: NextRequest) {
   // response.headers.set('x-custom-auth-header', 'isAuthed');
   // console.log('header response', response.headers.get('x-custom-auth-header'));
   // console.log('response.header: ', response.headers);
-  return NextResponse.next();
+  return response;
 }
 
 // 특정 경로에서 실행되도록 설정
