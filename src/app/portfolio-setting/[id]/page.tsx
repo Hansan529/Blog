@@ -9,7 +9,7 @@ interface Request extends NextRequest {
   };
 }
 
-const PortfolioSetting = async (req: Request) => {
+const PortfolioSetting = async (req) => {
   const id = req.params.id;
   const { data } = await api.get(`/portfolio/${id}`);
   return (
