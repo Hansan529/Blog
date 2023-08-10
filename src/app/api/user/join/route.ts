@@ -10,7 +10,6 @@ export const POST = async (req: Request | NextRequest) => {
   const email = formData.get('email') || '';
   const socialLogin = formData.get('socialLogin') || '';
 
-  // await connectMongoDB();
   try {
     // 중복 아이디, 이메일이 있거나 비밀번호가 같지 않다면 생성 취소
     const already = await Admin.exists({ id, email });
