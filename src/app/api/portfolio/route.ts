@@ -162,6 +162,4 @@ export const PATCH = async (req: NextRequest) => {
       { status: 500 }
     );
   }
-
-  return NextResponse.json({ data: 'test' });
 };
