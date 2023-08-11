@@ -1,8 +1,17 @@
 # Hxan Develop Blog - CHANGELOG
 
+## 데이터베이스 연동 (2023.08.06 ~ 2023.08.07)
+
+- mongoDB 연결
+- middleware 설정
+- multer, bcrpyt 패키지 추가
+- 로그인 API 완성
+- 관리자 추가 구현
+- Project, Info 모델 추가
+
 ## 마이그레이션 시작 (2023.08.05)
 
-- React/Node &rarr; NEXT JS
+- React/Node &rarr; **NEXT JS**
 - 로그인 페이지 마이그레이션
 
 <img width="382" alt="#" src="https://github.com/Hansan529/Blog/assets/115819770/b868584e-30b5-4280-83e2-96fa36ef0eeb">
