@@ -1,5 +1,16 @@
 # Hxan Develop Blog - CHANGELOG
 
+## 마이그레이션 시작 (2023.08.05)
+
+- React/Node &rarr; NEXT JS
+- 로그인 페이지 마이그레이션
+
+<img width="382" alt="#" src="https://github.com/Hansan529/Blog/assets/115819770/b868584e-30b5-4280-83e2-96fa36ef0eeb">
+
+- 서버 컴포넌트, 클라이언트 컴포넌트 분리
+- ~~MySQL 추가~~
+
+# 릴리즈 1.1.0
 ## 반응형 디자인 스타일시트 구현 [#35](https://github.com/Hansan529/Blog/pull/35) (2023.07.31)
 
 ### 클라이언트
