@@ -1,12 +1,27 @@
-const path = require('path');
+// const path = require('path');
 
-module.exports = {
-  sassOptions: {
-    includePaths: [path.join(__dirname, 'styles')],
-  },
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // 'use server'
+  // serverActions: true,
+  output: 'standalone',
+  // mdx 설정
   experimental: {
-    serverActions: true,
-    esmExternals: 'loose',
-    serverComponentsExternalPackages: ['mongoose'],
+    mdxRs: true,
   },
+  // SASS 사용
+  // sassOptions: {
+  //   includePaths: [path.join(__dirname, 'styles')],
+  // },
 };
+
+const withMDX = require('@next/mdx')();
+module.exports = withMDX(nextConfig);
+
+// MongoDB
+// module.exports = {
+//   experimental: {
+//     esmExternals: 'loose',
+//     serverComponentsExternalPackages: ['mongoose'],
+//   },
+// };
