@@ -1,5 +1,30 @@
 # Hxan Develop Blog - CHANGELOG
 
+## 마이그레이션 완료 (2023.08.08 ~ 2023.08.10)
+
+- Project &rarr; Portfolio
+- 홈페이지 테마 다크모드로 설정
+- Header, Loading, Upload 구현
+- 포트폴리오 업로드 **C**reate 구현
+- 랜딩페이지 **R**ead 구현
+- 파비콘 설정
+- 관리 페이지 **U**pdate, **D**elete 구현
+- 반응형 디자인 구현
+<div style="display: flex">
+    <img width="382" alt="" src="https://github.com/Hansan529/Blog/assets/115819770/899fec3d-8272-494f-8e3a-d659ef8844c6">
+    <img width="379" alt="" src="https://github.com/Hansan529/Blog/assets/115819770/9e627785-7f66-4ff5-bef6-794e3a180b5c">
+    <img width="380" alt="" src="https://github.com/Hansan529/Blog/assets/115819770/8ccbf4a3-28f4-4093-974e-378c812ddefc">
+</div>
+<div style="display: flex">
+    <img width="380" alt="" src="https://github.com/Hansan529/Blog/assets/115819770/ceb75f5d-60db-4dbb-b6d1-c1b56690c587">
+    <img width="385" alt="" src="https://github.com/Hansan529/Blog/assets/115819770/4d393e3a-d06e-4a49-a442-c8e186b85400">
+    <img width="389" alt="" src="https://github.com/Hansan529/Blog/assets/115819770/94811bbd-c215-4e33-94c5-97ae3c54882c">
+</div>
+<div>
+<img width="2995" alt="" src="https://github.com/Hansan529/Blog/assets/115819770/a235a446-b001-4b0f-af6d-6149e71fd345">
+<img width="1908" alt="" src="https://github.com/Hansan529/Blog/assets/115819770/ffc98f8b-c53e-4c34-be74-ca63eb43f676"></div>
+
+
 ## 데이터베이스 연동 (2023.08.06 ~ 2023.08.07)
 
 - mongoDB 연결
