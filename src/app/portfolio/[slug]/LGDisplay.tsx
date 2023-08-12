@@ -4,17 +4,20 @@ import Link from "next/link";
 
 export default function Page() {
   return (
-    <article className="container mx-auto prose dark:prose-invert">
+    <article className="container prose mx-auto dark:prose-invert">
       <LGDisplay />
-      <Link target="_blank" href='https://github.com/Hansan529/LGdisplay-rework'>
-      <Image
-        className="object-contain hover:opacity-75"
-        src="/portfolio-img/LGDisplay.png"
-        alt="노스페이스 클론"
-        width={1200}
-        height={800}
-        priority={true}
-      />
+      <Link
+        target="_blank"
+        href="https://github.com/Hansan529/LGdisplay-rework"
+      >
+        <Image
+          className="object-contain hover:opacity-75"
+          src="/portfolio-img/LG-Display.png"
+          alt="노스페이스 클론"
+          width={1200}
+          height={800}
+          priority={true}
+        />
       </Link>
     </article>
   );
