@@ -1,4 +1,3 @@
-// const path = require('path');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -17,11 +16,3 @@ const nextConfig = {
 
 const withMDX = require('@next/mdx')();
 module.exports = withMDX(nextConfig);
-
-// MongoDB
-// module.exports = {
-//   experimental: {
-//     esmExternals: 'loose',
-//     serverComponentsExternalPackages: ['mongoose'],
-//   },
-// };
