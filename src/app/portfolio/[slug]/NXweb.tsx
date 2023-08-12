@@ -16,7 +16,6 @@ export default function Page() {
         priority={true}
       />
       </Link>
-      
     </article>
   );
 }
