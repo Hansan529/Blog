@@ -3,7 +3,10 @@
 const nextConfig = {
   // 'use server'
   // serverActions: true,
-  output: 'standalone',
+  compiler: {
+    styledComponents: true,
+  },
+  output: "standalone",
   // mdx 설정
   experimental: {
     mdxRs: true,
