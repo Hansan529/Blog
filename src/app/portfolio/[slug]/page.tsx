@@ -11,6 +11,7 @@ import Wetube from "./Wetube";
 import 날씨 from "./React-Weather";
 import 데일리UI from "./Daily-ui";
 import NotFound from "@/app/not-found";
+import Loading from "@/app/loading";
 
 interface Params {
   params: { slug: string };
@@ -46,7 +47,7 @@ export default function Page({ params }: Params) {
     case encodeURIComponent("daily-ui"):
       return <데일리UI />;
     case encodeURIComponent("test"):
-      return <NotFound />;
+      return <Loading />;
     default:
       return <NotFound />;
   }

@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Page(){
     return (
-      <article className="container prose mx-auto dark:prose-invert">
+      <>
         <데일리UI />
         <Link target="_blank" href="https://github.com/Hansan529/ddaily-ui-100">
           <Image
@@ -16,6 +16,6 @@ export default function Page(){
             priority={true}
           />
         </Link>
-      </article>
+      </>
     );
 }

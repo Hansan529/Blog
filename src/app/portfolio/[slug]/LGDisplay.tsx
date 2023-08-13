@@ -1,10 +1,10 @@
-import LGDisplay from './LGDisplay.mdx';
-import Image from 'next/image';
+import LGDisplay from "./LGDisplay.mdx";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Page() {
   return (
-    <article className="container prose mx-auto dark:prose-invert">
+    <>
       <LGDisplay />
       <Link
         target="_blank"
@@ -19,6 +19,6 @@ export default function Page() {
           priority={true}
         />
       </Link>
-    </article>
+    </>
   );
 }

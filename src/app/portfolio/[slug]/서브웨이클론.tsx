@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Page(){
     return (
-      <article className="container prose mx-auto dark:prose-invert">
+      <>
         <서브웨이클론 />
         <Link
           target="_blank"
@@ -19,7 +19,11 @@ export default function Page(){
             priority={true}
           />
         </Link>
-      </article>
+        <details>
+          <summary>텍스트</summary>
+          <div>텍스트ㅡㅡㅡ</div>
+        </details>
+      </>
     );
     
 }

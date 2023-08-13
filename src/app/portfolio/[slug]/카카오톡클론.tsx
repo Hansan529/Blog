@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Page() {
   return (
-    <article className="container prose mx-auto dark:prose-invert">
+    <>
       <카카오톡클론 />
       <Link target="_blank" href="https://github.com/Hansan529/kokoa-clone">
         <Image
@@ -16,6 +16,6 @@ export default function Page() {
           priority={true}
         />
       </Link>
-    </article>
+    </>
   );
 }
