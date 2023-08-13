@@ -5,6 +5,7 @@ export default function Introduce() {
     "html",
     "css",
     "sass",
+    "tailwindcss",
     "js",
     "ts",
     "nextjs",
@@ -17,14 +18,28 @@ export default function Introduce() {
     "github",
   ];
   return (
-    <article className="container mx-auto mt-[80px] space-y-[30px] rounded-3xl bg-[#fff]/5 p-[50px] text-center leading-loose">
-      <h2 className="bg-gradient-to-r from-[skyblue] from-10% to-[pink] to-90% bg-clip-text p-[10px] text-5xl font-extrabold capitalize text-transparent">
-        hxan frontend blog
-      </h2>
-      <p>프론트엔드 개발자가 되기 위해서 다양한 언어를 공부중입니다</p>
-      <p>현재 사용 가능한 언어 및 라이브러리, 툴은 다음과 같습니다</p>
+    <article
+      className="container mx-auto w-[90%] rounded-3xl p-[30px] text-center dark:bg-[#fff]/5 
+      lg:w-full
+      xl:p-[50px]"
+    >
+      <div className="mb-[30px] space-y-[30px] leading-loose lg:mb-[50px] lg:space-y-[20px] lg:leading-normal">
+        <h2
+          className="break-words bg-gradient-to-r from-[skyblue] from-10% to-[pink] to-90% bg-clip-text p-[10px] text-4xl font-extrabold capitalize text-transparent 
+          lg:text-5xl
+          xl:text-6xl"
+        >
+          hxan frontend blog
+        </h2>
+        <p className="break-keep text-sm lg:text-lg xl:text-xl">
+          프론트엔드 개발자가 되기 위해서 다양한 언어를 공부중입니다
+        </p>
+        <p className="break-keep text-sm lg:text-lg xl:text-xl">
+          현재 사용 가능한 언어 및 라이브러리, 툴은 다음과 같습니다
+        </p>
+      </div>
       <div
-        className="gridCenter my-[30px] justify-center gap-[20px]"
+        className="gridCenter mb-[30px] justify-center gap-[20px]"
         style={{ gridTemplateColumns: "repeat(auto-fill, minmax(75px, auto)" }}
       >
         {data.map((lang, index) => (
@@ -34,14 +49,16 @@ export default function Introduce() {
             title={lang}
           >
             <Image
-              className="mx-auto w-[90%]  px-[10px]"
+              className={`mx-auto w-[50px] px-[10px] drop-shadow-[0_0px_5px_rgba(255,255,255,0.3)] xl:w-[90%] ${
+                lang === "express" ? "dark:invert" : ""
+              }`}
               src={`/ico/language/${lang}-icon.svg`}
               alt={lang}
               width={75}
               height={75}
               priority={true}
             />
-            <span className="text-[12px]">{lang}</span>
+            <span className="text-[12px] lg:text-sm">{lang}</span>
           </div>
         ))}
       </div>
