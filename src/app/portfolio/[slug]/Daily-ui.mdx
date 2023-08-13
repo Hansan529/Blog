@@ -1,3 +1,5 @@
+import Stack from "../../../components/MDXLayout.tsx"
+
 # Daily UI 100 (Reference)
 
 ## 프로젝트 정보
@@ -19,44 +21,11 @@
 
 #### 페이지에 적용된 기술 스택
 
-<div className="table w-[100%]">
-    <div className="table-header-group">
-        <div className="table-row text-center">
-            <div className="table-cell">마크업</div>
-            <div className="table-cell">스타일</div>
-            <div className="table-cell">스크립트</div>
-            <div className="table-cell">데이터베이스</div>
-            <div className="table-cell">상태 관리</div>
-            <div className="table-cell">서버</div>
-        </div>
-    </div>
-    <div className="table-row-group">
-        <div className="table-row text-center items-center tabular-nums">
-            <div className="table-cell align-middle relative empty:before:content-['X'] before:text-red-500">
-                <img className="object-contain w-[30px] mx-auto" title="HTML" alt="HTML" src='/ico/language/html-icon.svg' />
-            </div>
-            <div className="table-cell align-middle relative empty:before:content-['X'] before:text-red-500">
-                <img className="object-contain w-[30px] mx-auto" title="SASS" alt="SASS" src='/ico/language/sass-icon.svg' />
-            </div>
-            <div className="table-cell align-middle relative empty:before:content-['X'] before:text-red-500">
-                <img className="object-contain w-[30px] mx-auto" title="TS" alt="TS" src='/ico/language/ts-icon.svg' />
-            </div>
-            <div className="table-cell align-middle relative empty:before:content-['X'] before:text-red-500">
-
-            </div>
-            <div className="table-cell align-middle relative empty:before:content-['X'] before:text-red-500">
-
-            </div>
-            <div className="table-cell align-middle relative empty:before:content-['X'] before:text-red-500">
-
-            </div>
-        </div>
-    </div>
-</div>
+<Stack markup={["html"]} style={["SASS"]} script={["ts"]} />
 
 ### 설명
 
-<div className="max-w-prose text-base/10">
+<div className="max-w-prose text-base/10 break-keep">
     100일간 주제를 바탕으로 디자인하는 단기 프로젝트입니다.
 </div>
 

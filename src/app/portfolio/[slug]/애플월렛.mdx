@@ -1,3 +1,5 @@
+import Stack from "@/components/MDXLayout";
+
 # Apple Wallet (Reference)
 
 ## 프로젝트 정보
@@ -19,39 +21,11 @@
 
 #### 페이지에 적용된 기술 스택
 
-<div className="table w-[100%]">
-    <div className="table-header-group">
-        <div className="table-row text-center">
-            <div className="table-cell">마크업</div>
-            <div className="table-cell">스타일</div>
-            <div className="table-cell">스크립트</div>
-            <div className="table-cell">데이터베이스</div>
-            <div className="table-cell">상태 관리</div>
-        </div>
-    </div>
-    <div className="table-row-group">
-        <div className="table-row text-center items-center tabular-nums">
-            <div className="table-cell align-middle relative empty:before:content-['X'] before:text-red-500">
-                <img className="object-contain w-[30px] mx-auto" title="HTML" alt="HTML" src='/ico/language/html-icon.svg' />
-            </div>
-            <div className="table-cell align-middle relative empty:before:content-['X'] before:text-red-500">
-                <img className="object-contain w-[30px] mx-auto" title="CSS" alt="CSS" src='/ico/language/css-icon.svg' />
-                <img className="object-contain w-[30px] mx-auto" title="SASS" alt="SASS" src='/ico/language/sass-icon.svg' />
-            </div>
-            <div className="table-cell align-middle relative empty:before:content-['X'] before:text-red-500">
-                <img className="object-contain w-[30px] mx-auto" title="JS" alt="JS" src='/ico/language/js-icon.svg' />
-            </div>
-            <div className="table-cell align-middle relative empty:before:content-['X'] before:text-red-500">
-            </div>
-            <div className="table-cell align-middle relative empty:before:content-['X'] before:text-red-500">
-            </div>
-        </div>
-    </div>
-</div>
+<Stack markup={["html"]} style={["sass"]} script={["js"]} />
 
 ### 설명
 
-<div className="max-w-prose text-base/10">
+<div className="max-w-prose text-base/10 break-keep">
   1. 제작 환경: 1920*1080px, Chrome 환경 (Safari, Edge 정상 작동)
   2. 반응형 웹 디자인 (767px 미만, 1280px 미만, 1280px 이상)
   3. 스크롤 위치에 따른 동적 변화 기능
