@@ -10,6 +10,7 @@ import 애플월렛 from "./애플월렛";
 import Wetube from "./Wetube";
 import 날씨 from "./React-Weather";
 import 데일리UI from "./Daily-ui";
+import 블로그 from "./블로그";
 import NotFound from "@/app/not-found";
 import Loading from "@/app/loading";
 
@@ -46,6 +47,8 @@ export default function Page({ params }: Params) {
       return <날씨 />;
     case encodeURIComponent("daily-ui"):
       return <데일리UI />;
+    case encodeURIComponent("블로그"):
+      return <블로그 />;
     case encodeURIComponent("test"):
       return <Loading />;
     default:
