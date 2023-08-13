@@ -19,10 +19,6 @@ export default function Page(){
             priority={true}
           />
         </Link>
-        <details>
-          <summary>텍스트</summary>
-          <div>텍스트ㅡㅡㅡ</div>
-        </details>
       </>
     );
     
