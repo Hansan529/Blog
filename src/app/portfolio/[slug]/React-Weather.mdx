@@ -6,45 +6,47 @@ import Stack from "@/components/MDXLayout";
 
 - 1인 개발  
 - 개발 기간 
-    - <small className="text-xs">2023.05.20 ~ 2023.06.22</small>
+    - ###### 2023.05.20 ~ 2023.06.22
 
 ### 홈페이지 README
 
 - 깃허브 저장소: <a target="_blank" href="https://github.com/Hansan529/react-weather">Github</a>
 - 배포 주소: <a target="_blank" href="https://react-weather.hxan.net">react-weather</a>
 
-### 프로젝트 소개
-
-#### 개발자
+### 개발자
 
  - [Hansan529](https://github.com/Hansan529)
 
-#### 페이지에 적용된 기술 스택
+---
+
+## 프로젝트 소개
+
+### 페이지에 적용된 기술 스택
 
 <Stack style={["sass"]} script={["js", "react"]} server={["nodejs", "express"]} />
 
-### 설명
+| 반응형 |  |
+| --- | --- |
+| 모바일 | O |
+| 태블릿 | O |
 
-<div className="max-w-prose text-base/10 break-keep">
-    1. 현재 위치를 기반으로 기상 정보를 확인해 볼 수 있습니다.
-    2. 현재 기상 상태의 실황 또는 예보를 확인 할 수 있습니다.
-    3. 해당 페이지에 접근한 플랫폼을 구분해, 각 플랫폼에 알맞는 반응형 디자인을 구현한다.
+1. 현재 위치를 기반으로 기상 정보를 확인해 볼 수 있습니다.
+2. 현재 기상 상태의 실황 또는 예보를 확인 할 수 있습니다.
+3. 해당 페이지에 접근한 플랫폼을 구분해, 각 플랫폼에 알맞는 반응형 디자인을 구현한다.
 
-    최초 기획은 박스오피스 API를 사용한 영화 사이트였지만, API 만료로 인해 취소됨
+최초 기획은 박스오피스 API를 사용한 영화 사이트였지만, API 만료로 인해 취소됨
 
-    <a target="_blank" href="https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15084084">기상청 단기예보 오픈 API</a>를 사용해 데이터를 서버에서 제공받아 사용자에게 UI로 상황을 나타낸다.
+<a target="_blank" href="https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15084084">기상청 단기예보 오픈 API</a>를 사용해 데이터를 서버에서 제공받아 사용자에게 UI로 상황을 나타낸다.
 
-    ---
+---
 
-    현재 위치를 브라우저에서 사용자에게 요청을 하고, 수락 시 해당 좌표 값을 바탕으로  
-    기상청 단기 예보 API: REST API 요청합니다.
+현재 위치를 브라우저에서 사용자에게 요청을 하고, 수락 시 해당 좌표 값을 바탕으로  
+기상청 단기 예보 API: REST API 요청합니다.
 
-    해당 데이터를 JSON 타입으로 받아 데이터를 계산해 클라이언트에서 정보를 확인할 수 있습니다.
+해당 데이터를 JSON 타입으로 받아 데이터를 계산해 클라이언트에서 정보를 확인할 수 있습니다.
 
-    만약, 현재 위치 요청에 대해 거부를 하면, 기본 값인 서울로 지정됩니다.
+만약, 현재 위치 요청에 대해 거부를 하면, 기본 값인 서울로 지정됩니다.
 
-    사용자에게 현재 위치를 출력하기 위해서, 카카오지도 API 를 사용했습니다.
-</div>
-
+사용자에게 현재 위치를 출력하기 위해서, 카카오지도 API 를 사용했습니다.
 
 ### 이미지
