@@ -43,6 +43,7 @@ const DarkModeBtn = () => {
     <>
       <button onClick={changeMode}>
         <Image className="w-[40px]" src={src} alt="" width={40} height={40} />
+        <span className="sr-only">Browser Theme Change</span>
       </button>
     </>
   );
