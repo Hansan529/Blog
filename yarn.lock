@@ -459,11 +459,6 @@
   dependencies:
     "@types/estree" "*"
 
-"@types/chroma-js@^2.4.0":
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@types/chroma-js/-/chroma-js-2.4.0.tgz#476a16ae848c77478079d6749236fdb98837b92c"
-  integrity sha512-JklMxityrwjBTjGY2anH8JaTx3yjRU3/sEHSblLH1ba5lqcSh1LnImXJZO5peJfXyqKYWjHTGy4s5Wz++hARrw==
-
 "@types/debug@^4.0.0":
   version "4.1.8"
   resolved "https://registry.yarnpkg.com/@types/debug/-/debug-4.1.8.tgz#cef723a5d0a90990313faec2d1e22aee5eecb317"
@@ -1020,11 +1015,6 @@ chownr@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/chownr/-/chownr-2.0.0.tgz#15bfbe53d2eab4cf70f18a8cd68ebe5b3cb1dece"
   integrity sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==
-
-chroma-js@^2.4.0:
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/chroma-js/-/chroma-js-2.4.2.tgz#dffc214ed0c11fa8eefca2c36651d8e57cbfb2b0"
-  integrity sha512-U9eDw6+wt7V8z5NncY2jJfZa+hUH8XEj8FQHgFJTrUFnJfXYf4Ml4adI2vXZOjqRDpFWtYVWypDfZwnJ+HIR4A==
 
 client-only@0.0.1:
   version "0.0.1"
@@ -3607,15 +3597,6 @@ queue-microtask@^1.2.2:
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
-react-activity-calendar@^2.0.0:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/react-activity-calendar/-/react-activity-calendar-2.0.2.tgz#d76c273360775f78aeac645ddb814276c4f0377c"
-  integrity sha512-gUm7j8rgBgYnrfBQkR4y3gl/gPI1By2Yfg1O1EpYuOdYdRsTtn404H4eH9+iZBCAeZjG49NBPo/BmjvOSyaChg==
-  dependencies:
-    "@types/chroma-js" "^2.4.0"
-    chroma-js "^2.4.0"
-    date-fns "^2.30.0"
-
 react-dom@^18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.2.0.tgz#22aaf38708db2674ed9ada224ca4aa708d821e3d"
@@ -3623,13 +3604,6 @@ react-dom@^18.2.0:
   dependencies:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
-
-react-github-calendar@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/react-github-calendar/-/react-github-calendar-4.0.1.tgz#f04eca6e2478988efbeef92b3dc27b7ae96a5a48"
-  integrity sha512-WTJFto5i628k8XhRKv/VsV93RL9jGoMl6thxv7UWPaF1Okyo3u/mHhEg261nkPI+8CbPSzmlgfoGUnldZKJgvA==
-  dependencies:
-    react-activity-calendar "^2.0.0"
 
 react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"
