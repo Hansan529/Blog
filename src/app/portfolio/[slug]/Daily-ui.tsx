@@ -6,7 +6,7 @@ export default function Page(){
     return (
       <>
         <데일리UI />
-        <Link target="_blank" href="https://github.com/Hansan529/ddaily-ui-100">
+        <Link target="_blank" href="https://github.com/Hansan529/daily-ui-100">
           <Image
             className="object-contain hover:opacity-75"
             src="/portfolio-img/daily-Ui.png"
