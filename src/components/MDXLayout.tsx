@@ -14,47 +14,50 @@ export default function Page({
 }: Type) {
   const language = (type: string[]): JSX.Element => {
     return (
-      <div className="empty:before:text-red-500 relative table-cell align-middle empty:before:content-['X']">
+      <td className="relative w-1/6 align-middle empty:before:text-red-500 empty:before:content-['X']">
         {type
           ? type.map((name, index) => (
-              <Image
-                key={index}
-                className={`mx-auto object-contain ${
-                  name === "express" ? "dark:invert" : ""
-                }`}
-                title={name}
-                alt={name}
-                src={`/ico/language/${name}-icon.svg`}
-                width={30}
-                height={30}
-              />
+              <div key={index}>
+                <Image
+                  className={`mx-auto object-contain ${
+                    name === "express" ? "dark:invert" : ""
+                  }`}
+                  title={name}
+                  alt={name}
+                  src={`/ico/language/${name}-icon.svg`}
+                  width={30}
+                  height={30}
+                  priority={true}
+                />
+                <span className="text-[12px]">{name.toUpperCase()}</span>
+              </div>
             ))
           : null}
-      </div>
+      </td>
     );
   };
   return (
-    <div className="table w-[100%] text-[12px]">
-      <div className="table-header-group">
-        <div className="table-row text-center">
-          <div className="table-cell">마크업</div>
-          <div className="table-cell">스타일</div>
-          <div className="table-cell">스크립트</div>
-          <div className="table-cell">데이터베이스</div>
-          <div className="table-cell">상태 관리</div>
-          <div className="table-cell">서버</div>
-        </div>
-      </div>
-      <div className="table-row-group">
-        <div className="table-row items-center text-center tabular-nums">
+    <table className="mt-[20px] w-[100%] text-center text-[12px]">
+      <thead>
+        <tr className="break-keep">
+          <th>마크업</th>
+          <th>스타일</th>
+          <th>스크립트</th>
+          <th>데이터베이스</th>
+          <th>상태 관리</th>
+          <th>서버</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr className="items-center tabular-nums">
           {language(markup)}
           {language(style)}
           {language(script)}
           {language(db)}
           {language(state)}
           {language(server)}
-        </div>
-      </div>
-    </div>
+        </tr>
+      </tbody>
+    </table>
   );
 }

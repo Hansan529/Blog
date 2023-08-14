@@ -9,7 +9,7 @@ const nextConfig = {
   output: "standalone",
   // mdx 설정
   experimental: {
-    mdxRs: true,
+    mdxRs: false,
   },
 };
 
