@@ -11,14 +11,14 @@ export default function Portfolio() {
     { "daily-ui": ["Daily UI 100 (Reference)", "ts"] },
     { "react-weather": ["React Weather (Dev)", "react"] },
     { wetube: ["Wetube (Dev)", "nodejs"] },
-    { "apple-wallet": ["Apple Wallet (Reference)", "js"] },
-    { "lg-display": ["LG Display (Referenece)", "js"] },
-    { wwf: ["WWF (Clone)", "html"] },
-    { hollys: ["Hollys (Clone)", "html"] },
-    { nxweb: ["NXweb (Clone)", "html"] },
-    { northface: ["NorethFace (Clone)", "html"] },
-    { 서브웨이클론: ["Subway (Clone)", "html"] },
-    { 카카오톡클론: ["KokoaTalk (Clone)", "html"] },
+    { "applewallet-clone": ["Apple Wallet (Reference)", "js"] },
+    { lgdisplay: ["LG Display (Referenece)", "js"] },
+    { "wwf-clone": ["WWF (Clone)", "html"] },
+    { "hollys-clone": ["Hollys (Clone)", "html"] },
+    { "nxweb-clone": ["NXweb (Clone)", "html"] },
+    { "northface-clone": ["NorethFace (Clone)", "html"] },
+    { "subway-clone": ["Subway (Clone)", "html"] },
+    { "kokoatalk-clone": ["KokoaTalk (Clone)", "html"] },
   ];
 
   return (

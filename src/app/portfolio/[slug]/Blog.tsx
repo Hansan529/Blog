@@ -1,16 +1,16 @@
-import 날씨 from "./React-Weather.mdx";
 import Link from "next/link";
+import Blog from "./Blog.mdx";
 import Image from "next/image";
 
 export default function Page() {
   return (
     <>
-      <날씨 />
-      <Link target="_blank" href="https://github.com/Hansan529/react-weather">
+      <Blog />
+      <Link target="_blank" href="https://github.com/Hansan529/Blog">
         <Image
           className="object-contain hover:opacity-75"
-          src="/portfolio-img/reactWeather.png"
-          alt="react 날씨"
+          src="/portfolio-img/Blog.png"
+          alt="Blog"
           width={1200}
           height={800}
           priority={true}

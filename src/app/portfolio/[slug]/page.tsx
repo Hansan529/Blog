@@ -1,18 +1,6 @@
-import { Metadata } from 'next';
-import 카카오톡클론 from './카카오톡클론';
-import 서브웨이클론 from "./서브웨이클론";
-import NXweb from "./NXweb";
-import 할리스클론 from "./할리스클론";
-import WWF클론 from "./WWF클론";
-import Northface클론 from "./Northface클론";
-import LGdisplay from "./LGDisplay";
-import 애플월렛 from "./애플월렛";
-import Wetube from "./Wetube";
-import 날씨 from "./React-Weather";
-import 데일리UI from "./Daily-ui";
-import 블로그 from "./블로그";
-import NotFound from "@/app/not-found";
+import { Metadata } from "next";
 import Loading from "@/app/loading";
+import dynamic from "next/dynamic";
 
 interface Params {
   params: { slug: string };
@@ -24,34 +12,24 @@ export const metadata: Metadata = {
 };
 
 export default function Page({ params }: Params) {
-  switch (params.slug) {
-    case encodeURIComponent("카카오톡클론"):
-      return <카카오톡클론 />;
-    case encodeURIComponent("서브웨이클론"):
-      return <서브웨이클론 />;
-    case encodeURIComponent("nxweb"):
-      return <NXweb />;
-    case encodeURIComponent("hollys"):
-      return <할리스클론 />;
-    case encodeURIComponent("wwf"):
-      return <WWF클론 />;
-    case encodeURIComponent("northface"):
-      return <Northface클론 />;
-    case encodeURIComponent("lg-display"):
-      return <LGdisplay />;
-    case encodeURIComponent("apple-wallet"):
-      return <애플월렛 />;
-    case encodeURIComponent("wetube"):
-      return <Wetube />;
-    case encodeURIComponent("react-weather"):
-      return <날씨 />;
-    case encodeURIComponent("daily-ui"):
-      return <데일리UI />;
-    case encodeURIComponent("블로그"):
-      return <블로그 />;
-    case encodeURIComponent("test"):
-      return <Loading />;
-    default:
-      return <NotFound />;
-  }
+  // [slug] 값을 받아옴
+  const decodedSlug = decodeURIComponent(params.slug);
+
+  // '-'로 연결된 문장이면 배열로 나누고 반환
+  const slug = decodedSlug.split("-");
+
+  // 컴포넌트 명에 맞도록 각 첫 문자를 대문자로 변경해 로드함
+  let result: string;
+  result = `${slug[0].charAt(0).toUpperCase()}${slug[0].slice(1)}`;
+  // '-' 가 있어 1번째 string이 있을 경우 추가
+  if (slug[1])
+    result = `${result}${slug[1].charAt(0).toUpperCase()}${slug[1].slice(1)}`;
+
+  // 컴포넌트 로드
+  const DynamicComponent = dynamic(() => import(`./${result}.tsx`), {
+    loading: () => <Loading />,
+    ssr: true,
+  });
+
+  return <DynamicComponent />;
 }
