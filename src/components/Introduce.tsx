@@ -20,21 +20,21 @@ export default function Introduce() {
   return (
     <article
       className="container mx-auto w-[90%] rounded-3xl p-[30px] text-center dark:bg-[#fff]/5 
-      lg:w-full
+      md:w-full
       xl:p-[50px]"
     >
-      <div className="mb-[30px] space-y-[30px] leading-loose lg:mb-[50px] lg:space-y-[20px] lg:leading-normal">
+      <div className="mb-[30px] space-y-[30px] leading-loose md:mb-[50px] md:space-y-[20px] md:leading-normal">
         <h2
           className="break-words bg-gradient-to-r from-[skyblue] from-10% to-[pink] to-90% bg-clip-text p-[10px] text-4xl font-extrabold capitalize text-transparent 
-          lg:text-5xl
+          md:text-5xl
           xl:text-6xl"
         >
           hxan frontend blog
         </h2>
-        <p className="break-keep text-sm lg:text-lg xl:text-xl">
+        <p className="md:text-md break-keep text-sm xl:text-xl">
           프론트엔드 개발자가 되기 위해서 다양한 언어를 공부중입니다
         </p>
-        <p className="break-keep text-sm lg:text-lg xl:text-xl">
+        <p className="md:text-md break-keep text-sm xl:text-xl">
           현재 사용 가능한 언어 및 라이브러리, 툴은 다음과 같습니다
         </p>
       </div>
@@ -58,7 +58,7 @@ export default function Introduce() {
               height={75}
               priority={true}
             />
-            <span className="text-[12px] lg:text-sm">{lang}</span>
+            <span className="text-[12px] md:text-sm">{lang}</span>
           </div>
         ))}
       </div>
