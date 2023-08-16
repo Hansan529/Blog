@@ -38,7 +38,7 @@ export default async function RootLayout({ children }: Props) {
           <Providers>
             <Header />
             <main className="space-y-[50px]">{children}</main>
-            <footer className="flex h-[80px] items-center bg-gradient-to-t from-[skyblue] to-transparent to-60%"></footer>
+            <footer className="fixed bottom-0 flex h-[80px] w-full items-center bg-gradient-to-t from-[skyblue] to-transparent to-60%"></footer>
           </Providers>
         </ReduxProvider>
       </body>

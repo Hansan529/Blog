@@ -9,7 +9,7 @@ export default function Page(){
         <Link target="_blank" href="https://github.com/Hansan529/daily-ui-100">
           <Image
             className="object-contain hover:opacity-75"
-            src="/portfolio-img/dailyUi.png"
+            src="/portfolio-img/Daily-ui.png"
             alt="react 날씨"
             width={1200}
             height={800}
