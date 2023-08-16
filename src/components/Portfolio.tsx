@@ -4,26 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import Pagination from "./Pagination";
 import { useState } from "react";
-
-interface List {
-  [key: string]: string[];
-}
+import { totalPost } from "@/db/Data";
 
 export default function Portfolio() {
-  const totalPost: List[] = [
-    // { 블로그: "Blog (Dev)" },
-    { "daily-ui": ["Daily UI 100 (Reference)", "ts"] },
-    { "react-weather": ["React Weather (Dev)", "react"] },
-    { wetube: ["Wetube (Dev)", "nodejs"] },
-    { "applewallet-clone": ["Apple Wallet (Reference)", "js"] },
-    { lgdisplay: ["LG Display (Referenece)", "js"] },
-    { "wwf-clone": ["WWF (Clone)", "html"] },
-    { "hollys-clone": ["Hollys (Clone)", "html"] },
-    { "nxweb-clone": ["NXweb (Clone)", "html"] },
-    { "northface-clone": ["NorethFace (Clone)", "html"] },
-    { "subway-clone": ["Subway (Clone)", "html"] },
-    { "kokoatalk-clone": ["KokoaTalk (Clone)", "html"] },
-  ];
   const [limit, setLimit] = useState<number>(8);
   const [page, setPage] = useState<number>(0);
   const result = totalPost.slice(page * limit, (page + 1) * limit);
