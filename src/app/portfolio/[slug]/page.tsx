@@ -1,10 +1,10 @@
 import { Metadata } from "next";
 import Loading from "@/app/loading";
 import dynamic from "next/dynamic";
-
-interface Params {
-  params: { slug: string };
-}
+import type { Params } from "@/type";
+import NotFound from "@/app/not-found";
+import { existsSync } from "fs";
+import { join } from "path";
 
 export const metadata: Metadata = {
   title: "포트폴리오",
@@ -25,10 +25,18 @@ export default function Page({ params }: Params) {
   if (slug[1])
     result = `${result}${slug[1].charAt(0).toUpperCase()}${slug[1].slice(1)}`;
 
+  // 해당 컴포넌트가 존재하는지 체크
+  const exist = existsSync(
+    join(process.cwd(), "src", "app", "portfolio", "[slug]", `${result}.tsx`),
+  );
+
+  if (!exist) {
+    return <NotFound />;
+  }
+
   // 컴포넌트 로드
-  const DynamicComponent = dynamic(() => import(`./${result}.tsx`), {
+  const DynamicComponent = dynamic(async () => import(`./${result}.tsx`), {
     loading: () => <Loading />,
-    ssr: true,
   });
 
   return <DynamicComponent />;
