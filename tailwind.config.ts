@@ -9,6 +9,7 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  important: true,
   darkMode: ["class", '[data-theme="dark"]'],
   theme: {
     extend: {
@@ -24,6 +25,7 @@ const config: Config = {
         "9/10": "90%",
       },
     },
+    
   },
   plugins: [
     require("@tailwindcss/typography"),

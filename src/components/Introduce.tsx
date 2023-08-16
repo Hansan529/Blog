@@ -17,6 +17,7 @@ export default function Introduce() {
     "git",
     "github",
   ];
+
   return (
     <article
       className="container mx-auto w-[90%] rounded-3xl p-[30px] text-center dark:bg-[#fff]/5 
@@ -39,7 +40,7 @@ export default function Introduce() {
         </p>
       </div>
       <div
-        className="gridCenter mb-[30px] justify-center gap-[20px]"
+        className="gridCenter justify-center gap-[20px]"
         style={{ gridTemplateColumns: "repeat(auto-fill, minmax(75px, auto)" }}
       >
         {data.map((lang, index) => (
