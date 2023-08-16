@@ -33,12 +33,17 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: Props) {
   return (
     <html className="scroll-smooth">
-      <body className="font-sans text-black dark:bg-[#1e1e1e] dark:text-white">
+      <body className="to-transpatrent bg-gradient-to-t from-[skyblue] to-[80px] font-sans text-black dark:bg-[#1e1e1e] dark:text-white">
         <ReduxProvider>
           <Providers>
             <Header />
-            <main className="space-y-[50px]">{children}</main>
-            <footer className="fixed bottom-0 flex h-[80px] w-full items-center bg-gradient-to-t from-[skyblue] to-transparent to-60%"></footer>
+            <main
+              className="mx-auto w-9/10 space-y-[50px] py-[80px] md:w-full"
+              style={{ minHeight: "calc(100vh - 100px)" }}
+            >
+              {children}
+            </main>
+            {/* <footer className="fixed bottom-0 -z-50 flex h-[80px] w-full items-center bg-gradient-to-t from-[skyblue] to-transparent to-60%"></footer> */}
           </Providers>
         </ReduxProvider>
       </body>

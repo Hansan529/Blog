@@ -52,13 +52,13 @@ export default function Portfolio() {
               onChange={(e) => setLimit(Number(e.target.value))}
             >
               <option selected value="4">
-                4개
+                4개씩 보기
               </option>
               <option selected value="8">
-                8개
+                8개씩 보기
               </option>
-              <option value="12">12개</option>
-              <option value="20">20개</option>
+              <option value="12">12개씩 보기</option>
+              <option value="20">20개씩 보기</option>
             </select>
           </li>
           <li>

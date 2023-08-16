@@ -19,11 +19,7 @@ export default function Introduce() {
   ];
 
   return (
-    <article
-      className="container mx-auto w-[90%] rounded-3xl p-[30px] text-center dark:bg-[#fff]/5 
-      md:w-full
-      xl:p-[50px]"
-    >
+    <article className="container mx-auto rounded-3xl p-[30px] text-center dark:bg-[#fff]/5">
       <div className="mb-[30px] space-y-[30px] leading-loose md:mb-[50px] md:space-y-[20px] md:leading-normal">
         <h2
           className="break-words bg-gradient-to-r from-[skyblue] from-10% to-[pink] to-90% bg-clip-text p-[10px] text-4xl font-extrabold capitalize text-transparent 
