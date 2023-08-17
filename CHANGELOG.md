@@ -1,6 +1,38 @@
 # Hxan Develop Blog - CHANGELOG
 
-## 마이그레이션 완료 (2023.08.08 ~ 2023.08.10)
+## v2.0 배포 (2023.08.17)
+
+- React / Node 시스템 &rarr; NextJS / MongoDB &rarr; NextJS
+- 데이터베이스 시스템은 제외하고 시스템 간소화
+- 로그인 시스템을 제거하면서 상태 관리가 필요 없어지면서 Redux 제거
+
+## 반응형 (2023.08.15 ~ 2023.08.16)
+
+- `min-width` 1024px &rarr; 768 픽셀로 태블릿 반응형 너비 변경
+- 존재하지 않는 페이지로 이동할 경우 NotFound 컴포넌트가 나오도록 설정
+- 포스팅 추가
+- 게시글 레이아웃 구현 (Grid, Flex 변경)
+
+## 테마 설정 (2023.08.13 ~ 2023.08.14)
+
+- 라이트 / 다크모드 구현
+- 컴파일러 바벨 &rarr; styledComponents 변경
+- 기본 테마를 사용자 운영체제의 테마를 기준으로 설정
+- 모드 전환 버튼 구현
+- 반응형 추가
+- 포트폴리오 게시글 대표 언어 추가
+
+## MDX 마이그레이션 (2023.08.12)
+
+- Loading, Not found 컴포넌트 구현
+- 기존 API 삭제
+- tsx 컴포넌트 &rarr; mdx 파일로 변경
+
+## Tailwind (2023.08.11)
+
+- 테일윈드 추가
+
+## NEXT.JS 마이그레이션 완료 (2023.08.08 ~ 2023.08.10)
 
 - Project &rarr; Portfolio
 - 홈페이지 테마 다크모드로 설정
@@ -10,6 +42,7 @@
 - 파비콘 설정
 - 관리 페이지 **U**pdate, **D**elete 구현
 - 반응형 디자인 구현
+  
 <div style="display: flex">
     <img width="382" alt="" src="https://github.com/Hansan529/Blog/assets/115819770/899fec3d-8272-494f-8e3a-d659ef8844c6">
     <img width="379" alt="" src="https://github.com/Hansan529/Blog/assets/115819770/9e627785-7f66-4ff5-bef6-794e3a180b5c">
