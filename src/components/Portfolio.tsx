@@ -23,7 +23,7 @@ export default function Portfolio() {
       <article
         className={`
         container relative mx-auto w-8/10 space-y-[30px] space-y-reverse pt-[10px]
-        md:space-y-0 md:pt-0
+        md:pt-0
         xl:w-full
         ${gridLayout}`}
       >
@@ -33,34 +33,31 @@ export default function Portfolio() {
               name="showPost"
               className="rounded-xl border-none bg-transparent focus:border-[skyblue]"
               onChange={(e) => setLimit(Number(e.target.value))}
+              value={limit}
             >
-              <option selected value="4">
-                4개씩 보기
-              </option>
-              <option selected value="8">
-                8개씩 보기
-              </option>
+              <option value="4">4개씩 보기</option>
+              <option value="8">8개씩 보기</option>
               <option value="12">12개씩 보기</option>
               <option value="20">20개씩 보기</option>
             </select>
           </li>
           <li>
-            <i className="block h-[30px] w-[30px] bg-[url('/ico/grid.svg')] bg-cover bg-no-repeat text-[0px] dark:invert">
+            <i className="block h-[30px] w-[30px] bg-[url('/ico/grid.svg')] bg-cover bg-no-repeat dark:invert">
               <button
                 onClick={() => setLayout("grid")}
                 className="h-full w-full"
               >
-                Grid
+                <span className="sr-only">Grid</span>
               </button>
             </i>
           </li>
           <li>
-            <i className="block h-[30px] w-[30px] bg-[url('/ico/list.svg')] bg-cover bg-no-repeat text-[0px] dark:invert">
+            <i className="block h-[30px] w-[30px] bg-[url('/ico/list.svg')] bg-cover bg-no-repeat dark:invert">
               <button
                 onClick={() => setLayout("flex")}
                 className="h-full w-full"
               >
-                Flex
+                <span className="sr-only">Flex</span>
               </button>
             </i>
           </li>
@@ -69,8 +66,9 @@ export default function Portfolio() {
           <Link
             href={`/portfolio/${Object.keys(key)}`}
             key={index}
-            className="block overflow-hidden rounded-xl bg-sky-200 outline outline-offset-4 outline-sky-200 dark:bg-gray-700 dark:shadow-[0_0_10px_1px_#fff]
-              dark:outline-white xl:h-full xl:w-full"
+            className="block overflow-hidden rounded-xl bg-sky-200 outline outline-offset-4 outline-sky-200 focus:bg-sky-300 focus:outline-sky-800
+            dark:bg-gray-700 dark:shadow-[0_0_10px_1px_#fff] dark:outline-white 
+            xl:h-full xl:w-full"
           >
             <div className="relative">
               <div className="absolute left-[20px] top-1/2 -translate-y-1/2">
@@ -94,7 +92,9 @@ export default function Portfolio() {
             {layout === "grid" ? (
               <Image
                 className="h-[200px] w-full rounded-t-xl bg-[#F1F0E8] object-contain dark:bg-white/20"
-                src={`/portfolio-img/${Object.keys(key)}.png`}
+                src={`/portfolio-img/${Object.keys(key)[0]
+                  .charAt(0)
+                  .toUpperCase()}${Object.keys(key)[0].slice(1)}.png`}
                 alt={String(Object.keys(key)[0])}
                 width={300}
                 height={200}

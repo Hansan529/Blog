@@ -17,16 +17,10 @@ export default async function Page({ params }: Params) {
     return <NotFound />;
   }
 
-  const DynamicComponent = dynamic(
-    () =>
-      import(`./${url}.tsx`).catch((err) => {
-        return () => <NotFound />;
-      }),
-    {
-      loading: () => <Loading />,
-      ssr: true,
-    },
-  );
+  const DynamicComponent = dynamic(() => import(`./${url}.tsx`), {
+    loading: () => <Loading />,
+    ssr: true,
+  });
 
   return <DynamicComponent />;
 }
