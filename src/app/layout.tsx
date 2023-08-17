@@ -14,17 +14,14 @@ export const metadata: Metadata = {
   generator: "Next.js",
   applicationName: "Next.js",
   creator: "Hansan",
-  // colorScheme: "dark",
+  keywords: ["Dev Hxan", "NEXT.JS", "Typescript"],
+
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
+    icon: "https://hxan.net/favicon.ico",
+    shortcut: "https://hxan.net/favicon.ico",
+    apple: "https://hxan.net/favicon.ico",
   },
   openGraph: {
-    title: "Hxan Portfolio",
-    description: "포트폴리오 랜딩페이지",
-    url: "https://hxan.net",
-    siteName: "Hxan Developer Blog",
-    images: "/images/og-image.png",
     locale: "ko_KR",
     type: "website",
   },

@@ -12,7 +12,6 @@ services:
       - traefik.http.routers.${SERVICE}.rule=Host(`${DOMAIN}`)
       - traefik.http.routers.${SERVICE}.tls.certresolver=leresolver
       - traefik.http.services.${SERVICE}.loadbalancer.server.port=3000
-      - traefik.http.routers.${SERVICE}.middlewares=basic-auth@file
 
 ########################### NETWORKS
 networks:

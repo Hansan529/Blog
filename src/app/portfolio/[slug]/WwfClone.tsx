@@ -12,7 +12,7 @@ export default function Page() {
       >
         <Image
           className="object-contain hover:opacity-75"
-          src="/portfolio-img/wwf-clone.png"
+          src="/portfolio-img/Wwf-clone.png"
           alt="WWF 클론"
           width={1200}
           height={800}

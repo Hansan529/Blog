@@ -43,8 +43,6 @@ ENV NEXT_TELEMETRY_DISABLED 1
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-USER nextjs
-
 COPY --from=builder /app/public ./public
 
 # Automatically leverage output traces to reduce image size
@@ -52,9 +50,18 @@ COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 
-EXPOSE 8000
+# Error: EACCES: permission denied, mkdir '/app/.next/cache'
+# 해당 문제를 해결하기위해서 다음줄을 추가
+# https://community.fly.io/t/next-js-failed-to-update-prerender-cache-eacces-permission-denied/13392
+RUN chown -R nextjs:nodejs /app
 
-ENV PORT 8000
+RUN ls -al
+
+USER nextjs
+
+EXPOSE 3000 
+
+ENV PORT 3000
 ENV HOSTNAME localhost
 
 CMD ["node", "server.js"]
