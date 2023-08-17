@@ -1,5 +1,83 @@
 # Hxan Develop Blog - CHANGELOG
 
+## v2.0 배포 (2023.08.17)
+
+- React / Node 시스템 &rarr; NextJS / MongoDB &rarr; NextJS
+- 데이터베이스 시스템은 제외하고 시스템 간소화
+- 로그인 시스템을 제거하면서 상태 관리가 필요 없어지면서 Redux 제거
+
+## 반응형 (2023.08.15 ~ 2023.08.16)
+
+- `min-width` 1024px &rarr; 768 픽셀로 태블릿 반응형 너비 변경
+- 존재하지 않는 페이지로 이동할 경우 NotFound 컴포넌트가 나오도록 설정
+- 포스팅 추가
+- 게시글 레이아웃 구현 (Grid, Flex 변경)
+
+## 테마 설정 (2023.08.13 ~ 2023.08.14)
+
+- 라이트 / 다크모드 구현
+- 컴파일러 바벨 &rarr; styledComponents 변경
+- 기본 테마를 사용자 운영체제의 테마를 기준으로 설정
+- 모드 전환 버튼 구현
+- 반응형 추가
+- 포트폴리오 게시글 대표 언어 추가
+
+## MDX 마이그레이션 (2023.08.12)
+
+- Loading, Not found 컴포넌트 구현
+- 기존 API 삭제
+- tsx 컴포넌트 &rarr; mdx 파일로 변경
+
+## Tailwind (2023.08.11)
+
+- 테일윈드 추가
+
+## NEXT.JS 마이그레이션 완료 (2023.08.08 ~ 2023.08.10)
+
+- Project &rarr; Portfolio
+- 홈페이지 테마 다크모드로 설정
+- Header, Loading, Upload 구현
+- 포트폴리오 업로드 **C**reate 구현
+- 랜딩페이지 **R**ead 구현
+- 파비콘 설정
+- 관리 페이지 **U**pdate, **D**elete 구현
+- 반응형 디자인 구현
+  
+<div style="display: flex">
+    <img width="382" alt="" src="https://github.com/Hansan529/Blog/assets/115819770/899fec3d-8272-494f-8e3a-d659ef8844c6">
+    <img width="379" alt="" src="https://github.com/Hansan529/Blog/assets/115819770/9e627785-7f66-4ff5-bef6-794e3a180b5c">
+    <img width="380" alt="" src="https://github.com/Hansan529/Blog/assets/115819770/8ccbf4a3-28f4-4093-974e-378c812ddefc">
+</div>
+<div style="display: flex">
+    <img width="380" alt="" src="https://github.com/Hansan529/Blog/assets/115819770/ceb75f5d-60db-4dbb-b6d1-c1b56690c587">
+    <img width="385" alt="" src="https://github.com/Hansan529/Blog/assets/115819770/4d393e3a-d06e-4a49-a442-c8e186b85400">
+    <img width="389" alt="" src="https://github.com/Hansan529/Blog/assets/115819770/94811bbd-c215-4e33-94c5-97ae3c54882c">
+</div>
+<div>
+<img width="2995" alt="" src="https://github.com/Hansan529/Blog/assets/115819770/a235a446-b001-4b0f-af6d-6149e71fd345">
+<img width="1908" alt="" src="https://github.com/Hansan529/Blog/assets/115819770/ffc98f8b-c53e-4c34-be74-ca63eb43f676"></div>
+
+
+## 데이터베이스 연동 (2023.08.06 ~ 2023.08.07)
+
+- mongoDB 연결
+- middleware 설정
+- multer, bcrpyt 패키지 추가
+- 로그인 API 완성
+- 관리자 추가 구현
+- Project, Info 모델 추가
+
+## 마이그레이션 시작 (2023.08.05)
+
+- React/Node &rarr; **NEXT JS**
+- 로그인 페이지 마이그레이션
+
+<img width="382" alt="#" src="https://github.com/Hansan529/Blog/assets/115819770/b868584e-30b5-4280-83e2-96fa36ef0eeb">
+
+- 서버 컴포넌트, 클라이언트 컴포넌트 분리
+- ~~MySQL 추가~~
+
+# 릴리즈 1.1.0
 ## 반응형 디자인 스타일시트 구현 [#35](https://github.com/Hansan529/Blog/pull/35) (2023.07.31)
 
 ### 클라이언트

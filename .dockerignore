@@ -1,0 +1,12 @@
+/node_modules
+.env
+
+README.md
+CHANGELOG.md
+npm-debug.log
+
+Dockerfile
+.dockerignore
+
+# NextJS
+.next
