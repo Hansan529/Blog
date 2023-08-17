@@ -14,25 +14,55 @@ export const metadata: Metadata = {
   generator: "Next.js",
   applicationName: "Next.js",
   creator: "Hansan",
-  // colorScheme: "dark",
+  keywords: ["Dev Hxan", "NEXT.JS", "Typescript"],
+
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
+    icon: "https://hxan.net/favicon.ico",
+    shortcut: "https://hxan.net/favicon.ico",
+    apple: "https://hxan.net/favicon.ico",
   },
   openGraph: {
-    title: "Hxan Portfolio",
-    description: "포트폴리오 랜딩페이지",
     url: "https://hxan.net",
-    siteName: "Hxan Developer Blog",
-    images: "/images/og-image.png",
-    locale: "ko_KR",
     type: "website",
+    images: [
+      {
+        url: "https://hxan.net/meta/og-image.png",
+        width: 800,
+        height: 600,
+      },
+    ],
+    locale: "ko_KR",
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: "https://hxan.net/meta/og-image.png",
   },
 };
 
 export default async function RootLayout({ children }: Props) {
   return (
     <html className="scroll-smooth">
+      <head>
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link
+          rel="icon"
+          type="image/png"
+          href="/meta/logo_32.png"
+          sizes="32x32"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          href="/meta/logo_64.png"
+          sizes="64x64"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          href="/meta/logo_128.png"
+          sizes="128x128"
+        />
+      </head>
       <body className="to-transpatrent bg-gradient-to-t from-[skyblue] to-[80px] font-sans text-black dark:bg-[#1e1e1e] dark:text-white">
         <ReduxProvider>
           <Providers>
