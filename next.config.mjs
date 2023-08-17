@@ -7,10 +7,6 @@ const nextConfig = {
     styledComponents: true,
   },
   output: "standalone",
-  // mdx 설정
-  experimental: {
-    mdxRs: false,
-  },
 };
 
 // const withMDX = require("@next/mdx")();
