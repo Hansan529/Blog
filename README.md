@@ -61,6 +61,10 @@
 
 ---
 
+### [v2.0.1](https://github.com/Hansan529/Blog/tree/v2.0.1)
+
+포스팅 및 포트폴리오 페이지에서 존재하지 않는 페이지로 이동할 경우 NotFound 컴포넌트로 이동되도록 수정하고 파비콘 및 아이콘 추가했습니다.
+
 ### [v2.0.0 Next.js + Tailwindcss](https://github.com/Hansan529/Blog/tree/v2.0.0)
 
 포스팅 내용을 데이터베이스 안에 모두 저장하다보니 하고자 하는 취지에 맞지 않는 것 같아서 데이터베이스를 제거하고 이를 `mdx` 파일로 옮기기로 했습니다.  
