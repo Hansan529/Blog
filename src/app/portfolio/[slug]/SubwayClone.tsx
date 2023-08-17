@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Subway from "./subwayClone.mdx";
+import Subway from "./SubwayClone.mdx";
 import Image from "next/image";
 
 export default function Page() {
