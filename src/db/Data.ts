@@ -1,7 +1,6 @@
 import { List } from "@/type";
 
 export const totalPost: List[] = [
-  { "daily-ui": ["Daily UI 100 (Reference)", "ts"] },
   { "react-weather": ["React Weather (Dev)", "react"] },
   { wetube: ["Wetube (Dev)", "nodejs"] },
   { "applewallet-clone": ["Apple Wallet (Reference)", "js"] },
