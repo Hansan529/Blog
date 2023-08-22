@@ -1,5 +1,8 @@
 # Hxan Develop Blog - CHANGELOG
 
+## Docker, NEXT.JS, MySQL 게시글 추가 (2023.08.22)
+
+- 포스팅 추가
 ## v2.0 배포 (2023.08.17)
 
 - React / Node 시스템 &rarr; NextJS / MongoDB &rarr; NextJS

@@ -14,5 +14,6 @@ export const totalPost: List[] = [
 ];
 
 export const info: List[] = [
+  { "docker-nextjs-mysql": ["Docker 환경에서 Next.js + MySQL 사용기"] },
   { 테일윈드: ["내가 테일윈드를 사용하는 이유", "2023.08.16"] },
 ];
