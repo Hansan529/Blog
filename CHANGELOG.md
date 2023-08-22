@@ -1,15 +1,14 @@
 # Hxan Develop Blog - CHANGELOG
 
-<<<<<<< HEAD
+## Docker, NEXT.JS, MySQL 게시글 추가, KMDB 포트폴리오 추가 (2023.08.22)
+
+- 포스팅 추가, 포트폴리오 추가
+
 ## 버그 수정 (2023.08.17)
 
 - 포스팅 및 포트폴리오 페이지에서 존재하지 않는 페이지로 이동할 경우 NotFound 컴포넌트
 - 파비콘 및 아이콘 추가
-=======
-## Docker, NEXT.JS, MySQL 게시글 추가 (2023.08.22)
-
-- 포스팅 추가
->>>>>>> develop
+- 
 ## v2.0 배포 (2023.08.17)
 
 - React / Node 시스템 &rarr; NextJS / MongoDB &rarr; NextJS

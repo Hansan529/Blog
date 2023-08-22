@@ -3,10 +3,13 @@ import createMdx from "@next/mdx";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "standalone",
+  images: {
+    domains: ["localhost", "hxan.net"],
+  },
   compiler: {
     styledComponents: true,
   },
-  output: "standalone",
 };
 
 // const withMDX = require("@next/mdx")();
