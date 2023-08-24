@@ -32,21 +32,23 @@ export default function Introduce() {
           <dd>
             <ol>
               <li>
-                React 개발로 인해 CSR 방식으로 SPA 과 같은 컴포넌트 개발을
-                숙달할 수 있었습니다. 사용자가 이용하면서 새로고침 현상 없이
-                부드럽게 사용할 수 있다는 장점이 있습니다.
+                React 개발로 인해{" "}
+                <b className="text-blue-300">CSR 방식으로 SPA</b> 과 같은
+                컴포넌트 개발을 숙달할 수 있었습니다. 사용자가 이용하면서
+                새로고침 현상 없이 부드럽게 사용할 수 있다는 장점이 있습니다.
               </li>
               <li>
-                다만 SEO에 취약할 수 밖에 없는 문제가 있습니다. HTML 상에
-                작성되어 있는 것이 아니라, 사용자의 브라우저에서 자바스크립트가
-                해당 DOM을 생성하기 때문입니다.
+                다만 <b className="text-blue-300">SEO</b>에 취약할 수 밖에 없는
+                문제가 있습니다. HTML 상에 작성되어 있는 것이 아니라, 사용자의
+                브라우저에서 자바스크립트가 해당 DOM을 생성하기 때문입니다.
               </li>
               <li>
                 JSX, TSX와 같이 React상에서 HTML 문법에서 크게 벗어나지 않아
                 마치 HTML 작업과 스크립트를 한번에 할 수 있다는 점이 좋습니다.
               </li>
               <li>
-                컴포넌트 별로 파일을 나누면 재사용성도 좋아지고 구분하기가
+                컴포넌트 별로 파일을 나누면{" "}
+                <b className="text-blue-300">재사용성</b>도 좋아지고 구분하기가
                 용이해지기 때문에 저는 주로 분리해서 사용합니다.
               </li>
             </ol>
@@ -58,7 +60,8 @@ export default function Introduce() {
           <dd>
             <ol>
               <li>
-                React가 CSR 방식만 가능하다면, Next.js는 SSR, CSR 모두 가능한
+                React가 CSR 방식만 가능하다면,{" "}
+                <b className="text-blue-300">Next.js는 SSR, CSR 모두</b> 가능한
                 매우 놀라운 프레임워크입니다.
               </li>
               <li>
@@ -66,7 +69,11 @@ export default function Introduce() {
                 컴포넌트에서 미리 렌더링하여 사용자에게 즉각적으로 전달해 줄 수
                 있습니다.
               </li>
-              <li>DX를 매우 높여주는 프레임워크라고 생각합니다</li>
+              <li>
+                <strong className="text-pink-300">
+                  DX를 매우 높여주는 프레임워크라고 생각합니다
+                </strong>
+              </li>
             </ol>
           </dd>
           <dt>
@@ -96,8 +103,9 @@ export default function Introduce() {
           <dd>
             <ol>
               <li>
-                React 에서 클라이언트 브라우저에서 상태를 관리하기 위해 사용
-                중에 있습니다.
+                React 에서 클라이언트 브라우저에서{" "}
+                <b className="text-blue-300">상태를 관리</b>하기 위해 사용 중에
+                있습니다.
               </li>
               <li>
                 특정 정보나 상태를 저장하거나 불러오기 위해 사용합니다.
@@ -113,8 +121,11 @@ export default function Introduce() {
           <dd>
             <ol>
               <li>
-                CSS 전처리기로 클래스 속 클래스를 지정하거나, @mixin으로
-                재사용성을 높이고 스타일링의 속도를 높여주기 때문에 사용합니다.
+                CSS 전처리기로 클래스 속 클래스를 지정하거나, @mixin으로{" "}
+                <b className="text-blue-300">
+                  재사용성을 높이고 스타일링의 속도
+                </b>
+                를 높여주기 때문에 사용합니다.
               </li>
             </ol>
           </dd>
@@ -129,9 +140,9 @@ export default function Introduce() {
                 스타일링을 작업하는 것 보다 테일윈드를 사용하면
               </li>
               <li>
-                직관성을 높여주고, CSS 파일을 Tailwindcss 설정만 하면 필요 없는
-                장점이 있습니다. 커스텀 기능도 있어서 자유로워서 웬만한 작업에는
-                주로 사용합니다.
+                <b className="text-blue-300">직관성</b>을 높여주고, CSS 파일을
+                Tailwindcss 설정만 하면 필요 없는 장점이 있습니다. 커스텀 기능도
+                있어서 자유로워서 웬만한 작업에는 주로 사용합니다.
               </li>
             </ol>
           </dd>
@@ -154,8 +165,9 @@ export default function Introduce() {
           <dd>
             <ol>
               <li>
-                NoSQL 데이터베이스로 데이터를 JSON 문서로 저장합니다. 모델 안에
-                다른 모델을 복제하여 참조할 수 있습니다.
+                NoSQL 데이터베이스로 데이터를{" "}
+                <b className="text-blue-300">JSON 문서</b>로 저장합니다. 모델
+                안에 다른 모델을 복제하여 참조할 수 있습니다.
               </li>
               <li>
                 개인적으로는 mongoDB 접속을 도와주는 패키지인 mongoose가
@@ -170,7 +182,8 @@ export default function Introduce() {
           <dd>
             <ol>
               <li>
-                데이터를 구조화한 테이블 형식으로 저장하는 관계형 데이터베이스
+                데이터를 구조화한 테이블 형식으로 저장하는{" "}
+                <b className="text-blue-300">관계형 데이터베이스</b>
                 시스템으로 행에 데이터를 저장하고, 열에 유형별로 데이터의 타입을
                 지정합니다.
               </li>
@@ -185,8 +198,9 @@ export default function Introduce() {
             <ol>
               <li>
                 클론, 미니 프로젝트의 경우 별도의 branch를 나누어서 작업을
-                하지는 않으며, 체계적인 관리가 필요한 페이지의 경우 git-flow
-                브랜치 전략을 사용해 커밋을 진행합니다.
+                하지는 않으며, 체계적인 관리가 필요한 페이지의 경우{" "}
+                <b className="text-blue-300">git-flow 브랜치</b> 전략을 사용해
+                커밋을 진행합니다.
               </li>
             </ol>
           </dd>

@@ -19,8 +19,10 @@ export default function Profile() {
           프론트엔드 개발자라는 직업을 찾았습니다.
         </p>
         <p>
-          <strong>&quot;배움에는 끝이 없다&quot;</strong> 라는 말이 있듯이 매번
-          새로운 기술을 터득하려고 하고 있습니다.
+          <strong className="text-pink-300">
+            &quot;배움에는 끝이 없다&quot;
+          </strong>{" "}
+          라는 말이 있듯이 매번 새로운 기술을 터득하려고 하고 있습니다.
         </p>
         <p>
           <strong>클라이언트와 사용자 모두를 만족시키는 개발자</strong>가 되고
