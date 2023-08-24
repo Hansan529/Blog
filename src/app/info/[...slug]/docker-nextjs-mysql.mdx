@@ -8,7 +8,7 @@
 
 검색을 해보니 이미 Next.js 상에서 Dockerfile을 작성 한 양식이 있었다.
 
-https://github.com/vercel/next.js/blob/canary/examples/with-docker/Dockerfile
+[examples/with-docker](https://github.com/vercel/next.js/blob/canary/examples/with-docker/Dockerfile)
 
 
 1. ### 의존성 설치
@@ -16,11 +16,10 @@ https://github.com/vercel/next.js/blob/canary/examples/with-docker/Dockerfile
 ```sql
 FROM node:18-alpine AS base
 
-# Install dependencies only when needed
-FROM base AS deps
-# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-RUN apk add --no-cache libc6-compat
-WORKDIR /app
+# Install dependencies only when needed  
+FROM base AS deps  
+RUN apk add --no-cache libc6-compat  
+WORKDIR /app  
 ```
 
 2. ### 패키지 설치
@@ -94,7 +93,7 @@ CMD ["node", "server.js"]
 
 Next.js 에서도 output 할 경우 standalone 이라는 옵션을 넣어주어야 한다.
 
-https://nextjs.org/docs/app/api-reference/next-config-js/output
+[next-config-js/output](https://nextjs.org/docs/app/api-reference/next-config-js/output)
 
 ```js
 module.exports = {
@@ -148,7 +147,7 @@ error Error: Access denied for user 'hxan'@'172.17.0.1' (using password: YES)
 
 MySQL 유저에 접속 권한? 문제로 보여진다.
 
-https://medium.com/tech-learn-share/docker-mysql-access-denied-for-user-172-17-0-1-using-password-yes-c5eadad582d3
+[using-password-yes](https://medium.com/tech-learn-share/docker-mysql-access-denied-for-user-172-17-0-1-using-password-yes-c5eadad582d3)
 
 ```bash
 docker exec -it mysql_container bash
