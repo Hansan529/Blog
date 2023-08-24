@@ -14,50 +14,52 @@ export default function Page({
 }: Type) {
   const language = (type: string[]): JSX.Element => {
     return (
-      <td className="relative w-1/6 align-middle empty:before:text-red-500 empty:before:content-['X']">
+      <div className="relative empty:before:text-red-500 empty:before:content-['X']">
         {type
           ? type.map((name, index) => (
-              <div key={index}>
-                <Image
-                  className={`mx-auto object-contain ${
-                    name === "express" ? "dark:invert" : ""
-                  }`}
-                  title={name}
-                  alt={name}
-                  src={`/ico/language/${name}-icon.svg`}
-                  width={30}
-                  height={30}
-                  priority={true}
-                />
-                <span className="text-[12px]">{name.toUpperCase()}</span>
-              </div>
+              <Image
+                key={index}
+                className={`mx-auto mb-5 object-contain ${
+                  name === "express" ? "dark:invert" : ""
+                }`}
+                title={name}
+                alt={name}
+                src={`/ico/language/${name}-icon.svg`}
+                width={30}
+                height={30}
+                priority={true}
+              />
             ))
           : null}
-      </td>
+      </div>
     );
   };
   return (
-    <table className="mt-[20px] w-[100%] text-center text-[12px]">
-      <thead>
-        <tr className="break-keep">
-          <th>마크업</th>
-          <th>스타일</th>
-          <th>스크립트</th>
-          <th>데이터베이스</th>
-          <th>상태 관리</th>
-          <th>서버</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr className="items-center tabular-nums">
-          {language(markup)}
-          {language(style)}
-          {language(script)}
-          {language(db)}
-          {language(state)}
-          {language(server)}
-        </tr>
-      </tbody>
-    </table>
+    <div className="not-prose mt-[20px] grid grid-cols-3 gap-5 text-center">
+      <div className="space-y-5">
+        <h3>마크업</h3>
+        {language(markup)}
+      </div>
+      <div className="space-y-5">
+        <h3>스타일</h3>
+        {language(style)}
+      </div>
+      <div className="space-y-5">
+        <h3>스크립트</h3>
+        {language(script)}
+      </div>
+      <div className="space-y-5">
+        <h3>데이터베이스</h3>
+        {language(db)}
+      </div>
+      <div className="space-y-5">
+        <h3>상태 관리</h3>
+        {language(state)}
+      </div>
+      <div className="space-y-5">
+        <h3>서버</h3>
+        {language(server)}
+      </div>
+    </div>
   );
 }
