@@ -15,27 +15,15 @@ export const metadata: Metadata = {
   applicationName: "Next.js",
   creator: "Hansan",
   keywords: ["Dev Hxan", "NEXT.JS", "Typescript"],
-
-  icons: {
-    icon: "https://hxan.net/favicon.ico",
-    shortcut: "https://hxan.net/favicon.ico",
-    apple: "https://hxan.net/favicon.ico",
-  },
   openGraph: {
     url: "https://hxan.net",
     type: "website",
-    images: [
-      {
-        url: "https://hxan.net/meta/og-image.png",
-        width: 800,
-        height: 600,
-      },
-    ],
+    images: "/meta/og-image.png",
     locale: "ko_KR",
   },
   twitter: {
     card: "summary_large_image",
-    images: "https://hxan.net/meta/og-image.png",
+    images: "/meta/og-image.png",
   },
 };
 
@@ -68,7 +56,7 @@ export default async function RootLayout({ children }: Props) {
           <Providers>
             <Header />
             <main
-              className="mx-auto w-9/10 space-y-[50px] py-[80px] md:w-full"
+              className="mx-auto w-9/10 space-y-[50px] py-10 duration-500 md:w-full md:py-20"
               style={{ minHeight: "calc(100vh - 100px)" }}
             >
               {children}
