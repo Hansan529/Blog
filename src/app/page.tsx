@@ -1,7 +1,8 @@
-import Introduce from "@/components/Introduce";
+import Skills from "@/components/Skills";
 import Portfolio from "@/components/Portfolio";
 import type { Metadata } from "next";
 import Information from "../components/Information";
+import Profile from "../components/Profile";
 
 export const metadata: Metadata = {
   title: "Hxan FrontEnd Blog",
@@ -11,7 +12,8 @@ export const metadata: Metadata = {
 export default async function Home() {
   return (
     <>
-      <Introduce />
+      <Profile />
+      <Skills />
       <Portfolio />
       <Information />
     </>
