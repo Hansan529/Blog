@@ -8,7 +8,7 @@ export default function Profile() {
         <span>han san</span>
         <span>frontend</span>
       </h2>
-      <div className="space-y-10">
+      <div className="text-md space-y-10 break-keep">
         <p>저는 학생 시절에 동영상을 만드는 취미가 있었습니다.</p>
         <p>
           해당 영상을 업로드 하다 보니, <b>개인적인 홈페이지</b>에 업로드를
