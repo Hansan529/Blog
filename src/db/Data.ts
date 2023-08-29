@@ -2,7 +2,6 @@ import { List } from "@/type";
 
 export const totalPost: List[] = [
   { "korea-movies": ["Korea Movie Database (Dev)", "mysql"] },
-  { "react-weather": ["React Weather (Dev)", "react"] },
   { wetube: ["Wetube (Dev)", "nodejs"] },
   { "applewallet-clone": ["Apple Wallet (Ref)", "js"] },
   { lgdisplay: ["LG Display (Ref)", "js"] },
