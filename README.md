@@ -61,9 +61,9 @@
 
 ---
 
-### [v2.0.1](https://github.com/Hansan529/Blog/tree/v2.0.1)
+### [v2.1](https://github.com/Hansan529/Blog/tree/v2.1)
 
-포스팅 및 포트폴리오 페이지에서 존재하지 않는 페이지로 이동할 경우 NotFound 컴포넌트로 이동되도록 수정하고 파비콘 및 아이콘 추가했습니다.
+전체적인 디자인을 수정했습니다.
 
 ### [v2.0.0 Next.js + Tailwindcss](https://github.com/Hansan529/Blog/tree/v2.0.0)
 
