@@ -1,0 +1,72 @@
+# Tailwindcss 동적 클래스 할당
+
+## 목표
+
+React 상에서 동적으로 클래스의 속성을 변경해 사용하도록 하기 위함
+
+real-time-subway 프로젝트에서 동적으로 색상을 변경하려고 다음과 같이 시도했다
+
+```tsx
+const Metro = (name, hex, key, direct?) => {
+    <div className={`border-b-[10px] border-b-${hex}`}></div>
+}
+
+{results.map((el, index) => {
+    return Metro(
+        Object.values(el)[1],
+        Object.values(el)[3],
+        index,
+        Number(Object.values(el)[4])
+        );
+})}
+```
+
+모두 클래스명은 `border-b-[#ff0000]` 과 같이 지정이 되었는데, 색상은 적용되지 않았다.
+
+## 구글링
+
+<a target="_blank" href="https://www.reddit.com/r/node/comments/o54avo/nextjs_and_tailwind_cant_use_template_string_for/">https://www.reddit.com/r/node/comments/o54avo/nextjs_and_tailwind_cant_use_template_string_for/</a>
+
+이미 같은 현상을 겪은 사람이 레딧에 의견을 구했다.
+
+> Tailwind는 동적으로 할당한 클래스를 인식하지 못하고 지워버린다
+
+사실 공식 홈페이지의 설명에도 적혀있었다. 자세히 읽지 않은 내 탓이 크지
+
+<a target="_blank" href="https://tailwindcss.com/docs/content-configuration#class-detection-in-depth">https://tailwindcss.com/docs/content-configuration#class-detection-in-depth</a>
+
+- X
+
+> `<div class="text-{{ error ? 'red' : 'green' }}-600"></div>`
+
+- O
+
+> `<div class="{{ error ? 'text-red-600' : 'text-green-600' }}"></div>`
+
+해당 문서를 보고 다음과 같이 수정했다.
+
+```tsx
+const colorDynamic = {
+  '1호선': 'border-b-[#0033A0]',
+  '2호선': 'border-b-[#00B140]',
+  '3호선': 'border-b-[#FC4C02]',
+  '4호선': 'border-b-[#30E6FF]',
+  '5호선': 'border-b-[#A05EB5]',
+  '6호선': 'border-b-[#C75D28]',
+  '7호선': 'border-b-[#6D712E]',
+  '8호선': 'border-b-[#E31C79]',
+  '9호선': 'border-b-[#ACAA88]',
+  우이신설선: 'border-b-[#C7D138]',
+  경의중앙선: 'border-b-[#72C6A6]',
+  경춘선: 'border-b-[#168C72]',
+  수인분당선: 'border-b-[#F2A900]',
+  서해선: 'border-b-[#84BD00]',
+  공항철도: 'border-b-[#33BAFF]',
+  신분당선: 'border-b-[#BA0C2F]',
+  경강선: 'border-b-[#0066FF]',
+}
+
+const Metro = (name, hex, key, direct?) => {
+    <div className={`border-b-[10px] ${colorDynamic[name]}`}></div>
+}
+```

@@ -22,7 +22,7 @@ export default function Introduce() {
       <h2 className="mb-5 text-xl font-semibold drop-shadow-[3px_3px_2px_skyblue]">
         기술 스택
       </h2>
-      <details open>
+      <details>
         <summary className="mb-5">열기 / 닫기</summary>
         <dl className={"space-y-5 break-keep " + childrenStyle}>
           <dt>

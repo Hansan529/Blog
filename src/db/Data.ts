@@ -14,6 +14,12 @@ export const totalPost: List[] = [
 ];
 export const info: List[] = [
   {
+    "테일윈드-동적": [
+      "테일윈드에서 동적으로 클래스 할당하는 방법",
+      "2023.08.30",
+    ],
+  },
+  {
     "docker-nextjs-mysql": [
       "Docker 환경에서 Next.js + MySQL 사용기",
       "2023.08.22",
