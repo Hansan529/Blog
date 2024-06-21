@@ -26,7 +26,7 @@ export default function Introduce() {
         <summary className="mb-5">열기 / 닫기</summary>
         <dl className={"space-y-5 break-keep " + childrenStyle}>
           <dt>
-            <Image className="w-8" src={react} alt="언어" />
+            <img className="w-8" src={react} alt="언어" />
             <span>react</span>
           </dt>
           <dd>
@@ -54,7 +54,7 @@ export default function Introduce() {
             </ol>
           </dd>
           <dt>
-            <Image className="w-8 dark:invert" src={nextjs} alt="언어" />
+            <img className="w-8 dark:invert" src={nextjs} alt="언어" />
             <span>next.js</span>
           </dt>
           <dd>
@@ -77,7 +77,7 @@ export default function Introduce() {
             </ol>
           </dd>
           <dt>
-            <Image className="w-8" src={ts} alt="언어" />
+            <img className="w-8" src={ts} alt="언어" />
             <span>typescript</span>
           </dt>
           <dd>
@@ -97,7 +97,7 @@ export default function Introduce() {
             </ol>
           </dd>
           <dt>
-            <Image className="w-8" src={redux} alt="언어" />
+            <img className="w-8" src={redux} alt="언어" />
             <span>redux</span>
           </dt>
           <dd>
@@ -115,7 +115,7 @@ export default function Introduce() {
             </ol>
           </dd>
           <dt>
-            <Image className="w-8" src={sass} alt="언어" />
+            <img className="w-8" src={sass} alt="언어" />
             <span>scss</span>
           </dt>
           <dd>
@@ -130,7 +130,7 @@ export default function Introduce() {
             </ol>
           </dd>
           <dt>
-            <Image className="w-8" src={tailwindcss} alt="언어" />
+            <img className="w-8" src={tailwindcss} alt="언어" />
             <span>tailwindcss</span>
           </dt>
           <dd>
@@ -147,7 +147,7 @@ export default function Introduce() {
             </ol>
           </dd>
           <dt>
-            <Image className="w-8" src={nodejs} alt="언어" />
+            <img className="w-8" src={nodejs} alt="언어" />
             <span>node.js</span>
           </dt>
           <dd>
@@ -159,7 +159,7 @@ export default function Introduce() {
             </ol>
           </dd>
           <dt>
-            <Image className="w-8" src={mongodb} alt="언어" />
+            <img className="w-8" src={mongodb} alt="언어" />
             <span>mongodb</span>
           </dt>
           <dd>
@@ -176,7 +176,7 @@ export default function Introduce() {
             </ol>
           </dd>
           <dt>
-            <Image className="w-8" src={mysql} alt="언어" />
+            <img className="w-8" src={mysql} alt="언어" />
             <span>mysql</span>
           </dt>
           <dd>
@@ -191,7 +191,7 @@ export default function Introduce() {
             </ol>
           </dd>
           <dt>
-            <Image className="w-8" src={github} alt="언어" />
+            <img className="w-8" src={github} alt="언어" />
             <span>github</span>
           </dt>
           <dd>

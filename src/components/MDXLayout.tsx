@@ -17,7 +17,7 @@ export default function Page({
       <div className="relative empty:before:text-red-500 empty:before:content-['X']">
         {type
           ? type.map((name, index) => (
-              <Image
+              <img
                 key={index}
                 className={`mx-auto mb-5 object-contain ${
                   name === "express" ? "dark:invert" : ""
@@ -27,7 +27,7 @@ export default function Page({
                 src={`/ico/language/${name}-icon.svg`}
                 width={30}
                 height={30}
-                priority={true}
+                // priority={true}
               />
             ))
           : null}

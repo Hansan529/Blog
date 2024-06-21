@@ -8,7 +8,7 @@ export default function Header() {
       <article className="container mx-auto flex h-[80px] items-center justify-between px-[20px] xl:h-[100px]">
         <h1>
           <Link href="/">
-            <Image src="/meta/logo_128.png" alt="Logo" width={50} height={50} />
+            <img src="/meta/logo_128.png" alt="Logo" width={50} height={50} />
             <span className="sr-only">홈페이지 로고</span>
           </Link>
         </h1>
@@ -16,7 +16,7 @@ export default function Header() {
         <Link href="/#info">정보글</Link>
         <div className="flex gap-2.5">
           <a href="https://github.com/Hansan529/Blog" target="_blank">
-            <Image
+            <img
               src="/ico/language/github-icon.svg"
               alt="소스코드"
               width={40}

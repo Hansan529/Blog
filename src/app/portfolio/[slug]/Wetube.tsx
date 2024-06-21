@@ -7,13 +7,13 @@ export default function Page() {
     <>
       <Wetube />
       <Link target="_blank" href="https://github.com/Hansan529/wetube-reloaded">
-        <Image
+        <img
           className="object-contain hover:opacity-75"
           src="/portfolio-img/wetube.png"
           alt="Wetube"
           width={1200}
           height={800}
-          priority={true}
+          // priority={true}
         />
       </Link>
     </>

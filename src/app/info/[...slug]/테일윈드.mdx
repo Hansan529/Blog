@@ -72,7 +72,7 @@ $ npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch
   <link href="/dist/output.css" rel="stylesheet">
 </head>
 <body>
-  <h1 class="text-3xl font-bold underline">
+  <h1 className="text-3xl font-bold underline">
     Hello world!
   </h1>
 </body>
@@ -87,15 +87,15 @@ $ npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch
 
 ```html
 <body>
-    <header class="header">
-        <h1 id="logo" class="header__logo">
+    <header className="header">
+        <h1 id="logo" className="header__logo">
             <a href="/">
-                <img class="header__logo-img" src="" alt="Homepage Logo" />
+                <img className="header__logo-img" src="" alt="Homepage Logo" />
                 <span>홈페이지 로고</span>
             </a>
         </h1>
-        <nav class="header__nav">
-            <ul class="header__ul">
+        <nav className="header__nav">
+            <ul className="header__ul">
                 <li>1</li>
                 <li>2</li>
                 <li>3</li>
@@ -115,18 +115,18 @@ $ npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch
 
 ```html
 <body>
-    <header class="not-prose w-80% h-[80px] items-center border border-sky-500 flex justify-center gap-[20px]">
-        <h1 class="w-[40px] h-[40px] float-left">
+    <header className="not-prose w-80% h-[80px] items-center border border-sky-500 flex justify-center gap-[20px]">
+        <h1 className="w-[40px] h-[40px] float-left">
             <a href="/">
-                <img class="object-container rounded-full" src="/ico/logo-icon.svg" alt="" />
-                <span class="sr-only">홈페이지 로고</span>
+                <img className="object-container rounded-full" src="/ico/logo-icon.svg" alt="" />
+                <span className="sr-only">홈페이지 로고</span>
             </a>
         </h1>
-        <nav class="flex-1">
-        <ul class="flex justify-evenly gap-[10px]">
-            <li class="p-[10px] cursor-pointer">1</li>
-            <li class="p-[10px] cursor-pointer">2</li>
-            <li class="p-[10px] cursor-pointer">3</li>
+        <nav className="flex-1">
+        <ul className="flex justify-evenly gap-[10px]">
+            <li className="p-[10px] cursor-pointer">1</li>
+            <li className="p-[10px] cursor-pointer">2</li>
+            <li className="p-[10px] cursor-pointer">3</li>
         </ul>
     </nav>
     </header>
@@ -137,18 +137,18 @@ $ npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch
 
 <br />
 
-<div class="not-prose w-80% h-[80px] items-center border border-sky-500 flex justify-center gap-[20px]">
-    <h1 class="w-[40px] h-[40px] float-left">
+<div className="not-prose w-80% h-[80px] items-center border border-sky-500 flex justify-center gap-[20px]">
+    <h1 className="w-[40px] h-[40px] float-left">
         <a href="#">
-            <img class="object-container rounded-full" src="/ico/logo-icon.svg" alt="" />
-            <span class="sr-only">홈페이지 로고</span>
+            <img className="object-container rounded-full" src="/ico/logo-icon.svg" alt="" />
+            <span className="sr-only">홈페이지 로고</span>
         </a>
     </h1>
-    <nav class="flex-1">
-        <ul class="flex justify-evenly gap-[10px]">
-            <li class="p-[10px] cursor-pointer">1</li>
-            <li class="p-[10px] cursor-pointer">2</li>
-            <li class="p-[10px] cursor-pointer">3</li>
+    <nav className="flex-1">
+        <ul className="flex justify-evenly gap-[10px]">
+            <li className="p-[10px] cursor-pointer">1</li>
+            <li className="p-[10px] cursor-pointer">2</li>
+            <li className="p-[10px] cursor-pointer">3</li>
         </ul>
     </nav>
 </div>

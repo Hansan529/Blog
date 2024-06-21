@@ -2,7 +2,6 @@ import "./globals.css";
 import { ReduxProvider } from "./redux/provider";
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import Header from "@/components/Header";
 import Providers from "./Providers";
 

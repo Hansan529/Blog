@@ -71,7 +71,7 @@ export default function Portfolio() {
             <div className="relative">
               <div className="absolute left-[20px] top-1/2 -translate-y-1/2">
                 {Object.values(key).flat()[1] ? (
-                  <Image
+                  <img
                     src={`/ico/language/${
                       Object.values(key).flat()[1]
                     }-icon.svg`}
@@ -88,7 +88,7 @@ export default function Portfolio() {
               </h2>
             </div>
             {layout === "grid" ? (
-              <Image
+              <img
                 className="h-[200px] w-full rounded-t-xl bg-[#F1F0E8] object-contain dark:bg-white/20"
                 src={`/portfolio-img/${Object.keys(key)[0]
                   .charAt(0)
@@ -96,7 +96,7 @@ export default function Portfolio() {
                 alt={String(Object.keys(key)[0])}
                 width={300}
                 height={200}
-                priority={true}
+                // priority={true}
               />
             ) : null}
           </Link>

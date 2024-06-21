@@ -3,9 +3,9 @@ import createMdx from "@next/mdx";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "standalone",
+  output: "export",
   images: {
-    domains: ["localhost", "hxan.net"],
+    domains: ["localhost", "hansan-web.link"],
   },
   compiler: {
     styledComponents: true,

@@ -8,12 +8,13 @@ export default function Page() {
     <>
       <KoreaMovies />
       <Link target="_blank" href="https://github.com/Hansan529/korea-movies">
-        <Image
+        <img
           className="object-contain hover:opacity-75"
           src="/portfolio-img/Korea-movies.png"
           alt="KMDB 활용"
           width={1200}
           height={800}
+          // priority={true}
         />
       </Link>
     </>
